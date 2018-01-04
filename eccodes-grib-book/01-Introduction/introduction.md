@@ -5,6 +5,8 @@
 GRIB是由世界气象组织 (World Meteorological Organization，WMO)维护的二进制文件格式。
 用于编码由数值天气预报模式(Numerical Weather Prediction models)生成的数据。
 
+![](asserts/earth_to_grid.png)
+
 GRIB 最初是 GRIdded Binary 的缩写，后来被扩展为 General Regularly-distributed Information in Binary form。
 
 ## GRIB文件长什么样？
@@ -13,13 +15,15 @@ GRIB 格式是面向二进制的数据交换格式，与文本文件等人类可
 
 下图是使用16进制编辑器打开 GRIB 文件的示例，除了最开始4个字节外，其余部分都无法解析成文本，后面将会看到前4个字节对应的 ASCII 编码内容 GRIB 正是 GRIB 文件的标志。
 
+![](asserts/grib_file_hex_view.png)
+
 ## WMO 二进制编码
 
 WMO 提供对 GRIB 编码标准的完整描述文件 Manual on Codes。
 
 这是 WMO 二进制编码 GRIB 的唯一官方文档，可以从 WMO 的官网上获取。
 
-    http://www.wmo.int/pages/prog/www/WMOCodes.html
+ [http://www.wmo.int/pages/prog/www/WMOCodes.html](http://www.wmo.int/pages/prog/www/WMOCodes.html)
 
 每三年发布完整的说明文档。
 
@@ -27,7 +31,7 @@ WMO 提供对 GRIB 编码标准的完整描述文件 Manual on Codes。
 
 最新版本的表格请访问 WMO 网站
 
-    http://www.wmo.int/pages/prog/www/WMOCodes/WMO306_vI2/LatestVERSION/LatestVERSION.html
+[http://www.wmo.int/pages/prog/www/WMOCodes/WMO306_vI2/LatestVERSION/LatestVERSION.html](http://www.wmo.int/pages/prog/www/WMOCodes/WMO306_vI2/LatestVERSION/LatestVERSION.html)
 
 ## GRIB结构
 
@@ -47,7 +51,7 @@ GRIB是一种基于表格的存储格式，下面简单介绍 GRIB 的文件结�
 
 目前可以使用两个不同版本的 GRIB 编码标准（版本1和版本2）。两个版本的编码规则相似，但他们的实现方式完全不同。
 
-图
+![](asserts/grib_structure.png)
 
 ### GRIB 1与GRIB 2的主要区别
 
@@ -110,7 +114,7 @@ ecCodes 最终将完全替代 GRIB-API。
 
 ecCodes 使用 Apache 2.0 许可证。
 
-图
+![](asserts/grib_api_to_eccodes.png)
 
 ### ecCodes 与更早期的软件对比
 
