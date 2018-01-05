@@ -64,11 +64,11 @@ GRIB 1 和 GRIB 2 的结构不同，他们都由 section 构成，但代表不�
 
 GRIB 2 的经度值必须在0到360度之间。
 
-两个版本的变量编码也不一样。GRIB 2 中数据的信息（变量、时间、统计值、网格等）基于模板（template）和表格（table）描述，更加灵活，但同时也更加复杂。
+两个版本的变量编码也不一样。GRIB 2 中数据的信息（变量、时间、统计值、网格等）基于模板（template）和表格（table）描述，更加灵活，但同时也更加复杂。
 
 ### 历史数据
 
-GRIB 1 是 遗留的 WMO 编码，已不再被 GTS exchange 接收。新版本的表格和模版只面向 GRIB 2。
+GRIB 1 是 遗留的 WMO 编码，已不再被 GTS exchange 接收。新版本的表格和模板只面向 GRIB 2。
 
 #### GRIB 2 在 ECMWF 的使用
 
@@ -291,7 +291,3 @@ https://software.ecmwf.int/wiki/display/ECC/ecCodes+Home
 请使用论坛讨论一般问题：
 
 https://software.ecmwf.int/wiki/display/ECC/Forums
-
-
-
-
