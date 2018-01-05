@@ -33,6 +33,12 @@ WMO 提供对 GRIB 编码标准的完整描述文件 Manual on Codes。
 
 [http://www.wmo.int/pages/prog/www/WMOCodes/WMO306_vI2/LatestVERSION/LatestVERSION.html](http://www.wmo.int/pages/prog/www/WMOCodes/WMO306_vI2/LatestVERSION/LatestVERSION.html)
 
+## GRIB 版本1和2
+
+目前可以使用两个不同版本的 GRIB 编码标准（版本1和版本2）。两个版本的编码规则相似，但他们的实现方式完全不同。
+
+![](asserts/grib_v1_v2.png)
+
 ## GRIB结构
 
 GRIB是一种基于表格的存储格式，下面简单介绍 GRIB 的文件结构，详情请查阅相关资料。
@@ -44,12 +50,6 @@ GRIB是一种基于表格的存储格式，下面简单介绍 GRIB 的文件结�
 数据描述符是自定义的，相关信息保存在 GRIB 的表格和模板中。
 
 单个文件可以混合保存版本1和版本2。
-
-图形示例
-
-## GRIB 版本1和2
-
-目前可以使用两个不同版本的 GRIB 编码标准（版本1和版本2）。两个版本的编码规则相似，但他们的实现方式完全不同。
 
 ![](asserts/grib_structure.png)
 
@@ -130,7 +130,7 @@ ecCodes 提供基于键值对的访问方式。例如：
 
 ### ecCodes 架构
 
-架构图
+![](asserts/eccodes_architecture.png)
 
 ### ecCodes 与 GRIB 版本1和版本2
 
@@ -282,15 +282,15 @@ $> make install
 
 提交bug，请联系
 
-    Software.Support@ecmwf.int
+Software.Support@ecmwf.int
 
 Wiki：
 
-    https://software.ecmwf.int/wiki/display/ECC/ecCodes+Home
+https://software.ecmwf.int/wiki/display/ECC/ecCodes+Home
 
 请使用论坛讨论一般问题：
 
-    https://software.ecmwf.int/wiki/display/ECC/Forums
+https://software.ecmwf.int/wiki/display/ECC/Forums
 
 
 
