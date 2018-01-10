@@ -26,11 +26,11 @@ grib_get_data [options] grib_file grib_file
 
 选项 | 含义
 ---|----
--p key1,key2,... | Keys to print
--w key1=val1,key2!=val2,... | Where option
--m missingValue | Specify missing value string
--F format | C-style format for output values
--f | Do not fail on error
+-p key1,key2,... | 需要打印的 key 列表
+-w key1=val1,key2!=val2,... | where 选项
+-m missingValue | 指定缺失值打印的字符串
+-F format | 指定输出的 C 风格格式
+-f | 出错时不退出
 ... | ...
 
 ### 示例
