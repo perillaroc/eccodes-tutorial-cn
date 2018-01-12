@@ -216,7 +216,7 @@ long [forecastTime]: [3] != [9]
 
 `-H`选项不能与`-c`选项一同使用。
 
-# 版本无关比较
+#### 版本无关比较
 
 如果两个 GRIB 消息使用不同的版本编码，它们会非常不一致。
 
@@ -290,4 +290,104 @@ double [codedValues]: 159561 out of 1036800 different
 ## 2 different messages out of 38
 ```
 
-#### 
+#### 顺序无关的比较
+
+比较两个包含同样消息但消息顺序不对应的文件会有很多错误。
+默认情况下，`grib_compare`假定消息有相同的排列次序。
+
+```
+> grib_compare–f –H f1.grib1 f2.grib1
+...
+## ERRORS SUMMARY #######
+##
+## Summary of different key values
+## indicatorOfParameter( 6 different )
+## level ( 7 different )
+##
+## 10 different messages out of 12
+```
+
+比较顺序不同的消息时，可以使用`-r`选项。注意这将花费大量时间。
+
+```
+grib_compare –r –f –H f1.grib1 f2.grib1
+```
+
+#### 比较数据值
+
+默认会精确比较浮点数。
+
+使用下面的选项设置不同的比较方法：
+
+选项 | 含义
+----|----
+-A absolute_error | 比较绝对误差
+-R key=rel_error,… | 比较某个key的相对误差
+-P | 使用 packing error 作为比较误差
+-T factor | 指定特定参数 -A -R -P 时，使用给定的 tolerance 乘以一个整数因子的数值作为比较误差。
+
+##### 设置比较误差
+
+比较两个文件的数据显示，在默认绝对比较误差为0的情况下，7个数据中的1个值不一样。
+
+```
+> grib_compare–cdata:nf1.grib1 f2.grib1
+--GRIB #1 --shortName=2t paramId=167 stepRange=0 levelType=sfclevel=0 packingType=grid_simplegridType=reduced_gg--
+double [packedValues]: 1 out of 7 different
+max absolute diff. = 2.0000000000000000e+00, relative diff. = 0.4
+max diff. element 2: 3.00000000000000000000e+00 5.00000000000000000000e+00
+tolerance=0.0000000000000000e+00 packingError: [0.0625005] [0.0625005]
+values max= [70] [70] min= [1] [1]
+```
+
+将绝对误差设为 2.0，比较就会显示两者一样。
+
+```
+> grib_compare–A 2.0–c data:nf1.grib1 f2.grib1
+```
+
+可以为每个 key 设置相对比较误差。
+
+```
+> grib_compare–cdata:nf1.grib1 f2.grib1
+--GRIB #1 --shortName=2t paramId=167 stepRange=0 levelType=sfclevel=0 packingType=grid_simplegridType=reduced_gg--
+double [packedValues]: 1 out of 7 different
+max absolute diff. = 2.0000000000000000e+00, relative diff. = 0.4
+max diff. element 2: 3.00000000000000000000e+00 5.00000000000000000000e+00
+tolerance=0.0000000000000000e+00 packingError: [0.0625005] [0.0625005]
+values max= [70] [70] min= [1] [1]
+values max= [70] [70] min= [1] [1]
+```
+
+为 `packagedValues` 设置 0.4 的相对比较误差。
+
+```
+> grib_compare–R packedValues=0.4–c data:nf1.grib1 f2.grib1
+```
+
+因为相对比较误差大于相对误差，所以比较结果显示两者一致。
+
+不同的打包经度也会导致不同的数据值。
+
+```
+> grib_compare–cdata:nf1.grib1 f3.grib1
+--GRIB #1 --shortName=2t paramId=167 stepRange=0 levelType=sfclevel=0 packingType=grid_simplegridType=reduced_gg--
+double [packedValues]: 1 out of 7 different
+max absolute diff. = 5.0000000000000000e-01, relative diff. = 0.166667
+max diff. element 1: 2.50000000000000000000e+00 3.00000000000000000000e+00
+tolerance=0.0000000000000000e+00 packingError: [0.0625005] [0.5]
+values max= [70] [70] min= [1] [1]
+values max= [70] [70] min= [1] [1]
+```
+
+可以使用 packing error 作为比较误差。
+
+```
+> grib_compare–P–c data:nf1.grib1 f3.grib1
+```
+
+比较结果显示两者一致，是因为最大的绝对误差在两个 packing error 的最大值之内，表示仅有打包经度被改变了。
+
+
+### 练习：使用 `grib_compare`
+ 
