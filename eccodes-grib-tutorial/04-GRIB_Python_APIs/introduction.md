@@ -51,3 +51,34 @@ from eccodes import *
 `codes_grib_iterator_next`
 
 `codes_grib_iterator_delete`
+
+
+## 索引
+
+`codes_index_new_from_file`
+
+`codes_index_add_file`
+
+`codes_index_write`
+
+`codes_index_read`
+
+`codes_index_release`
+
+`codes_index_get_size`
+
+`codes_index_get`
+
+`codes_index_select`
+
+`codes_new_from_index`
+
+## 编码
+
+`codes_get`
+
+`codes_set_array`
+
+`codes_set_values`
+
+`codes_clone`
