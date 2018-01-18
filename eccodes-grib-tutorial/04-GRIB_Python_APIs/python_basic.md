@@ -272,17 +272,3 @@ ECMWF 开发的气象绘图软件，已在 ECMWF 和成员国使用超过 25 年
 生成的气象图形可以保存成多种格式，例如 PS，EPS，PDF，GIF，PNG，KML 和 SVG。
 
 提供过程式接口和高层 Python 编程接口。
-
-## ecCodes 和 GRIB API 中的 Python
-
-从 GRIB API 1.9.5 版本开始提供 Python 接口。
-
-支持 Python 2.5 及以上版本，不支持 Python 3。
-
-底层，过程式接口。
-
-提供几乎与 C 接口一一对应的函数。
-
-使用 NumPy 模块处理数据值。
-
-在 ECMWF 中可以使用 module 系统加载。
