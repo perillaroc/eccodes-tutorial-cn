@@ -1,28 +1,26 @@
 # 常数场（Constant fields）
 
-常数场中所有数值都相等。
+如果要素场的所有数值都相等，那么使用常规的 GRIB 消息会将同一个数值重复存储 N 次，效率非常低。
 
-重复同一个数值 N 次效率非常低。该常数应该是唯一保存的数值，数据段应该为空。
+ecCodes 使用常数场保存这种类型的数据，该常数应该是唯一保存的数值，数据段应该为空，因此常数场非常小，并且被精确地编码。
 
-常数场非常小，并且被精确地编码。
-
-使用如下命令可以非常容易地创建一个常数场：
+使用如下命令可以创建一个常数场：
 
 ```
 grib_set -d 1 in.grib out.grib
 ```
 
-在常数场中，打包参数未定义，`bitsPerValue=0`。
+常数场中未定义打包参数（packing parameters），即 `bitsPerValue=0`。
 
 ## 常数场的问题
 
-我们加载一个常数场：
+加载一个常数场：
 
 ```fortran
 codes_grib_new_from_file(infile, igrib)
 ```
 
-设置一些非常数的数据值
+设置一些非常数的数据值：
 
 ```fortran
 codes_set(igrib, 'values', values)
@@ -30,7 +28,7 @@ codes_set(igrib, 'values', values)
 
 **注意**：此时还不知道打包参数
 
-将消息写入到文件中
+将消息写入到文件中：
 
 ```fortran
 codes_write(igrib, outfile)
@@ -38,10 +36,10 @@ codes_write(igrib, outfile)
 
 我们会得到什么样的 `packingError`？
 
-在常数场中，打包参数未被设置，ecCodes 不知道我们需要什么样的小数精度。
+因为常数场未设置打包参数，因此 ecCodes 不知道我们需要什么样的小数精度。
 一个安全的选择是设置 `bitsPerValue = 24`。
 
-更好的实践是在打包数值前设置 `decimalPrecision` 或 `bitsPerValue`。
+更好的实践是在设置数值前设置 `decimalPrecision` 或 `bitsPerValue`。
 
 ```fortran
 codes_grib_new_from_file(infile,igrib)
@@ -110,7 +108,7 @@ packingError = 0.00500122070312
 bitsPerValue = 12
 ```
 
-可以看到没有找到 `packingError` 键。
+> 译注：此处应该无法读取 packingError 值，但实际运行结果可以显示，可能我用的方式有问题。
 
 3. 设置 `decimalPrecision=1`，再设置相同的数据值，再一次打印 `packingError` 和 `bitsPerValue`。
 
@@ -125,7 +123,7 @@ print "packingError = [packingError]";
 print "bitsPerValue = [bitsPerValue]";
 ```
 
-执行命令
+执行命令：
 
 ```
 $ grib_filter -o step03.grib2 step03.filter c1.grib2
@@ -133,9 +131,9 @@ packingError = 0.0500007629395
 bitsPerValue = 9
 ```
 
-4. 比较两个文件的大小和 packingError。
+4. 比较两个文件的大小和 `packingError`。
 
-两个文件大小相似，但 packingError 不同，见步骤 2 和 3 的输出。
+两个文件大小相似，但 `packingError` 不同，见步骤 2 和 3 的输出。
 
 ```
 185 step02.grib2

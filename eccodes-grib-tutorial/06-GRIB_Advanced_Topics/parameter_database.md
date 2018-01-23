@@ -40,9 +40,9 @@
 
 有多种编码变量的方法。
 
-ecCodes 使用一个**虚拟**的 key（计算key）来解耦用户层和编码层。
+ecCodes 使用一个**虚拟**的 key（计算key）来解耦用户层和编码层。
 
-用户代码获取/设置一个**虚拟 key**，ecCodes 获取/设置实际编码的 key。
+用户代码获取/设置一个**虚拟 key**，ecCodes 获取/设置实际编码的 key。
 
 本地配置用于处理本地编码。
 
@@ -160,10 +160,9 @@ GRIB 1 ECMWF 本地编码：
 
 访问如下网址，查询参数数据库：
 
-![http://apps.ecmwf.int/codes/grib/param-db/](http://apps.ecmwf.int/codes/grib/param-db/)
+[http://apps.ecmwf.int/codes/grib/param-db/](http://apps.ecmwf.int/codes/grib/param-db/)
 
 ## 练习
-
 
 1. 创建两个文件
 
@@ -241,6 +240,8 @@ ecmf        130         K           Temperature  t
 
 3. 使用 `grib_dump -o` 比较两个文件不同。
 
+查看 GRIB 1 文件 `p.grib1`：
+
 ```
 $ grib_dump -O p.grib1
 ***** FILE: p.grib1 
@@ -314,6 +315,7 @@ $ grib_dump -O p.grib1
 1-4       7777 = 7777
 ```
 
+查看 GRIB 2 文件 `p.grib2`：
 
 ```
 $ grib_dump -O p.grib2

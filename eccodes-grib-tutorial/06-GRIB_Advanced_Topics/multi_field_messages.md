@@ -2,7 +2,7 @@
 
 GRIB 2 的消息中第2段到第7段都可以重复，见下图。
 
-> 译者注：NWPC 中的 GRIB 2 数据尚未使用该功能，下面示例只是教程中的文字，尚未实际验证。
+> 译者注：NWPC 的 GRIB 2 数据尚未使用该功能，下面示例只是教程中的文字，尚未实际验证。
 
 ![](asserts/multi_field.png)
 
@@ -107,7 +107,7 @@ int main(int argc, char** argv)
 }
 ```
 
-使用 `grib_ls` 查看生成的文件，对 ecCodes 来说，多变量消息被处理成多个单变量消息。
+使用 `grib_ls` 查看生成的文件，ecCodes 将多变量消息处理成多个单变量消息。
 
 ```
 $ grib_ls multi.grib2 

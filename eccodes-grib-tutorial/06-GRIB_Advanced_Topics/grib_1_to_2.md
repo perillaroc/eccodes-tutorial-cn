@@ -13,7 +13,7 @@ grib_set -s edition=2 in.grib1 out.grib2
 - local
 - data
 
-参数转换特别复杂，因为两种编码标准各有不同，再加上一些气象中心会使用本地码表。
+因为两种编码标准各有不同，再加上一些气象中心会使用本地码表，所以参数转换比较复杂。
 
 转换会基于变量参数的唯一标识符 `paramId`。
 
@@ -32,17 +32,17 @@ grib_set -s paramId=165 in.grib2 out.grib2
 grib_set -s edition=2 in.grib1 out.grib2
 ```
 
-在转换到版本 2 的过程中，ecCodes 从 GRIB 1 拷贝 paramId 到 GRIB 2：
+在转换到版本 2 的过程中，ecCodes 从 GRIB 1 拷贝 `paramId` 到 GRIB 2：
 
-1. 从 GRIB 1 中获取 paramId（=165）
+1. 从 GRIB 1 中获取 `paramId`（=165）
 2. 修改版本号为 2，生成 GRIB 2 文件
-3. 设置 GRIB 2 的 paramId（=165）
+3. 设置 GRIB 2 的 `paramId`（=165）
 
-转换仅在 paramId 定义了两个版本的情况下可行。
+转换仅在 `paramId` 定义了两个版本的情况下可行。
 
 访问参数数据库网站查看转换是否可行。
 
-## 练习：
+## 练习
 
 使用上一节生成的文件。
 
@@ -75,6 +75,8 @@ ecmf        165         10u         m s**-1     10 metre U wind component
 
 1 of 1 total messages in 1 files
 ```
+
+可以看到，不同版本的 GRIB 消息的变量信息相同。
 
 4. 准备一个当前定义配置无法识别的 GRIB 消息：
 

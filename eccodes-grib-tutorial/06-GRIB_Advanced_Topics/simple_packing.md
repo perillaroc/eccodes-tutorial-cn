@@ -8,17 +8,17 @@
 
 基本 key：
 
-- values
-- decimalPrecision
-- changeDecimalPrecision
-- packingError (read only)
+- `values`
+- `decimalPrecision`
+- `changeDecimalPrecision`
+- `packingError` (read only)
 
 仅在明白打包原理的情况下使用下面的 key：
 
-- referenceValue (read only)
-- bitsPerValue
-- decimalScaleFactor
-- binaryScaleFactor (read only)
+- `referenceValue` (read only)
+- `bitsPerValue`
+- `decimalScaleFactor`
+- `binaryScaleFactor` (read only)
 
 注意：设置 `decimalPrecision` 不会重新打包数据，但设置 `changeDecimalPrecision` 会导致数据重新打包。
 
@@ -34,10 +34,10 @@ simple packing 的数据值满足下面的公式：
 
 packing error 依赖 packing 参数：
 
-- bitsPerValue
-- decimalScaleFactor
-- binaryScaleFactor
-- referenceValue
+- `bitsPerValue`
+- `decimalScaleFactor`
+- `binaryScaleFactor`
+- `referenceValue`
 
 ### Decimal precision
 
