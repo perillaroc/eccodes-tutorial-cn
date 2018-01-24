@@ -1,8 +1,8 @@
 # 介绍
 
-译者注：如何体现高贵的身份，开发一种微语言吧。
+> 译者注：如何体现高超的技术，设计一种宏语言吧。
 
-`grib_filter` 是 ecCodes 高级命令行工具
+`grib_filter` 是 ecCodes 高级命令行工具。
 
 该命令逐个处理输入文件中的所有消息，对每个消息应用由用户定义的一组规则。
 
@@ -21,18 +21,31 @@
 ## 用法
 
 ```
-grib_filter[-o out_file] rules_filein_file1 in_file2 …
+grib_filter [-o out_file] rules_file in_file1 in_file2 …
 ```
 
 输入文件中的每个要素场都被处理，应用 `rules_file` 中包含的规则。
 
-GRIB 消息尽在 write 指令应用的时候才写入到输出文件。
+GRIB 消息仅在执行 `write` 指令时才写入到输出文件。请将 `-o out_file` 放到其他参数前。
 
 `rules_file` 中的说明必须以分号 `;` 结尾。
 
-`rules_file` 中的语法错误会随着行号一同报告。
+`rules_file` 中的语法错误会随着行号一同报告。例如对于下面的规则（第二行结尾缺少分号，比较常见的错误）：
 
-请将 `-o out_file` 放到其他参数前。
+```
+$ cat s.filter 
+print "[centre:s]";
+print "[paramId]"
+```
+
+会输出如下的错误消息：
+
+```
+$ grib_filter s.filter levels.grib2 
+ECCODES ERROR   :  grib_parser: syntax error at line 2 of (null)
+ECCODES ERROR   :  ecCodes Version: 2.6.0
+s.filter: error unable to create action
+```
 
 ## print 语句
 
@@ -53,7 +66,7 @@ print "some text [key]";
 - `[key:i]` -> 整型
 - `[key:s]` -> 字符串
 - `[key:d]` -> 双精度浮点型
-- `[key!c%^F'S']` -> 数组：c -> columns F -> format(C Style) S -> separator
+- `[key!c%^F'S']` -> 数组：`c` -> columns `F` -> format(C Style) `S` -> separator
 
 ```py
 print ("filename") "some text [key]";
@@ -144,7 +157,7 @@ write;
 grib_filter -o outfile rules_file grib_file
 ```
 
-如果没有指定 `-o` 参数，默认值 `filter.out` 将被使用。
+如果没有指定 `-o` 参数，则使用默认值 `filter.out`。
 
 ```py
 write "filename_[key]";
@@ -198,7 +211,7 @@ append "filename_[key]";
 ### 示例5：append 语句
 
 ```py
-append
+append;
 ```
 
 执行命令
@@ -216,7 +229,7 @@ $ grib_count output.grib2
 ```py
 set key1 = key2 ; # set key1 to the value of key2
 set key = {val1,val2,val3,val4} ;# set an array key
-set key = “string” ;# set key to a string
+set key = "string" ;# set key to a string
 set key = expression ; # set key to an expression
 set key = MISSING ; # set value of key to missing
 ```
