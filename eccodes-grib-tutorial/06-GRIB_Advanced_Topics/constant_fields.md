@@ -59,83 +59,83 @@ codes_write(igrib,outfile)
 
 1. 创建一个常数 GRIB 文件。
 
-```
-$ grib_set -d 1 t.grib2 c.grib2
-$ grib_set -s packingType=grid_simple c.grib2 c1.grib2
-$ grib_dump c1.grib2 
-***** FILE: c1.grib2 
-#==============   MESSAGE 1 ( length=179 )                 ==============
-GRIB {
-  # Meteorological products (grib2/tables/4/0.0.table)  
-  discipline = 0;
-  editionNumber = 2;
-  ...
-  values(1036800) =  {
-  1, 1, 1, 1, 1, 
-  1, 1, 1, 1, 1, 
-  1, 1, 1, 1, 1, 
-  ...
-  } 
-  #-READ ONLY- maximum = 1;
-  #-READ ONLY- minimum = 1;
-  #-READ ONLY- average = 1;
-  #-READ ONLY- numberOfMissing = 0;
-  #-READ ONLY- standardDeviation = 0;
-  #-READ ONLY- skewness = 0;
-  #-READ ONLY- kurtosis = 0;
-  #-READ ONLY- isConstant = 1;
-  #-READ ONLY- getNumberOfValues = 1036800;
-}
-```
+    ```
+    $ grib_set -d 1 t.grib2 c.grib2
+    $ grib_set -s packingType=grid_simple c.grib2 c1.grib2
+    $ grib_dump c1.grib2 
+    ***** FILE: c1.grib2 
+    #==============   MESSAGE 1 ( length=179 )                 ==============
+    GRIB {
+      # Meteorological products (grib2/tables/4/0.0.table)  
+      discipline = 0;
+      editionNumber = 2;
+      ...
+      values(1036800) =  {
+      1, 1, 1, 1, 1, 
+      1, 1, 1, 1, 1, 
+      1, 1, 1, 1, 1, 
+      ...
+      } 
+      #-READ ONLY- maximum = 1;
+      #-READ ONLY- minimum = 1;
+      #-READ ONLY- average = 1;
+      #-READ ONLY- numberOfMissing = 0;
+      #-READ ONLY- standardDeviation = 0;
+      #-READ ONLY- skewness = 0;
+      #-READ ONLY- kurtosis = 0;
+      #-READ ONLY- isConstant = 1;
+      #-READ ONLY- getNumberOfValues = 1036800;
+    }
+    ```
 
 2. 设置 `values={23.26, 42.51, 61.22, 45.95}`，打印 `packingError` 和 `bitsPerValue`。
 
-创建一个 filter 规则文件 step02.filter。
+    创建一个 filter 规则文件 step02.filter。
 
-```
-$ cat step02.filter 
-set values={23.26, 42.51, 61.22, 45.95};
-write;
-print "packingError = [packingError]";
-print "bitsPerValue = [bitsPerValue]";
-```
+    ```
+    $ cat step02.filter 
+    set values={23.26, 42.51, 61.22, 45.95};
+    write;
+    print "packingError = [packingError]";
+    print "bitsPerValue = [bitsPerValue]";
+    ```
 
-执行命令：
+    执行命令：
 
-```
-$ grib_filter -o step02.grib2 step02.filter c1.grib2
-packingError = 0.00500122070312
-bitsPerValue = 12
-```
+    ```
+    $ grib_filter -o step02.grib2 step02.filter c1.grib2
+    packingError = 0.00500122070312
+    bitsPerValue = 12
+    ```
 
-> 译注：此处应该无法读取 packingError 值，但实际运行结果可以显示，可能我用的方式有问题。
+> 译注：此处应该无法读取 `packingError` 值，但实际运行结果可以显示，可能我用的方式有问题。
 
 3. 设置 `decimalPrecision=1`，再设置相同的数据值，再一次打印 `packingError` 和 `bitsPerValue`。
 
-创建一个规则文件 step03.filter。
+    创建一个规则文件 `step03.filter`。
 
-```
-$ cat step03.filter 
-set decimalPrecision=1;
-set values={23.26, 42.51, 61.22, 45.95};
-write;
-print "packingError = [packingError]";
-print "bitsPerValue = [bitsPerValue]";
-```
+    ```
+    $ cat step03.filter 
+    set decimalPrecision=1;
+    set values={23.26, 42.51, 61.22, 45.95};
+    write;
+    print "packingError = [packingError]";
+    print "bitsPerValue = [bitsPerValue]";
+    ```
 
-执行命令：
+    执行命令：
 
-```
-$ grib_filter -o step03.grib2 step03.filter c1.grib2
-packingError = 0.0500007629395
-bitsPerValue = 9
-```
+    ```
+    $ grib_filter -o step03.grib2 step03.filter c1.grib2
+    packingError = 0.0500007629395
+    bitsPerValue = 9
+    ```
 
 4. 比较两个文件的大小和 `packingError`。
 
-两个文件大小相似，但 `packingError` 不同，见步骤 2 和 3 的输出。
+    两个文件大小相似，但 `packingError` 不同，见步骤 2 和 3 的输出。
 
-```
-185 step02.grib2
-184 step03.grib2
-```
+    ```
+    185 step02.grib2
+    184 step03.grib2
+    ```

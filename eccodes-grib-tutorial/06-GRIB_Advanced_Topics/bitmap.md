@@ -23,63 +23,63 @@ bitmap 尺寸等于网格点的个数（`numberOfPoints`）。其中：
 
 1. 构造包含 4 个消息的 start.grib2 文件。
 
-构造 4 个 filter 规则
+    构造 4 个 filter 规则
 
-```
-# step0.filter
-print "message 1";
-set bitsPerValue=8;
-set bitmapPresent=0;
-set values={0.2, 0.4, 0.6, 0.7, 9999};
-write;
+    ```py
+    # step0.filter
+    print "message 1";
+    set bitsPerValue=8;
+    set bitmapPresent=0;
+    set values={0.2, 0.4, 0.6, 0.7, 9999};
+    write;
 
-# step1.filter
-print "message 2";
-set bitsPerValue=16;
-set bitmapPresent=0;
-set values={0.2, 0.4, 0.6, 0.7, 9999};
-append;
+    # step1.filter
+    print "message 2";
+    set bitsPerValue=16;
+    set bitmapPresent=0;
+    set values={0.2, 0.4, 0.6, 0.7, 9999};
+    append;
 
-# step2.filter
-print "message 3";
-set bitsPerValue=24;
-set bitmapPresent=0;
-set values={0.2, 0.4, 0.6, 0.7, 9999};
-append;
+    # step2.filter
+    print "message 3";
+    set bitsPerValue=24;
+    set bitmapPresent=0;
+    set values={0.2, 0.4, 0.6, 0.7, 9999};
+    append;
 
-# step3.filter
-print "message 4";
-set bitsPerValue=8;
-set bitmapPresent=1;
-set values={0.2, 0.4, 0.6, 0.7, 9999};
-append;
-```
+    # step3.filter
+    print "message 4";
+    set bitsPerValue=8;
+    set bitmapPresent=1;
+    set values={0.2, 0.4, 0.6, 0.7, 9999};
+    append;
+    ```
 
-使用 `grib_filter` 创建文件：
+    使用 `grib_filter` 创建文件：
 
-```
-$ grib_filter -o start.grib2 step0.filter c.grib2
-$ grib_filter -o start.grib2 step1.filter c.grib2
-$ grib_filter -o start.grib2 step2.filter c.grib2
-$ grib_filter -o start.grib2 step3.filter c.grib2
-```
+    ```
+    $ grib_filter -o start.grib2 step0.filter c.grib2
+    $ grib_filter -o start.grib2 step1.filter c.grib2
+    $ grib_filter -o start.grib2 step2.filter c.grib2
+    $ grib_filter -o start.grib2 step3.filter c.grib2
+    ```
 
 2. 打印数值
 
-```
-$ cat print.filter 
-print "[values]";
-print "[maximum]";
+    ```
+    $ cat print.filter 
+    print "[values]";
+    print "[maximum]";
+    
+    $ grib_filter print.filter start.grib2 
+    0.2 0.4 0.6 0.7 9999
+    9999
+    0.2 0.4 0.6 0.7 9999
+    9999
+    0.2 0.4 0.6 0.7 9999
+    9999
+    0.2 0.4 0.6 0.7 9999
+    0.7
+    ```
 
-$ grib_filter print.filter start.grib2 
-0.2 0.4 0.6 0.7 9999
-9999
-0.2 0.4 0.6 0.7 9999
-9999
-0.2 0.4 0.6 0.7 9999
-9999
-0.2 0.4 0.6 0.7 9999
-0.7
-```
-
-可以看到，设置 bitmap 后，9999 被识别为缺失值。
+    可以看到，设置 bitmap 后，9999 被识别为缺失值。

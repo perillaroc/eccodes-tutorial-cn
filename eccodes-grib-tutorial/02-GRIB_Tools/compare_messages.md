@@ -70,7 +70,8 @@ long [P1]: [3] != [6]
 
 `verbose`选项会显示所有被比较的 key 的详情。下面比较两个不同预报时效的要素场。
 
-```$ grib_compare -w count=72 -v  gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 gmf.gra.2018010300009.grb2
+```
+$grib_compare -w count=72 -v  gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 gmf.gra.2018010300009.grb2
   comparing identifier as string
   comparing discipline as long
   comparing editionNumber as long
@@ -176,7 +177,7 @@ double [codedValues]: 1036800 out of 1036800 different
 使用`-c`选项指定要比较的 key
 
 ```
-$ grib_compare -w count=72 -c stepRange gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
+$grib_compare -w count=72 -c stepRange gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
 
 -- GRIB #37 -- shortName=unknown paramId=0 stepRange=3 levelType=sfc level=0 packingType=grid_jpeg gridType=regular_ll --
 string [stepRange]: [3] != [9]
@@ -187,7 +188,7 @@ string [stepRange]: [3] != [9]
 比较两个不同时效的要素场，默认情况
 
 ```
-$ grib_compare -w count=72 gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
+$grib_compare -w count=72 gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
 
 -- GRIB #37 -- shortName=unknown paramId=0 stepRange=3 levelType=sfc level=0 packingType=grid_jpeg gridType=regular_ll --
 long [totalLength]: [495109] != [628595]
@@ -207,7 +208,7 @@ double [codedValues]: 1036800 out of 1036800 different
 仅比较头信息
 
 ```
-$ grib_compare -w count=72 -H gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
+$grib_compare -w count=72 -H gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
 
 -- GRIB #37 -- shortName=unknown paramId=0 stepRange=3 levelType=sfc level=0 packingType= gridType=regular_ll --
 long [totalLength]: [495109] != [628595]
@@ -221,7 +222,7 @@ long [forecastTime]: [3] != [9]
 如果两个 GRIB 消息使用不同的版本编码，它们会非常不一致。
 
 ```
-> grib_compare sp.grib1 sp.grib2
+$grib_compare sp.grib1 sp.grib2
 -- GRIB #1 -- shortName=sp paramId=134 stepRange=0 levelType=sfc level=0 packingType=grid_simple gridType=reduced_gg --
 long [totalLength]: [4284072] != [4284160]
 long [editionNumber]: [1] != [2]
@@ -234,7 +235,7 @@ long [section1Length]: [52] != [21] [table2Version] not found in 2nd field [grid
 使用`-e`选项设置`grib_compare`仅比较两个消息的高层信息。
 
 ```
-> grib_compare –e sp.grib1 sp.grib2
+$grib_compare –e sp.grib1 sp.grib2
 -- GRIB #1 -- shortName=sp paramId=134 stepRange=0
   levelType=sfc level=0 packingType=grid_simple
   gridType=reduced_gg --
@@ -248,7 +249,7 @@ string [param]: [134.128] != [134]
 当文件中包含多个要素场且某些 key 不相同时，输出汇总结果很有帮助。
 
 ```
-$ grib_compare -w count=72/73/74 -f gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
+$grib_compare -w count=72/73/74 -f gmf.gra.2018010300003.grb2 gmf.gra.2018010300009.grb2 
 
 -- GRIB #37 -- shortName=unknown paramId=0 stepRange=3 levelType=sfc level=0 packingType=grid_jpeg gridType=regular_ll --
 long [totalLength]: [495109] != [628595]

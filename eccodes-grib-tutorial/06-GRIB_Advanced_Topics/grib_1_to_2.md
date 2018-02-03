@@ -48,52 +48,52 @@ grib_set -s edition=2 in.grib1 out.grib2
 
 1. 将 p.grib1 转换为 GRIB 版本 2 文件 p_converted.grib2
 
-```
-grib_set -s edition=2 p.grib1 p_converted.grib2
-```
+    ```
+    grib_set -s edition=2 p.grib1 p_converted.grib2
+    ```
 
 2. 查询 p.grib2 的参数命名空间。
 
-```
-$ grib_ls -n parameter p.grib2
-p.grib2
-centre      paramId     shortName   units       name        
-ecmf        165         10u         m s**-1     10 metre U wind component 
-1 of 1 messages in p.grib2
+    ```
+    $ grib_ls -n parameter p.grib2
+    p.grib2
+    centre      paramId     shortName   units       name        
+    ecmf        165         10u         m s**-1     10 metre U wind component 
+    1 of 1 messages in p.grib2
 
-1 of 1 total messages in 1 file
-```
+    1 of 1 total messages in 1 file
+    ```
 
 3. 查询 p_converted.grib2 的参数命名空间。
 
-```
-$ grib_ls -n parameter p_converted.grib2 
-p_converted.grib2
-centre      paramId     shortName   units       name        
-ecmf        165         10u         m s**-1     10 metre U wind component 
-1 of 1 messages in p_converted.grib2
+    ```
+    $ grib_ls -n parameter p_converted.grib2 
+    p_converted.grib2
+    centre      paramId     shortName   units       name        
+    ecmf        165         10u         m s**-1     10 metre U wind component 
+    1 of 1 messages in p_converted.grib2
 
-1 of 1 total messages in 1 files
-```
+    1 of 1 total messages in 1 files
+    ```
 
-可以看到，不同版本的 GRIB 消息的变量信息相同。
+    可以看到，不同版本的 GRIB 消息的变量信息相同。
 
 4. 准备一个当前定义配置无法识别的 GRIB 消息：
 
-```
-$ grib_ls -n parameter undefined.grib2 
-undefined.grib2
-centre      paramId     shortName   units       name        
-babj        0           unknown     unknown     unknown    
-1 of 1 messages in undefined.grib2
+    ```
+    $ grib_ls -n parameter undefined.grib2 
+    undefined.grib2
+    centre      paramId     shortName   units       name        
+    babj        0           unknown     unknown     unknown    
+    1 of 1 messages in undefined.grib2
 
-1 of 1 total messages in 1 files
-```
+    1 of 1 total messages in 1 files
+    ```
 
 5. 将上面的文件转换成 GRIB 1 文件。
 
-```
-$ grib_set -s edition=1 undefined.grib2 undefined.grib1
-ECCODES ERROR   :  concept: no match for paramId=0
-ECCODES ERROR   :  grib_set_values[0] edition (1) failed: Concept no match
-```
+    ```
+    $ grib_set -s edition=1 undefined.grib2 undefined.grib1
+    ECCODES ERROR   :  concept: no match for paramId=0
+    ECCODES ERROR   :  grib_set_values[0] edition (1) failed: Concept no match
+    ```

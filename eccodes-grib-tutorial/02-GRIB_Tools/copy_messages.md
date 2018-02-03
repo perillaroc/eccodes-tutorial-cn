@@ -26,12 +26,11 @@ grib_copy[options] grib_file grib_file … out_grib_file
 
 选项 | 含义
 -----|-----
-
--p key1,key2,… | 需要打印的 key 列表 (与 `-v` 一同使用)
--w key=val1,key2!=val2,… | where 选项
--B “key1 asc, key2 desc” | 排序，例如: “step asc, centre desc”
--v | 显示详情
--f | 出错时不异常退出
+`-p key1,key2,…` | 需要打印的 key 列表 (与 `-v` 一同使用)
+`-w key=val1,key2!=val2,…` | where 选项
+`-B "key1 asc, key2 desc"` | 排序，例如: `step asc, centre desc`
+`-v` | 显示详情
+`-f` | 出错时不异常退出
 ... | ...
 
 
