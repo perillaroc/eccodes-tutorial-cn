@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2. GRIB 工具 on ecCodes教程中文版</title>
+    <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/</link>
+    <description>Recent content in 2. GRIB 工具 on ecCodes教程中文版</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>信息工具</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/</guid>
+      <description> codes_info 关于 ecCodes 的安装信息。
+通用的 codes_info 工具提供 ecCodes 软件包使用的基本信息，包括：
+ ecCodes 版本 定义文件的路径，ECCODES_DEFINITION_PATH 样例文件的路径，ECCODES_SAMPLE_PATH  命令输出如下：
+$ ./codes_info ecCodes Version 2.6.0 Default definition files path is used: /Users/wangdp/lib/nwpc/ecmwf/eccodes/install/share/eccodes/definitions Definition files path can be changed setting ECCODES_DEFINITION_PATH environment variable Default SAMPLES path is used: /Users/wangdp/lib/nwpc/ecmwf/eccodes/install/share/eccodes/samples SAMPLES path can be changed setting ECCODES_SAMPLES_PATH environment variable  grib_count 统计 GRIB 消息个数
+快速统计文件列表中的 GRIB 消息个数。
+语法如下（接受通配符）：
+grib_count grib_file1 [gri_file2 ...]  </description>
+    </item>
+    
+    <item>
+      <title>查看工具</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/inspetion_tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/inspetion_tools/</guid>
+      <description>grib_dump 显示 GRIB 文件内容
+使用 grib_dump 显示包含一个或多个 GRIB 消息的文件内容。
+支持不同的输出格式：
+ Octet mode: 提供 WMO 风格的输出 Debug mode: 打印 GRIB 文件中所有的 key Octet 和 Debug 两种模式不能同时使用 Octet 内容可以使用十六进制格式输出。  通过设置选项，还可以输出 key aliases 和 key 的类型信息（key type information)。
+支持 JSON 格式输出，便于处理。
+使用方法 grib_dump [options] grib_file grib_file ...  基本参数：
+   参数 含义     -O Octet 模式（WMO 文档风格）   -D Debug 模式   -a 打印 key alias 信息   -t 打印 key 类型信息   -H 十六进制显示的 Octet 模式   -w key[:{s i   -j JSON 输出   -V 打印 ecCodes 版本    示例 以中国气象局数值预报中心的 GRAPES GFS 输出的 GRIB 2 产品为例</description>
+    </item>
+    
+    <item>
+      <title>GRIB Keys</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/</guid>
+      <description>GRIB 格式 见第一章的介绍。
+GRIB 1 消息 #============== MESSAGE 1 ( length=130404 ) ============== 1-4 identifier = GRIB 5-7 totalLength = 130404 8 editionNumber = 1 ====================== SECTION_1 ( length=28, padding=0 ) ====================== 1-3 section1Length = 28 4 table2Version = 2 5 centre = 38 [Beijing (RSMC) (common/c-1.table) ] 6 generatingProcessIdentifier = 15 7 gridDefinition = 255 8 section1Flags = 128 [10000000] 9 indicatorOfParameter = 11 [T Temperature K (grib1/2.0.2.table) ] 10 indicatorOfTypeOfLevel = 100 [Isobaric level pressure in hectoPascals (hPa) (grib1/3.</description>
+    </item>
+    
+    <item>
+      <title>获取键值对</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_key_value_pairs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_key_value_pairs/</guid>
+      <description>grib_get  获取键值对
+ 使用grib_get从一个或多个文件中获取一个或多个key值，与grib_ls类似。
+默认情况下，如果有错误发生（例如没有找到key），grib_get则会运行失败，返回非0退出值。
+ 适合在脚本中获取 GRIB 消息的键值。 可以强制grib_get在出错时不会运行失败。  支持获取所有的 MARS key 和特定名称空间中的所有 key。可以添加其他 key 到默认集合。
+浮点类型数据的输出支持 C 风格的格式化描述。
+可以用于寻找某个经纬度坐标点的最近邻点，与grib_ls工作方式相同。
+用法 grib_get [options] grib_file grib_file ...  选项    选项 含义     -p key1,key2,&amp;hellip; Keys to get   -P key1,key2,&amp;hellip; Additional keys to get with –m, -n   -w key1=val1,key2!=val2,&amp;hellip; Where option   -s key1=val1,key2=val2,&amp;hellip; Keys to set (temporary for printing)   -m Get all MARS keys   -n namespace Get all keys for namespace   -l lat,lon[,MODE,FILE] Value(s) nearest to lat-lon point   -F format Format for floating point values   -f Do not fail on error   &amp;hellip; &amp;hellip;    使用 where 选项 where 选项 -w 可以用于所有的 GRIB 工具，具有相同的格式。</description>
+    </item>
+    
+    <item>
+      <title>获取数据值</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_data_values/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_data_values/</guid>
+      <description>grib_get_data  打印数据值
+ 使用grib_get_data打印一个或多个 GRIB 文件中的一系列（格点数据的）纬度（latitude）、经度（longitude）和数据值。
+输出格式可以通过 -f 选项使用 C 风格的描述符控制。
+ -F &amp;quot;%.4f&amp;quot; - 小数格式，带4位小数（1.2345） -F &amp;quot;%.4e&amp;quot; - 指数格式，带4位小数（1.2345E-03） 默认格式是-F &amp;quot;%.4e&amp;quot;  默认情况下，不输出缺失值（misssing values）。 用户可以提供在缺失值处输出的字符串。
+默认情况下，grib_get_data在出错时会异常结束。 使用-f选项强制grib_get_data在出错时不异常结束。
+用法 grib_get_data [options] grib_file grib_file     选项 含义     -p key1,key2,&amp;hellip; 需要打印的 key 列表   -w key1=val1,key2!=val2,&amp;hellip; where 选项   -m missingValue 指定缺失值打印的字符串   -F format 指定输出的 C 风格格式   -f 出错时不退出   &amp;hellip; &amp;hellip;    示例 $ grib_get_data -w count=72 -F &amp;quot;%.</description>
+    </item>
+    
+    <item>
+      <title>比较消息</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/compare_messages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/compare_messages/</guid>
+      <description>grib_compare  比较 GRIB 消息
+ 使用grib_compare比较两个文件中的 GRIB 消息。
+默认情况下，两个文件中的消息会按相同顺序，逐位比较，精确比较浮点数值。
+ 可以指定数据值的误差，基于绝对值（absolute）、相对值（relative）或 packing error。 默认的数据值误差是绝对误差为0。  如果grib_compare找到不同：
+ 切换到 key 模式寻找那些编码的 key 是不同的。 异常退出，并返回一个非零退出值。  提供选项用于设置仅比较特定的 key 或一组 key。
+基本用法 grib_compare [options] grib_file grib_file     选项 参数     -b key1,key2,&amp;hellip; 比较时忽略的 key 列表   -c key1,namespace2:n&amp;hellip; 指定比较的 key 列表   -H 仅比较消息头   -e 版本无关比较   -w key1=val1,key2!=val2,&amp;hellip; where 选项   -f 出错时不退出   -r 消息排序不一致   -v 显示详细信息   &amp;hellip; &amp;hellip;    示例 简单示例 f1.</description>
+    </item>
+    
+    <item>
+      <title>复制消息</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/copy_messages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/copy_messages/</guid>
+      <description>grib_copy  拷贝 GRIB 文件的内容
+ 使用 grib_copy 从 GRIB 文件中拷贝选定的消息，并可以选择打印某些 key 值。
+不带选项的 grib_copy 不输出任何 key 信息。
+可以通过选项指定需要打印的 key 列表，使用详情选项 -v 打印 key。
+输出支持排序。例如升序或降序排列 step。
+key 值可用于设定输出文件名。
+如果某个 key 未找到，grib_copy 会出错退出。可以使用 -f 选项强制 grib_copy 在遇到错误是不出错。
+用法 grib_copy[options] grib_file grib_file … out_grib_file  选项
+   选项 含义     -p key1,key2,… 需要打印的 key 列表 (与 -v 一同使用)   -w key=val1,key2!=val2,… where 选项   -B &amp;quot;key1 asc, key2 desc&amp;quot; 排序，例如: step asc, centre desc   -v 显示详情   -f 出错时不异常退出   &amp;hellip; &amp;hellip;    示例 只拷贝文件中的地面层要素场</description>
+    </item>
+    
+    <item>
+      <title>设置键值对</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/set_key_value_pairs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/set_key_value_pairs/</guid>
+      <description>grib_set  设置键值对
+ grib_set 工具可用于：
+ 设置输入 GRIB 文件中的键值对； 对输入 GRIB 文件中的键值对做简单修改。  每个 GRIB 消息都会写入到输出文件中。
+ 默认包括那些没有修改键值对的消息。 使用 -s 选项（strict）仅拷贝哪些满足 where 选项中所有约束条件的消息。  可以设置选项重新打包数据。有时在修改与打包算法相关的属性键值后，需要重新打包数据。
+grib_set 在遇到错误时会异常退出。例如找不到某个 key 时。
+用法 grib_set[options] grib_filegrib_file… out_grib_file  选项
+   选项 含义     -s key1=val1,key2=val2,… 需要修改的键值对列表   -p key1,key2,,… 打印的 key 列表，与 -v 选项一同使用   -w key1=val1,key2!=val2,… Where 选项   -d value 设置所有的数据值为 value   -f 出错后不退出   -v 显示详细信息   -S 严格模式   -r 重新打包数据   &amp;hellip; &amp;hellip;    示例 将所有变量的名称修改为 10 米风速，简称 10si。</description>
+    </item>
+    
+    <item>
+      <title>GRIB 转 NetCDF</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/convert_to_netcdf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/convert_to_netcdf/</guid>
+      <description>grib_to_netcdf  转换为 NetCDF 格式
+ 使用 grib_to_netcdf 将 GRIB 要素场转码为 NetCDF 格式。
+输入的 GRIB 要素场必须为标准网格。即 typeOfGrid 是 regular_ll 或 regular_gg。
+可以通过选项进行如下设置：
+ NetCDF 数据类型
+ NC_BYTE, NC_SHORT, NC_INT, NC_FLOAT 或 NC_DOUBLE 默认类型是 NC_SHORT  经典（NetCDF 3）格式或 NetCDF 4 格式
+ 参考日期
+ 默认是 19000101   该命令用于 MARS 的 web 接口和公共数据服务，用于提供 NetCDF 格式的文件。
+用法 grib_to_netcdf [options] grib_file grib_file ...  选项
+   选项 含义     -o output_file 输出的 NetCDF 文件名   -R YYYYMMDD 使用 YYYYMMDD 作为参考日期   -D NC_DATATYPE NetCDF 日期类型   -k kind 文件格式: 1 → netCDF 经典文件格式2 → netCDF 64位经典文件格式（默认）3 → netCDF-4 文件格式4 → netCDF-4 经典模型文件格式   -T 不使用有效时间   -u dimension 设置 dimension 为不受限制的维度   -f 出错时不异常退出   &amp;hellip; &amp;hellip;    示例 将文件转为 NetCDF</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/practical/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/practical/</guid>
+      <description> 练习 修改 GRIB 消息 额外练习 </description>
+    </item>
+    
+  </channel>
+</rss>

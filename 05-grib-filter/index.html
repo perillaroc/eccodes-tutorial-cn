@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="https://perillaroc.github.io/eccodes-tutorial-cn/images/favicon.png" type="image/png">
+
+    <title>5. Filter :: ecCodes教程中文版</title>
+
+    
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/nucleus.css?1554015910" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/fontawesome-all.min.css?1554015910" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hybrid.css?1554015910" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/featherlight.min.css?1554015910" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/perfect-scrollbar.min.css?1554015910" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/auto-complete.css?1554015910" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/theme.css?1554015910" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hugo-theme.css?1554015910" rel="stylesheet">
+    
+
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery-2.x.min.js?1554015910"></script>
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/05-grib-filter/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://perillaroc.github.io/eccodes-tutorial-cn/">
+  <svg id="grav-logo" style="width:100%; height:100%;" viewBox="0 0 504 140" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <path d="M235.832,71.564l-7.98,-0.001c-1.213,0.001 -2.197,0.987 -2.197,2.204l0,15.327l-0.158,0.132c-4.696,3.962 -10.634,6.14 -16.719,6.14c-14.356,0 -26.034,-11.68 -26.034,-26.037c0,-14.358 11.678,-26.035 26.034,-26.035c5.582,0 10.919,1.767 15.437,5.113c0.877,0.649 2.093,0.56 2.866,-0.211l5.69,-5.69c0.444,-0.442 0.675,-1.055 0.639,-1.681c-0.034,-0.627 -0.336,-1.206 -0.828,-1.597c-6.76,-5.363 -15.214,-8.314 -23.805,-8.314c-21.18,0 -38.414,17.233 -38.414,38.415c0,21.183 17.234,38.415 38.414,38.415c10.937,0 21.397,-4.705 28.698,-12.914c0.358,-0.403 0.556,-0.921 0.556,-1.46l0,-19.603c0,-1.217 -0.985,-2.203 -2.2,-2.203"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M502.794,34.445c-0.408,-0.616 -1.1,-0.989 -1.838,-0.989l-8.684,0c-0.879,0 -1.673,0.522 -2.022,1.329l-24.483,56.839l-24.92,-56.852c-0.352,-0.799 -1.142,-1.316 -2.012,-1.316l-8.713,0c-0.744,0 -1.44,0.373 -1.843,0.995c-0.408,0.623 -0.476,1.408 -0.174,2.09l30.186,68.858c0.352,0.799 1.143,1.317 2.017,1.317l10.992,0c0.879,0 1.673,-0.527 2.021,-1.329l29.655,-68.861c0.289,-0.68 0.222,-1.461 -0.182,-2.081"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M388.683,34.772c-0.353,-0.798 -1.142,-1.316 -2.017,-1.316l-10.988,0c-0.879,0 -1.673,0.522 -2.021,1.329l-29.655,68.861c-0.294,0.675 -0.226,1.46 0.182,2.077c0.407,0.619 1.096,0.993 1.838,0.993l8.684,0c0.879,0 1.673,-0.526 2.022,-1.329l24.478,-56.842l24.92,56.854c0.353,0.798 1.143,1.317 2.013,1.317l8.717,0c0.744,0 1.44,-0.374 1.843,-0.993c0.408,-0.624 0.471,-1.41 0.174,-2.094l-30.19,-68.857Z"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M309.196,81.525l0.476,-0.229c8.675,-4.191 14.279,-13.087 14.279,-22.667c0,-13.881 -11.295,-25.174 -25.176,-25.174l-31.863,0c-1.214,0 -2.199,0.988 -2.199,2.202l0,68.855c0,1.219 0.985,2.204 2.199,2.204l7.979,0c1.214,0 2.2,-0.985 2.2,-2.204l0,-58.679l21.684,0c7.059,0 12.799,5.739 12.799,12.796c0,5.885 -3.996,10.989 -9.728,12.408c-1.032,0.261 -2.064,0.393 -3.071,0.393l-7.977,0c-0.829,0 -1.585,0.467 -1.959,1.205c-0.378,0.74 -0.305,1.625 0.187,2.296l22.62,30.884c0.412,0.566 1.07,0.901 1.771,0.901l9.915,0c0.827,0 1.587,-0.467 1.96,-1.207c0.378,-0.742 0.302,-1.629 -0.186,-2.296l-15.91,-21.688Z"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M107.191,80.969c-7.255,-4.794 -11.4,-8.845 -15.011,-16.109c-2.47,4.977 -8.236,12.376 -17.962,18.198c-4.856,15.106 -27.954,44.015 -35.43,39.916c-2.213,-1.212 -2.633,-2.808 -2.133,-4.456c0.536,-4.129 9.078,-13.62 9.078,-13.62c0,0 0.18,1.992 2.913,6.187c-3.609,-11.205 5.965,-25.031 8.5,-29.738c3.985,-1.269 4.274,-6.387 4.274,-6.387c0.255,-7.909 -3.278,-13.635 -6.701,-17.059c2.459,3.002 3.255,7.539 3.372,11.694l0,0.023c0.012,0.469 0.012,0.93 0.011,1.39c-0.117,3.439 -1.157,8.19 -3.383,8.19l0.006,0.03c-2.289,-0.098 -5.115,0.391 -7.639,1.18l-5.582,1.334c0,0 2.977,-0.136 4.584,1.252c-1.79,2.915 -5.769,6.533 -10.206,8.588c-6.457,2.995 -8.312,-2.964 -5.034,-6.838c0.805,-0.946 1.618,-1.745 2.387,-2.399c-0.495,-0.513 -0.807,-1.198 -0.889,-2.068c-0.001,-0.005 -0.004,-0.009 -0.005,-0.013c-0.45,-1.977 -0.202,-4.543 2.596,-8.623c0.551,-0.863 1.214,-1.748 2.007,-2.647c0.025,-0.031 0.046,-0.059 0.072,-0.089c0.034,-0.042 0.072,-0.08 0.108,-0.121c0.02,-0.023 0.039,-0.045 0.059,-0.068c0.2,-0.228 0.413,-0.45 0.639,-0.663c3.334,-3.414 8.599,-6.966 16.897,-10.152c9.675,-14.223 13.219,-16.89 13.219,-16.89c1.071,-1.096 2.943,-2.458 3.632,-2.805c-5.053,-8.781 -6.074,-21.158 -4.75,-24.493c-0.107,0.18 -0.206,0.365 -0.287,0.556c0.49,-1.143 0.819,-1.509 1.328,-2.111c1.381,-1.632 6.058,-2.488 7.737,0.971c0.895,1.844 1.063,4.232 1.034,6.023c-3.704,-0.193 -7.063,4.036 -7.063,4.036c0,0 3.067,-1.448 6.879,-1.473c0,0 1.015,0.883 2.283,2.542c-1.712,3.213 -4.524,10.021 -2.488,17.168c0.338,1.408 0.849,2.619 1.483,3.648c0.024,0.045 0.044,0.089 0.069,0.135c0.051,0.066 0.096,0.122 0.144,0.183c3.368,5.072 9.542,5.665 9.542,5.665c-2.906,-1.45 -5.274,-3.76 -6.816,-6.56c-0.8,-1.498 -1.291,-2.762 -1.592,-3.761c-1.636,-6.313 0.771,-9.999 2.149,-12.471c3.17,-4.917 8.944,-7.893 15.151,-7.185c8.712,0.995 14.968,8.862 13.973,17.571c-0.608,5.321 -3.781,9.723 -8.142,12.117c1.049,2.839 -0.073,6.28 -0.073,6.28c2.642,3.323 2.758,5.238 2.667,7.017c-3.357,-0.565 -6.618,1.701 -6.618,1.701c0,0 6.476,-1.546 10.238,1.81c2.446,2.631 4.078,5.009 5.051,6.766c1.393,2.505 7.859,2.683 7.123,7.188c-0.737,4.499 -5.669,4.542 -13.401,-0.56M69.571,0c-38.424,0 -69.571,31.148 -69.571,69.567c0,38.422 31.147,69.573 69.571,69.573c38.42,0 69.568,-31.151 69.568,-69.573c0,-38.42 -31.148,-69.567 -69.568,-69.567"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M73.796,51.693c0.813,-0.814 0.813,-2.134 0,-2.947c-0.815,-0.814 -2.133,-0.814 -2.947,0c-0.815,0.813 -0.815,2.133 0,2.947c0.814,0.813 2.132,0.813 2.947,0" style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M66.445,53.149c-0.814,0.813 -0.814,2.133 0,2.947c0.813,0.814 2.133,0.814 2.947,0c0.813,-0.814 0.813,-2.134 0,-2.947c-0.814,-0.813 -2.134,-0.813 -2.947,0" style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M79.231,54.233c-1.274,-1.274 -3.339,-1.272 -4.611,0l-2.713,2.712c-1.274,1.275 -1.274,3.339 0,4.612l2.978,2.978c1.274,1.275 3.338,1.274 4.611,0l2.712,-2.712c1.274,-1.274 1.274,-3.339 0,-4.612l-2.977,-2.978Z" style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M95.759,41.445c-2.151,-2.578 1.869,-7.257 4.391,-4.463c4.645,5.148 -2.237,7.041 -4.391,4.463M105.004,44.132c3.442,-6.553 -1.427,-10.381 -4.773,-13.523c-5.36,-5.039 -10.706,-7.217 -16.811,-0.241c-6.102,6.977 -2.226,15.068 3.356,19.061c5.584,3.994 14.782,1.255 18.228,-5.297"
+      style="fill:#000;fill-rule:nonzero;"></path>
+  </svg>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/lunr.min.js?1554015910"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/auto-complete.js?1554015910"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/perillaroc.github.io\/eccodes-tutorial-cn\/";
+    
+</script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/search.js?1554015910"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+          
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/" title="1. GRIB 和 ecCodes 介绍" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/">
+          1. GRIB 和 ecCodes 介绍
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/build_in_windows/" title="Windows 下编译 ecCodes" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/">
+        Windows 下编译 ecCodes
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/02-grib-tools/" title="2. GRIB 工具" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/">
+          2. GRIB 工具
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/practical/" title="" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/practical/">
+        
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/grib_keys/" title="GRIB Keys" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/">
+        GRIB Keys
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/convert_to_netcdf/" title="GRIB 转 NetCDF" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/convert_to_netcdf/">
+        GRIB 转 NetCDF
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/information_tools/" title="信息工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/">
+        信息工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/copy_messages/" title="复制消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/copy_messages/">
+        复制消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/inspetion_tools/" title="查看工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/inspetion_tools/">
+        查看工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/compare_messages/" title="比较消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/compare_messages/">
+        比较消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/get_data_values/" title="获取数据值" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_data_values/">
+        获取数据值
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/get_key_value_pairs/" title="获取键值对" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_key_value_pairs/">
+        获取键值对
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/set_key_value_pairs/" title="设置键值对" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/set_key_value_pairs/">
+        设置键值对
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/03-grib-c-apis/" title="3. C编程接口" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/">
+          3. C编程接口
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/overall/" title="ecCodes GRIB C 接口" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/">
+        ecCodes GRIB C 接口
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/grib_index/" title="ecCodes索引访问" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/">
+        ecCodes索引访问
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/load_release/" title="加载/释放 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/load_release/">
+        加载/释放 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/reference/" title="参考" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/reference/">
+        参考
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/migration/" title="移植" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/migration/">
+        移植
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/encode/" title="编码GRIB文件" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/encode/">
+        编码GRIB文件
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/decode/" title="解码已加载的 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/decode/">
+        解码已加载的 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/04-grib-python-apis/" title="4. Python编程接口" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/">
+          4. Python编程接口
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_api/" title="Python API" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api/">
+        Python API
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_basic/" title="Python 和 GRIB API" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/">
+        Python 和 GRIB API
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/load_release/" title="加载/释放 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/load_release/">
+        加载/释放 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/utilities/" title="工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/utilities/">
+        工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_api_more/" title="更多内容" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api_more/">
+        更多内容
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/grib_index/" title="索引" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/grib_index/">
+        索引
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/encode/" title="编码" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/encode/">
+        编码
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/decode/" title="解码" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/">
+        解码
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/05-grib-filter/" title="5. Filter" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/05-grib-filter/">
+          5. Filter
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/06-grib-advanced-topics/" title="6. 高级话题" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/">
+          6. 高级话题
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/grib_1_to_2/" title="GRIB 1 到 2 的转换" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/grib_1_to_2/">
+        GRIB 1 到 2 的转换
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/simple_packing/" title="Simple Packing" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/simple_packing/">
+        Simple Packing
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/bitmap/" title="位图" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/bitmap/">
+        位图
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/parameter_database/" title="参数数据库" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/parameter_database/">
+        参数数据库
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/multi_field_messages/" title="多要素场消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/multi_field_messages/">
+        多要素场消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/constant_fields/" title="常数场（Constant fields）" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/constant_fields/">
+        常数场（Constant fields）
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/local_configure/" title="本地配置" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/local_configure/">
+        本地配置
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='https://perillaroc.github.io/eccodes-tutorial-cn/'>ecCodes GRIB教程中文版</a> > 5. Filter
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#功能">功能</a></li>
+<li><a href="#用法">用法</a></li>
+<li><a href="#print-语句">print 语句</a>
+<ul>
+<li><a href="#示例1-使用-print">示例1：使用 print</a></li>
+<li><a href="#示例2-格式化输出">示例2：格式化输出</a></li>
+<li><a href="#示例3-带分隔符的输出">示例3：带分隔符的输出</a></li>
+</ul></li>
+<li><a href="#write-语句">write 语句</a>
+<ul>
+<li><a href="#示例4-write-语句">示例4：write 语句</a></li>
+</ul></li>
+<li><a href="#append-语句">append 语句</a>
+<ul>
+<li><a href="#示例5-append-语句">示例5：append 语句</a></li>
+</ul></li>
+<li><a href="#设置键值">设置键值</a>
+<ul>
+<li><a href="#示例6-设置键值">示例6：设置键值</a></li>
+<li><a href="#示例7-设置数组-key">示例7：设置数组 key</a></li>
+</ul></li>
+<li><a href="#临时-key">临时 key</a>
+<ul>
+<li><a href="#示例8-临时-key">示例8：临时 key</a></li>
+</ul></li>
+<li><a href="#if-语句">if 语句</a>
+<ul>
+<li><a href="#示例9-if-语句">示例9：if 语句</a></li>
+</ul></li>
+<li><a href="#switch-语句">switch 语句</a>
+<ul>
+<li><a href="#示例10-switch-语句">示例10：switch 语句</a></li>
+<li><a href="#示例11">示例11</a></li>
+</ul></li>
+<li><a href="#assert-语句">assert 语句</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              5. Filter
+            </h1>
+          
+
+        
+
+
+
+
+	
+
+<blockquote>
+<p>译者注：如何体现高超的技术，设计一种宏语言吧。</p>
+</blockquote>
+
+<p><code>grib_filter</code> 是 ecCodes 高级命令行工具。</p>
+
+<p>该命令逐个处理输入文件中的所有消息，对每个消息应用由用户定义的一组规则。</p>
+
+<p>这些规则由 ecCodes 提供的宏语言定义。注意该宏语言不是完整的编程语言，不能完全替代 ecCodes 提供的 C、Python、Fortran 接口。<code>grib_filter</code> 和 <code>bufr_filter</code> 的宏语言语法相同。</p>
+
+<h2 id="功能">功能</h2>
+
+<p><code>grib_filter</code> 可以实现如下的功能：</p>
+
+<ul>
+<li>通过 key 访问消息中的数据</li>
+<li>打印消息内容</li>
+<li>设置消息的数值</li>
+<li>使用控制结构（<code>if</code>，<code>switch</code>）</li>
+<li>将消息写入磁盘</li>
+</ul>
+
+<h2 id="用法">用法</h2>
+
+<pre><code>grib_filter [-o out_file] rules_file in_file1 in_file2 …
+</code></pre>
+
+<p>输入文件中的每个要素场都被处理，应用 <code>rules_file</code> 中包含的规则。</p>
+
+<p>GRIB 消息仅在执行 <code>write</code> 指令时才写入到输出文件。请将 <code>-o out_file</code> 放到其他参数前。</p>
+
+<p><code>rules_file</code> 中的说明必须以分号 <code>;</code> 结尾。</p>
+
+<p><code>rules_file</code> 中的语法错误会随着行号一同报告。例如对于下面的规则（第二行结尾缺少分号，比较常见的错误）：</p>
+
+<pre><code>$ cat s.filter 
+print &quot;[centre:s]&quot;;
+print &quot;[paramId]&quot;
+</code></pre>
+
+<p>会输出如下的错误消息：</p>
+
+<pre><code>$ grib_filter s.filter levels.grib2 
+ECCODES ERROR   :  grib_parser: syntax error at line 2 of (null)
+ECCODES ERROR   :  ecCodes Version: 2.6.0
+s.filter: error unable to create action
+</code></pre>
+
+<h2 id="print-语句">print 语句</h2>
+
+<pre><code class="language-py">print &quot;some text&quot;; # this is a comment
+print &quot;some text [key]&quot;;
+</code></pre>
+
+<p>向标准输出流中打印信息。</p>
+
+<p>检索中括号中 key 的键值。</p>
+
+<p>如果在消息中没找到某个 key，则该 key 的值会显示为 <code>undef</code>。</p>
+
+<p>可以设置 key 的格式：</p>
+
+<ul>
+<li><code>[key]</code> -&gt; 原始格式</li>
+<li><code>[key:i]</code> -&gt; 整型</li>
+<li><code>[key:s]</code> -&gt; 字符串</li>
+<li><code>[key:d]</code> -&gt; 双精度浮点型</li>
+<li><code>[key!c%^F'S']</code> -&gt; 数组：<code>c</code> -&gt; columns <code>F</code> -&gt; format(C Style) <code>S</code> -&gt; separator</li>
+</ul>
+
+<pre><code class="language-py">print (&quot;filename&quot;) &quot;some text [key]&quot;;
+</code></pre>
+
+<h3 id="示例1-使用-print">示例1：使用 print</h3>
+
+<pre><code class="language-py">print &quot;ed = [edition] centre is [centre:s] = [centre:i]&quot;;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter rule01.filter ../data/simple/levels.grib2
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+ed = 2 centre is babj = 38
+</code></pre>
+
+<h3 id="示例2-格式化输出">示例2：格式化输出</h3>
+
+<pre><code class="language-py"># one column 3 decimal digits
+print &quot;[distinctLatitudes!1%3.f]&quot;;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter rule02.filter ../data/simple/levels.grib2
+ 90
+ 90
+ 89
+ 89
+ 89
+ 89
+ 88
+ 88
+ 88
+ 88
+ 87
+ 87
+...
+</code></pre>
+
+<h3 id="示例3-带分隔符的输出">示例3：带分隔符的输出</h3>
+
+<pre><code class="language-py"># tree columns 5 decimal digits comma separated
+print &quot;[latLonValues!3%.5f',']&quot;;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter rule03.filter ../data/simple/t.t639.grib2 | more
+90.00000,0.00000,247.10527,
+90.00000,0.28125,247.10527,
+90.00000,0.56250,247.10527,
+90.00000,0.84375,247.10527,
+90.00000,1.12500,247.10527,
+90.00000,1.40625,247.10527,
+...
+</code></pre>
+
+<h2 id="write-语句">write 语句</h2>
+
+<pre><code class="language-py">write;
+</code></pre>
+
+<p>将当前消息写入到输出文件中，文件名由命令行的 <code>-o</code> 参数定义。</p>
+
+<pre><code>grib_filter -o outfile rules_file grib_file
+</code></pre>
+
+<p>如果没有指定 <code>-o</code> 参数，则使用默认值 <code>filter.out</code>。</p>
+
+<pre><code class="language-py">write &quot;filename_[key]&quot;;
+</code></pre>
+
+<p>将当前消息写入到 <code>filename_[key]</code> 文件中，中括号中的 key 将被从消息中检索出来的值替换。</p>
+
+<p>如果两个消息有不同的 <code>[key]</code> 值，那么它们会写入不同的文件中。</p>
+
+<h3 id="示例4-write-语句">示例4：write 语句</h3>
+
+<pre><code class="language-py"># Creating multiple files
+write &quot;[centre]_[typeOfLevel]_[level].grib[edition]&quot;;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter rule04.filter ../data/simple/levels.grib2
+$ ls *.grib*
+babj_isobaricInhPa_1000.grib2
+babj_isobaricInhPa_950.grib2
+babj_isobaricInhPa_975.grib2
+</code></pre>
+
+<h2 id="append-语句">append 语句</h2>
+
+<pre><code class="language-py">append;
+</code></pre>
+
+<p>将当前消息追加到输出文件中，输出文件由命令行参数 <code>-o</code> 指定。</p>
+
+<pre><code>grib_filter -o outfile rules_file grib_file
+</code></pre>
+
+<p>如果没有指定 <code>-o</code> 参数，则使用默认值 <code>filter.out</code>。</p>
+
+<pre><code class="language-py">append &quot;filename_[key]&quot;;
+</code></pre>
+
+<p>将当前消息追加到 <code>filename_[key]</code> 文件中，中括号中的 key 将被从消息中检索出来的值替换。</p>
+
+<p>如果文件不存在，则创建该文件。</p>
+
+<p>如果两个文件的 <code>[key]</code> 值不同，那么它们将被追加到不同的文件中。</p>
+
+<h3 id="示例5-append-语句">示例5：append 语句</h3>
+
+<pre><code class="language-py">append;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_count output.grib2
+5
+$ grib_filter -o output.grib2 rule05.filter babj_isobaricInhPa_950.grib2
+$ grib_count output.grib2
+10
+</code></pre>
+
+<h2 id="设置键值">设置键值</h2>
+
+<pre><code class="language-py">set key1 = key2 ; # set key1 to the value of key2
+set key = {val1,val2,val3,val4} ;# set an array key
+set key = &quot;string&quot; ;# set key to a string
+set key = expression ; # set key to an expression
+set key = MISSING ; # set value of key to missing
+</code></pre>
+
+<p>表达式操作符</p>
+
+<ul>
+<li><code>==</code>：等于</li>
+<li><code>!=</code>：不等于</li>
+<li><code>is</code>：字符串相等</li>
+<li><code>||</code>：或</li>
+<li><code>&amp;&amp;</code>：与</li>
+<li><code>!</code>：非</li>
+<li><code>* / + -</code>：算术运算</li>
+<li><code>( )</code></li>
+</ul>
+
+<h3 id="示例6-设置键值">示例6：设置键值</h3>
+
+<p>下面的规则将实现 GRIB 2 到 GRIB 1 的转码。</p>
+
+<pre><code class="language-py">set edition = 1;
+write &quot;[file][edition]&quot;;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter rule06.filter  t.t639.grib2
+
+$ grib_ls t.t639.grib21
+t.t639.grib21
+edition      centre       typeOfLevel  level        dataDate     stepRange    shortName    packingType  gridType
+1            babj         isobaricInhPa  1000         20180113     0            t            grid_simple  regular_ll
+1 of 1 messages in t.t639.grib21
+
+1 of 1 total messages in 1 files
+</code></pre>
+
+<h3 id="示例7-设置数组-key">示例7：设置数组 key</h3>
+
+<pre><code class="language-py">set values = {12.2, 14.8, 13.7, 72.3};
+print &quot;values = { [values] }&quot;;
+write &quot;[file].[edition]&quot;;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter rule07.filter t.t639.grib2
+values = { 12.2 14.8 13.7 72.3 }
+</code></pre>
+
+<h2 id="临时-key">临时 key</h2>
+
+<pre><code class="language-py">transient key1 = key2;
+</code></pre>
+
+<p>定义一个新的 key1，将 key2 的值赋给 key1。</p>
+
+<pre><code class="language-py">transient key1 = &quot;string&quot;;
+</code></pre>
+
+<pre><code class="language-py">transient key1 = expression;
+</code></pre>
+
+<p>表达式操作符与 set 相同：</p>
+
+<ul>
+<li><code>==</code>：等于</li>
+<li><code>!=</code>：不等于</li>
+<li><code>is</code>：字符串相等</li>
+<li><code>||</code>：或</li>
+<li><code>&amp;&amp;</code>：与</li>
+<li><code>!</code>：非</li>
+<li><code>* / + -</code>：算术运算</li>
+<li><code>( )</code></li>
+</ul>
+
+<h3 id="示例8-临时-key">示例8：临时 key</h3>
+
+<pre><code class="language-py">transient mystep = step + 24;
+print &quot;step = [step] mystep = [mystep]&quot;;
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter rule08.filter t.t639.grib2
+step = 0 mystep = 24
+</code></pre>
+
+<h2 id="if-语句">if 语句</h2>
+
+<pre><code class="language-py">if ( expression ) { instructions }
+if ( expression ) { instructions }
+else { instructions }
+</code></pre>
+
+<p>没有 <code>else if</code>，需要创建一个新的 <code>if</code> 代码块。</p>
+
+<p>表达式操作符：</p>
+
+<ul>
+<li><code>==</code>：等于</li>
+<li><code>!=</code>：不等于</li>
+<li><code>&lt;</code>：小于，<code>&lt;=</code>：小于或等于</li>
+<li><code>&gt;</code>：大于，<code>&gt;=</code>：大于或等于</li>
+<li><code>is</code>：字符串相等（<code>!(key is value)</code> 表示 <code>not is</code>）</li>
+<li><code>||</code>：或</li>
+<li><code>&amp;&amp;</code>：与</li>
+<li><code>!</code>：非</li>
+<li><code>* / + -</code>：算术运算</li>
+<li><code>( )</code></li>
+</ul>
+
+<h3 id="示例9-if-语句">示例9：if 语句</h3>
+
+<pre><code class="language-py">if (shortName is 't') {
+    write;
+}
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_ls levels.grib2
+levels.grib2
+edition      centre       date         dataType     gridType     stepRange    typeOfLevel  level        shortName    packingType
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  1000         gh           grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  975          gh           grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  950          gh           grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  1000         t            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  975          t            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  950          t            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  1000         u            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  975          u            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  950          u            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  1000         v            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  975          v            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  950          v            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  1000         wz           grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  975          wz           grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  950          wz           grid_jpeg
+15 of 15 messages in levels.grib2
+
+15 of 15 total messages in 1 files
+
+$ grib_filter -o out.grib2 rule09.filter levels.grib2
+
+$ grib_ls out.grib2
+out.grib2
+edition      centre       date         dataType     gridType     stepRange    typeOfLevel  level        shortName    packingType
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  1000         t            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  975          t            grid_jpeg
+2            babj         20180103     an           regular_ll   0            isobaricInhPa  950          t            grid_jpeg
+3 of 3 messages in out.grib2
+
+3 of 3 total messages in 1 files
+</code></pre>
+
+<h2 id="switch-语句">switch 语句</h2>
+
+<p><code>if-else</code> 语句的替代版本。</p>
+
+<p>当需要从多个选项中选择操作时，使用 <code>switch</code> 语句会非常方便。</p>
+
+<pre><code class="language-py">switch(var) {
+    case val1:
+        # set of actions
+        ...
+    case val2:
+        # set of actions
+        ...
+    default:
+        # default block of actions
+}
+</code></pre>
+
+<p><code>default</code>：默认情况，在语句为空时也要写出。</p>
+
+<h3 id="示例10-switch-语句">示例10：switch 语句</h3>
+
+<pre><code class="language-py">print &quot;processing [paramId] [shortName] [stepType]&quot;;
+switch (shortName) {
+    case &quot;gh&quot;:
+        print &quot;processing gh&quot;;
+    case &quot;t&quot;:
+        print &quot;processing t&quot;;
+    default:
+        print &quot;Unexpected parameter&quot;;
+}
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>$ grib_filter ../../eccodes-grib-tutorial-code/chap_05_grib_filter/rule10.filter levels.grib2
+processing 156 gh instant
+processing gh
+processing 156 gh instant
+processing gh
+processing 156 gh instant
+processing gh
+processing 130 t instant
+processing t
+processing 130 t instant
+processing t
+processing 130 t instant
+processing t
+processing 131 u instant
+Unexpected parameter
+processing 131 u instant
+Unexpected parameter
+processing 131 u instant
+Unexpected parameter
+processing 132 v instant
+Unexpected parameter
+processing 132 v instant
+Unexpected parameter
+processing 132 v instant
+Unexpected parameter
+processing 260238 wz instant
+Unexpected parameter
+processing 260238 wz instant
+Unexpected parameter
+processing 260238 wz instant
+Unexpected parameter
+</code></pre>
+
+<h3 id="示例11">示例11</h3>
+
+<pre><code class="language-py">if(centre is &quot;lfpw&quot; &amp;&amp;
+    (indicatorOfParameter== 6 ||
+     indicatorOfParameter== 11 ||
+     indicatorOfParameter== 8) )
+{
+    if(step!=0) {
+        set typeOfGeneratingProcess=0;
+        set typeOfProcessedData=0;
+    } else {
+        # Other steps
+        set typeOfProcessedData=1;
+        switch(typeOfLevel) {
+            case &quot;hybrid&quot;:
+                set changeDecimalPrecision=1;
+            case &quot;surface&quot;:
+                set changeDecimalPrecision=2;
+            case &quot;isobaricInhPa&quot;:
+                if(level &gt; 300) {
+                    print&quot;level &gt; 300&quot;;
+                    set level = level*2 + 15;
+                } # end if (level &gt; 300)
+            default:
+                print&quot;Unknown level type!&quot;;
+        }# end switch (typeOfLevel)
+    }# end if (step!=0)
+    write;
+}# end main if
+</code></pre>
+
+<h2 id="assert-语句">assert 语句</h2>
+
+<pre><code class="language-py">assert(condition);
+</code></pre>
+
+<p>如果条件为 false，filter 会出错中止。</p>
+
+<p>示例：</p>
+
+<pre><code class="language-py"># This filter should be run on GRIB edition 1 only;# abort otherwise
+assert (edition == 1) ;
+...
+</code></pre>
+
+<p>执行命令</p>
+
+<pre><code>&gt; grib_filter–o out.grib2 rule.filterx.grib2
+ECCODES ERROR : Assertion failure:
+binop(access('edition=2'),long(2))
+</code></pre>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api_more/" title="更多内容"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/" title="6. 高级话题" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/clipboard.min.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.min.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.jquery.min.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery.sticky.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/featherlight.min.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/html5shiv-printshiv.min.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/highlight.pack.js?1554015910"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/modernizr.custom.71422.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/learn.js?1554015910"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/hugo-learn.js?1554015910"></script>
+
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.css?1554015910" type="text/css" rel="stylesheet" />
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.js?1554015910"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
