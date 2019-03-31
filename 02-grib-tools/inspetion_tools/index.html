@@ -1,0 +1,2339 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="https://perillaroc.github.io/eccodes-tutorial-cn/images/favicon.png" type="image/png">
+
+    <title>查看工具 :: ecCodes教程中文版</title>
+
+    
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/nucleus.css?1554017234" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/fontawesome-all.min.css?1554017234" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hybrid.css?1554017234" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/featherlight.min.css?1554017234" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/perfect-scrollbar.min.css?1554017234" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/auto-complete.css?1554017234" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/theme.css?1554017234" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hugo-theme.css?1554017234" rel="stylesheet">
+    
+
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery-2.x.min.js?1554017234"></script>
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/02-grib-tools/inspetion_tools/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://perillaroc.github.io/eccodes-tutorial-cn/">
+  <svg id="grav-logo" style="width:100%; height:100%;" viewBox="0 0 504 140" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <path d="M235.832,71.564l-7.98,-0.001c-1.213,0.001 -2.197,0.987 -2.197,2.204l0,15.327l-0.158,0.132c-4.696,3.962 -10.634,6.14 -16.719,6.14c-14.356,0 -26.034,-11.68 -26.034,-26.037c0,-14.358 11.678,-26.035 26.034,-26.035c5.582,0 10.919,1.767 15.437,5.113c0.877,0.649 2.093,0.56 2.866,-0.211l5.69,-5.69c0.444,-0.442 0.675,-1.055 0.639,-1.681c-0.034,-0.627 -0.336,-1.206 -0.828,-1.597c-6.76,-5.363 -15.214,-8.314 -23.805,-8.314c-21.18,0 -38.414,17.233 -38.414,38.415c0,21.183 17.234,38.415 38.414,38.415c10.937,0 21.397,-4.705 28.698,-12.914c0.358,-0.403 0.556,-0.921 0.556,-1.46l0,-19.603c0,-1.217 -0.985,-2.203 -2.2,-2.203"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M502.794,34.445c-0.408,-0.616 -1.1,-0.989 -1.838,-0.989l-8.684,0c-0.879,0 -1.673,0.522 -2.022,1.329l-24.483,56.839l-24.92,-56.852c-0.352,-0.799 -1.142,-1.316 -2.012,-1.316l-8.713,0c-0.744,0 -1.44,0.373 -1.843,0.995c-0.408,0.623 -0.476,1.408 -0.174,2.09l30.186,68.858c0.352,0.799 1.143,1.317 2.017,1.317l10.992,0c0.879,0 1.673,-0.527 2.021,-1.329l29.655,-68.861c0.289,-0.68 0.222,-1.461 -0.182,-2.081"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M388.683,34.772c-0.353,-0.798 -1.142,-1.316 -2.017,-1.316l-10.988,0c-0.879,0 -1.673,0.522 -2.021,1.329l-29.655,68.861c-0.294,0.675 -0.226,1.46 0.182,2.077c0.407,0.619 1.096,0.993 1.838,0.993l8.684,0c0.879,0 1.673,-0.526 2.022,-1.329l24.478,-56.842l24.92,56.854c0.353,0.798 1.143,1.317 2.013,1.317l8.717,0c0.744,0 1.44,-0.374 1.843,-0.993c0.408,-0.624 0.471,-1.41 0.174,-2.094l-30.19,-68.857Z"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M309.196,81.525l0.476,-0.229c8.675,-4.191 14.279,-13.087 14.279,-22.667c0,-13.881 -11.295,-25.174 -25.176,-25.174l-31.863,0c-1.214,0 -2.199,0.988 -2.199,2.202l0,68.855c0,1.219 0.985,2.204 2.199,2.204l7.979,0c1.214,0 2.2,-0.985 2.2,-2.204l0,-58.679l21.684,0c7.059,0 12.799,5.739 12.799,12.796c0,5.885 -3.996,10.989 -9.728,12.408c-1.032,0.261 -2.064,0.393 -3.071,0.393l-7.977,0c-0.829,0 -1.585,0.467 -1.959,1.205c-0.378,0.74 -0.305,1.625 0.187,2.296l22.62,30.884c0.412,0.566 1.07,0.901 1.771,0.901l9.915,0c0.827,0 1.587,-0.467 1.96,-1.207c0.378,-0.742 0.302,-1.629 -0.186,-2.296l-15.91,-21.688Z"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M107.191,80.969c-7.255,-4.794 -11.4,-8.845 -15.011,-16.109c-2.47,4.977 -8.236,12.376 -17.962,18.198c-4.856,15.106 -27.954,44.015 -35.43,39.916c-2.213,-1.212 -2.633,-2.808 -2.133,-4.456c0.536,-4.129 9.078,-13.62 9.078,-13.62c0,0 0.18,1.992 2.913,6.187c-3.609,-11.205 5.965,-25.031 8.5,-29.738c3.985,-1.269 4.274,-6.387 4.274,-6.387c0.255,-7.909 -3.278,-13.635 -6.701,-17.059c2.459,3.002 3.255,7.539 3.372,11.694l0,0.023c0.012,0.469 0.012,0.93 0.011,1.39c-0.117,3.439 -1.157,8.19 -3.383,8.19l0.006,0.03c-2.289,-0.098 -5.115,0.391 -7.639,1.18l-5.582,1.334c0,0 2.977,-0.136 4.584,1.252c-1.79,2.915 -5.769,6.533 -10.206,8.588c-6.457,2.995 -8.312,-2.964 -5.034,-6.838c0.805,-0.946 1.618,-1.745 2.387,-2.399c-0.495,-0.513 -0.807,-1.198 -0.889,-2.068c-0.001,-0.005 -0.004,-0.009 -0.005,-0.013c-0.45,-1.977 -0.202,-4.543 2.596,-8.623c0.551,-0.863 1.214,-1.748 2.007,-2.647c0.025,-0.031 0.046,-0.059 0.072,-0.089c0.034,-0.042 0.072,-0.08 0.108,-0.121c0.02,-0.023 0.039,-0.045 0.059,-0.068c0.2,-0.228 0.413,-0.45 0.639,-0.663c3.334,-3.414 8.599,-6.966 16.897,-10.152c9.675,-14.223 13.219,-16.89 13.219,-16.89c1.071,-1.096 2.943,-2.458 3.632,-2.805c-5.053,-8.781 -6.074,-21.158 -4.75,-24.493c-0.107,0.18 -0.206,0.365 -0.287,0.556c0.49,-1.143 0.819,-1.509 1.328,-2.111c1.381,-1.632 6.058,-2.488 7.737,0.971c0.895,1.844 1.063,4.232 1.034,6.023c-3.704,-0.193 -7.063,4.036 -7.063,4.036c0,0 3.067,-1.448 6.879,-1.473c0,0 1.015,0.883 2.283,2.542c-1.712,3.213 -4.524,10.021 -2.488,17.168c0.338,1.408 0.849,2.619 1.483,3.648c0.024,0.045 0.044,0.089 0.069,0.135c0.051,0.066 0.096,0.122 0.144,0.183c3.368,5.072 9.542,5.665 9.542,5.665c-2.906,-1.45 -5.274,-3.76 -6.816,-6.56c-0.8,-1.498 -1.291,-2.762 -1.592,-3.761c-1.636,-6.313 0.771,-9.999 2.149,-12.471c3.17,-4.917 8.944,-7.893 15.151,-7.185c8.712,0.995 14.968,8.862 13.973,17.571c-0.608,5.321 -3.781,9.723 -8.142,12.117c1.049,2.839 -0.073,6.28 -0.073,6.28c2.642,3.323 2.758,5.238 2.667,7.017c-3.357,-0.565 -6.618,1.701 -6.618,1.701c0,0 6.476,-1.546 10.238,1.81c2.446,2.631 4.078,5.009 5.051,6.766c1.393,2.505 7.859,2.683 7.123,7.188c-0.737,4.499 -5.669,4.542 -13.401,-0.56M69.571,0c-38.424,0 -69.571,31.148 -69.571,69.567c0,38.422 31.147,69.573 69.571,69.573c38.42,0 69.568,-31.151 69.568,-69.573c0,-38.42 -31.148,-69.567 -69.568,-69.567"
+      style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M73.796,51.693c0.813,-0.814 0.813,-2.134 0,-2.947c-0.815,-0.814 -2.133,-0.814 -2.947,0c-0.815,0.813 -0.815,2.133 0,2.947c0.814,0.813 2.132,0.813 2.947,0" style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M66.445,53.149c-0.814,0.813 -0.814,2.133 0,2.947c0.813,0.814 2.133,0.814 2.947,0c0.813,-0.814 0.813,-2.134 0,-2.947c-0.814,-0.813 -2.134,-0.813 -2.947,0" style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M79.231,54.233c-1.274,-1.274 -3.339,-1.272 -4.611,0l-2.713,2.712c-1.274,1.275 -1.274,3.339 0,4.612l2.978,2.978c1.274,1.275 3.338,1.274 4.611,0l2.712,-2.712c1.274,-1.274 1.274,-3.339 0,-4.612l-2.977,-2.978Z" style="fill:#000;fill-rule:nonzero;"></path>
+    <path d="M95.759,41.445c-2.151,-2.578 1.869,-7.257 4.391,-4.463c4.645,5.148 -2.237,7.041 -4.391,4.463M105.004,44.132c3.442,-6.553 -1.427,-10.381 -4.773,-13.523c-5.36,-5.039 -10.706,-7.217 -16.811,-0.241c-6.102,6.977 -2.226,15.068 3.356,19.061c5.584,3.994 14.782,1.255 18.228,-5.297"
+      style="fill:#000;fill-rule:nonzero;"></path>
+  </svg>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/lunr.min.js?1554017234"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/auto-complete.js?1554017234"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/perillaroc.github.io\/eccodes-tutorial-cn\/";
+    
+</script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/search.js?1554017234"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+          
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/" title="1. GRIB 和 ecCodes 介绍" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/">
+          1. GRIB 和 ecCodes 介绍
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/build_in_windows/" title="Windows 下编译 ecCodes" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/">
+        Windows 下编译 ecCodes
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/02-grib-tools/" title="2. GRIB 工具" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/">
+          2. GRIB 工具
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/practical/" title="" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/practical/">
+        
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/grib_keys/" title="GRIB Keys" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/">
+        GRIB Keys
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/convert_to_netcdf/" title="GRIB 转 NetCDF" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/convert_to_netcdf/">
+        GRIB 转 NetCDF
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/information_tools/" title="信息工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/">
+        信息工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/copy_messages/" title="复制消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/copy_messages/">
+        复制消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/inspetion_tools/" title="查看工具" class="dd-item active">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/inspetion_tools/">
+        查看工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/compare_messages/" title="比较消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/compare_messages/">
+        比较消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/get_data_values/" title="获取数据值" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_data_values/">
+        获取数据值
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/get_key_value_pairs/" title="获取键值对" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_key_value_pairs/">
+        获取键值对
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/set_key_value_pairs/" title="设置键值对" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/set_key_value_pairs/">
+        设置键值对
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/03-grib-c-apis/" title="3. C编程接口" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/">
+          3. C编程接口
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/overall/" title="ecCodes GRIB C 接口" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/">
+        ecCodes GRIB C 接口
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/grib_index/" title="ecCodes索引访问" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/">
+        ecCodes索引访问
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/load_release/" title="加载/释放 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/load_release/">
+        加载/释放 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/reference/" title="参考" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/reference/">
+        参考
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/migration/" title="移植" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/migration/">
+        移植
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/encode/" title="编码GRIB文件" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/encode/">
+        编码GRIB文件
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/decode/" title="解码已加载的 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/decode/">
+        解码已加载的 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/04-grib-python-apis/" title="4. Python编程接口" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/">
+          4. Python编程接口
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_api/" title="Python API" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api/">
+        Python API
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_basic/" title="Python 和 GRIB API" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/">
+        Python 和 GRIB API
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/load_release/" title="加载/释放 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/load_release/">
+        加载/释放 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/utilities/" title="工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/utilities/">
+        工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_api_more/" title="更多内容" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api_more/">
+        更多内容
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/grib_index/" title="索引" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/grib_index/">
+        索引
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/encode/" title="编码" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/encode/">
+        编码
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/decode/" title="解码" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/">
+        解码
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/05-grib-filter/" title="5. Filter" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/05-grib-filter/">
+          5. Filter
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/06-grib-advanced-topics/" title="6. 高级话题" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/">
+          6. 高级话题
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+          
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/grib_1_to_2/" title="GRIB 1 到 2 的转换" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/grib_1_to_2/">
+        GRIB 1 到 2 的转换
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/simple_packing/" title="Simple Packing" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/simple_packing/">
+        Simple Packing
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/bitmap/" title="位图" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/bitmap/">
+        位图
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/parameter_database/" title="参数数据库" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/parameter_database/">
+        参数数据库
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/multi_field_messages/" title="多要素场消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/multi_field_messages/">
+        多要素场消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/constant_fields/" title="常数场（Constant fields）" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/constant_fields/">
+        常数场（Constant fields）
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/local_configure/" title="本地配置" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/local_configure/">
+        本地配置
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='https://perillaroc.github.io/eccodes-tutorial-cn/'>ecCodes GRIB教程中文版</a> > <a href='https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/'>2. GRIB 工具</a> > 查看工具
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#grib-dump">grib_dump</a>
+<ul>
+<li><a href="#使用方法">使用方法</a></li>
+<li><a href="#示例">示例</a></li>
+<li><a href="#eccodes-命名空间">ecCodes 命名空间</a></li>
+<li><a href="#练习">练习</a></li>
+<li><a href="#练习使用-grib-dump">练习使用 grib_dump</a></li>
+</ul></li>
+<li><a href="#grib-ls">grib_ls</a>
+<ul>
+<li><a href="#用法">用法</a></li>
+<li><a href="#示例-1">示例</a></li>
+<li><a href="#使用-where-选项">使用 where 选项</a></li>
+<li><a href="#练习-使用-grib-ls">练习：使用 grib_ls</a></li>
+<li><a href="#使用-grib-ls-寻找最近邻网格点">使用 grib_ls 寻找最近邻网格点</a></li>
+<li><a href="#练习-使用-grib-ls-l">练习：使用 grib_ls -l</a></li>
+</ul></li>
+<li><a href="#grib-examiner-metview-4">GRIB Examiner(Metview 4)</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              查看工具
+            </h1>
+          
+
+        
+
+
+
+
+
+<h2 id="grib-dump">grib_dump</h2>
+
+<p>显示 GRIB 文件内容</p>
+
+<p>使用 <code>grib_dump</code> 显示包含一个或多个 GRIB 消息的文件内容。</p>
+
+<p>支持不同的输出格式：</p>
+
+<ul>
+<li>Octet mode: 提供 WMO 风格的输出</li>
+<li>Debug mode: 打印 GRIB 文件中所有的 key</li>
+<li>Octet 和 Debug 两种模式不能同时使用</li>
+<li>Octet 内容可以使用十六进制格式输出。</li>
+</ul>
+
+<p>通过设置选项，还可以输出 key aliases 和 key 的类型信息（key type information)。</p>
+
+<p>支持 JSON 格式输出，便于处理。</p>
+
+<h3 id="使用方法">使用方法</h3>
+
+<pre><code>grib_dump [options] grib_file grib_file ...
+</code></pre>
+
+<p>基本参数：</p>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-O</td>
+<td>Octet 模式（WMO 文档风格）</td>
+</tr>
+
+<tr>
+<td>-D</td>
+<td>Debug 模式</td>
+</tr>
+
+<tr>
+<td>-a</td>
+<td>打印 key alias 信息</td>
+</tr>
+
+<tr>
+<td>-t</td>
+<td>打印 key 类型信息</td>
+</tr>
+
+<tr>
+<td>-H</td>
+<td>十六进制显示的 Octet 模式</td>
+</tr>
+
+<tr>
+<td>-w key[:{s</td>
+<td>i</td>
+</tr>
+
+<tr>
+<td>-j</td>
+<td>JSON 输出</td>
+</tr>
+
+<tr>
+<td>-V</td>
+<td>打印 ecCodes 版本</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="示例">示例</h3>
+
+<p>以中国气象局数值预报中心的 GRAPES GFS 输出的 GRIB 2 产品为例</p>
+
+<pre><code>$ grib_dump gmf.gra.2018010300000.grb2 
+***** FILE: gmf.gra.2018010300000.grb2 
+#==============   MESSAGE 1 ( length=356 )                 ==============
+GRIB {
+  # Meteorological products (grib2/tables/4/0.0.table)  
+  discipline = 0;
+  editionNumber = 2;
+  # Beijing  (RSMC)  (common/c-11.table)  
+  centre = 38;
+  subCentre = 0;
+  # Analysis (grib2/tables/4/1.2.table)  
+  significanceOfReferenceTime = 0;
+  dataDate = 20180103;
+  dataTime = 0;
+  # Operational products (grib2/tables/4/1.3.table)  
+  productionStatusOfProcessedData = 0;
+  # Analysis products (grib2/tables/4/1.4.table)  
+  typeOfProcessedData = 0;
+  numberOfDataPoints = 1036800;
+  # There is no appended list (grib2/tables/4/3.11.table)  
+  interpretationOfNumberOfPoints = 0;
+  # Latitude/longitude  (Also called equidistant cylindrical, or Plate Carree)  (grib2/tables/4/3.1.table)  
+  gridDefinitionTemplateNumber = 0;
+  # Earth assumed spherical with radius of 6,371,229.0 m (grib2/tables/4/3.2.table)  
+  shapeOfTheEarth = 6;
+  Ni = 1440;
+  Nj = 720;
+  iScansNegatively = 0;
+  jScansPositively = 0;
+  jPointsAreConsecutive = 0;
+  alternativeRowScanning = 0;
+  latitudeOfFirstGridPointInDegrees = 89.875;
+  longitudeOfFirstGridPointInDegrees = 0;
+  latitudeOfLastGridPointInDegrees = -89.875;
+  longitudeOfLastGridPointInDegrees = 359.75;
+  iDirectionIncrementInDegrees = 0.25;
+  jDirectionIncrementInDegrees = 0.25;
+  gridType = regular_ll;
+  NV = 0;
+  # Average, accumulation, extreme values or other statistically processed values at a horizontal level or in a horizontal layer in a continuous or non-continuous time interval (grib2/tables/4/4.0.table)  
+  productDefinitionTemplateNumber = 8;
+  # Moisture (grib2/tables/4/4.1.0.table)  
+  parameterCategory = 1;
+  # Convective precipitation  (kg m-2)  (grib2/tables/4/4.2.0.1.table)  
+  parameterNumber = 10;
+  #-READ ONLY- parameterUnits = kg m-2;
+  #-READ ONLY- parameterName = Convective precipitation ;
+  # Analysis (grib2/tables/4/4.3.table)  
+  typeOfGeneratingProcess = 0;
+  generatingProcessIdentifier = 15;
+  # Hour (grib2/tables/4/4.4.table)  
+  indicatorOfUnitOfTimeRange = 1;
+  # Hour (stepUnits.table)  
+  stepUnits = 1;
+  forecastTime = 0;
+  # Ground or water surface  (grib2/tables/4/4.5.table)  
+  typeOfFirstFixedSurface = 1;
+  #-READ ONLY- unitsOfFirstFixedSurface = unknown;
+  #-READ ONLY- nameOfFirstFixedSurface = Ground or water surface ;
+  scaleFactorOfFirstFixedSurface = MISSING;
+  scaledValueOfFirstFixedSurface = MISSING;
+  # Missing (grib2/tables/4/4.5.table)  
+  typeOfSecondFixedSurface = 255;
+  #-READ ONLY- unitsOfSecondFixedSurface = unknown;
+  #-READ ONLY- nameOfSecondFixedSurface = Missing;
+  scaleFactorOfSecondFixedSurface = MISSING;
+  scaledValueOfSecondFixedSurface = MISSING;
+  level = 0;
+  endStep = 0;
+  stepRange = 0;
+  shortNameECMF = acpcp;
+  shortName = acpcp;
+  nameECMF = Convective precipitation (water);
+  name = Convective precipitation (water);
+  cfNameECMF = lwe_thickness_of_convective_precipitation_amount;
+  cfName = lwe_thickness_of_convective_precipitation_amount;
+  cfVarNameECMF = acpcp;
+  cfVarName = acpcp;
+  #-READ ONLY- modelName = unknown;
+  numberOfValues = 1036800;
+  packingType = grid_jpeg;
+  # A bit map does not apply to this product (grib2/tables/4/6.0.table)  
+  bitMapIndicator = 255;
+  bitmapPresent = 0;
+  values(1036800) =  {
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0
+  ... 1036700 more values
+  } 
+  #-READ ONLY- maximum = 0;
+  #-READ ONLY- minimum = 0;
+  #-READ ONLY- average = 0;
+  #-READ ONLY- numberOfMissing = 0;
+  #-READ ONLY- standardDeviation = 0;
+  #-READ ONLY- skewness = 0;
+  #-READ ONLY- kurtosis = 0;
+  #-READ ONLY- isConstant = 1;
+  #-READ ONLY- getNumberOfValues = 1036800;
+}
+</code></pre>
+
+<p>使用其他选项</p>
+
+<pre><code>$ grib_dump -OtaH gmf.gra.2018010300000.grb2 
+***** FILE: gmf.gra.2018010300000.grb2 
+#==============   MESSAGE 1 ( length=356 )                 ==============
+1-4       ascii identifier = GRIB ( 0x47 0x52 0x49 0x42 )
+5-6       unsigned reserved = MISSING ( 0xFF 0xFF )
+7         codetable discipline = 0 ( 0x00 ) [Meteorological products (grib2/tables/4/0.0.table) ]
+8         unsigned editionNumber = 2 ( 0x02 ) [ls.edition]
+9-16      section_length totalLength = 356 ( 0x00 0x00 0x00 0x00 0x00 0x00 0x01 0x64 )
+======================   SECTION_1 ( length=21, padding=0 )    ======================
+1-4       section_length section1Length = 21 ( 0x00 0x00 0x00 0x15 )
+5         unsigned numberOfSection = 1 ( 0x01 )
+6-7       codetable centre = 38 ( 0x00 0x26 ) [Beijing  (RSMC)  (common/c-11.table) ] [identificationOfOriginatingGeneratingCentre, ls.centre, originatingCentre, centreForLocal]
+8-9       unsigned subCentre = 0 ( 0x00 0x00 )
+10        codetable tablesVersion = 4 ( 0x04 ) [Version implemented on 7 November 2007 (grib2/tables/1.0.table) ] [gribMasterTablesVersionNumber]
+11        codetable localTablesVersion = 1 ( 0x01 ) [Unknown code table entry (grib2/tables/4/1.1.table) ] [versionNumberOfGribLocalTables]
+12        codetable significanceOfReferenceTime = 0 ( 0x00 ) [Analysis (grib2/tables/4/1.2.table) ]
+13-14     unsigned year = 2018 ( 0x07 0xE2 )
+15        unsigned month = 1 ( 0x01 )
+16        unsigned day = 3 ( 0x03 )
+17        unsigned hour = 0 ( 0x00 )
+18        unsigned minute = 0 ( 0x00 )
+19        unsigned second = 0 ( 0x00 )
+20        codetable productionStatusOfProcessedData = 0 ( 0x00 ) [Operational products (grib2/tables/4/1.3.table) ]
+21        codetable typeOfProcessedData = 0 ( 0x00 ) [Analysis products (grib2/tables/4/1.4.table) ] [ls.dataType]
+======================   SECTION_3 ( length=72, padding=0 )    ======================
+1-4       section_length section3Length = 72 ( 0x00 0x00 0x00 0x48 )
+5         unsigned numberOfSection = 3 ( 0x03 )
+6         codetable sourceOfGridDefinition = 0 ( 0x00 ) [Specified in Code table 3.1 (grib2/tables/4/3.0.table) ]
+7-10      unsigned numberOfDataPoints = 1036800 ( 0x00 0x0F 0xD2 0x00 ) [numberOfPoints]
+11        unsigned numberOfOctectsForNumberOfPoints = 0 ( 0x00 )
+12        codetable interpretationOfNumberOfPoints = 0 ( 0x00 ) [There is no appended list (grib2/tables/4/3.11.table) ]
+13-14     codetable gridDefinitionTemplateNumber = 0 ( 0x00 0x00 ) [Latitude/longitude  (Also called equidistant cylindrical, or Plate Carree)  (grib2/tables/4/3.1.table) ]
+15        codetable shapeOfTheEarth = 6 ( 0x06 ) [Earth assumed spherical with radius of 6,371,229.0 m (grib2/tables/4/3.2.table) ]
+16        unsigned scaleFactorOfRadiusOfSphericalEarth = 0 ( 0x00 )
+17-20     unsigned scaledValueOfRadiusOfSphericalEarth = 0 ( 0x00 0x00 0x00 0x00 )
+21        unsigned scaleFactorOfEarthMajorAxis = 0 ( 0x00 ) [scaleFactorOfMajorAxisOfOblateSpheroidEarth]
+22-25     unsigned scaledValueOfEarthMajorAxis = 0 ( 0x00 0x00 0x00 0x00 ) [scaledValueOfMajorAxisOfOblateSpheroidEarth]
+26        unsigned scaleFactorOfEarthMinorAxis = 0 ( 0x00 ) [scaleFactorOfMinorAxisOfOblateSpheroidEarth]
+27-30     unsigned scaledValueOfEarthMinorAxis = 0 ( 0x00 0x00 0x00 0x00 ) [scaledValueOfMinorAxisOfOblateSpheroidEarth]
+31-34     unsigned Ni = 1440 ( 0x00 0x00 0x05 0xA0 ) [numberOfPointsAlongAParallel, Nx, numberOfColumns]
+35-38     unsigned Nj = 720 ( 0x00 0x00 0x02 0xD0 ) [numberOfPointsAlongAMeridian, Ny, numberOfRows]
+39-42     unsigned basicAngleOfTheInitialProductionDomain = 0 ( 0x00 0x00 0x00 0x00 )
+43-46     unsigned subdivisionsOfBasicAngle = 0 ( 0x00 0x00 0x00 0x00 )
+47-50     signed latitudeOfFirstGridPoint = 89875000 ( 0x05 0x5B 0x62 0x38 ) [La1]
+51-54     signed longitudeOfFirstGridPoint = 0 ( 0x00 0x00 0x00 0x00 ) [Lo1]
+55        codeflag resolutionAndComponentFlags = 48 [00110000] ( 0x30 )
+56-59     signed latitudeOfLastGridPoint = -89875000 ( 0x85 0x5B 0x62 0x38 ) [La2]
+60-63     signed longitudeOfLastGridPoint = 359750000 ( 0x15 0x71 0x59 0x70 ) [Lo2]
+64-67     unsigned iDirectionIncrement = 250000 ( 0x00 0x03 0xD0 0x90 ) [Di, Dx]
+68-71     unsigned jDirectionIncrement = 250000 ( 0x00 0x03 0xD0 0x90 ) [Dj, Dy]
+72        codeflag scanningMode = 0 [00000000] ( 0x00 )
+======================   SECTION_4 ( length=58, padding=0 )    ======================
+1-4       section_length section4Length = 58 ( 0x00 0x00 0x00 0x3A )
+5         unsigned numberOfSection = 4 ( 0x04 )
+6-7       unsigned NV = 0 ( 0x00 0x00 ) [numberOfVerticalCoordinateValues, numberOfCoordinatesValues, numberOfVerticalGridDescriptors]
+8-9       codetable productDefinitionTemplateNumber = 8 ( 0x00 0x08 ) [Average, accumulation, extreme values or other statistically processed values at a horizontal level or in a horizontal layer in a continuous or non-continuous time interval (grib2/tables/4/4.0.table) ]
+10        codetable parameterCategory = 1 ( 0x01 ) [Moisture (grib2/tables/4/4.1.0.table) ]
+11        codetable parameterNumber = 10 ( 0x0A ) [Convective precipitation  (kg m-2)  (grib2/tables/4/4.2.0.1.table) ]
+12        codetable typeOfGeneratingProcess = 0 ( 0x00 ) [Analysis (grib2/tables/4/4.3.table) ]
+13        unsigned backgroundProcess = 0 ( 0x00 ) [backgroundGeneratingProcessIdentifier]
+14        unsigned generatingProcessIdentifier = 15 ( 0x0F )
+15-16     unsigned hoursAfterDataCutoff = 0 ( 0x00 0x00 ) [hoursAfterReferenceTimeOfDataCutoff]
+17        unsigned minutesAfterDataCutoff = 0 ( 0x00 ) [minutesAfterReferenceTimeOfDataCutoff]
+18        codetable indicatorOfUnitOfTimeRange = 1 ( 0x01 ) [Hour (grib2/tables/4/4.4.table) ]
+19-22     signed forecastTime = 0 ( 0x00 0x00 0x00 0x00 )
+23        codetable typeOfFirstFixedSurface = 1 ( 0x01 ) [Ground or water surface  (grib2/tables/4/4.5.table) ] [levelType, mars.levtype]
+24        signed scaleFactorOfFirstFixedSurface = MISSING ( 0xFF )
+25-28     unsigned scaledValueOfFirstFixedSurface = MISSING ( 0xFF 0xFF 0xFF 0xFF )
+29        codetable typeOfSecondFixedSurface = 255 ( 0xFF ) [Missing (grib2/tables/4/4.5.table) ]
+30        signed scaleFactorOfSecondFixedSurface = MISSING ( 0xFF )
+31-34     unsigned scaledValueOfSecondFixedSurface = MISSING ( 0xFF 0xFF 0xFF 0xFF )
+35-36     unsigned yearOfEndOfOverallTimeInterval = 2018 ( 0x07 0xE2 )
+37        unsigned monthOfEndOfOverallTimeInterval = 1 ( 0x01 )
+38        unsigned dayOfEndOfOverallTimeInterval = 3 ( 0x03 )
+39        unsigned hourOfEndOfOverallTimeInterval = 0 ( 0x00 )
+40        unsigned minuteOfEndOfOverallTimeInterval = 0 ( 0x00 )
+41        unsigned secondOfEndOfOverallTimeInterval = 0 ( 0x00 )
+42        unsigned numberOfTimeRange = 1 ( 0x01 ) [n]
+43-46     unsigned numberOfMissingInStatisticalProcess = 0 ( 0x00 0x00 0x00 0x00 ) [totalNumberOfDataValuesMissingInStatisticalProcess]
+47        codetable typeOfStatisticalProcessing = 1 ( 0x01 ) [Accumulation (grib2/tables/4/4.10.table) ]
+48        codetable typeOfTimeIncrement = 2 ( 0x02 ) [Successive times processed have same start time of forecast, forecast time is incremented (grib2/tables/4/4.11.table) ] [typeOfTimeIncrementBetweenSuccessiveFieldsUsedInTheStatisticalProcessing]
+49        codetable indicatorOfUnitForTimeRange = 1 ( 0x01 ) [Hour (grib2/tables/4/4.4.table) ]
+50-53     unsigned lengthOfTimeRange = 0 ( 0x00 0x00 0x00 0x00 )
+54        codetable indicatorOfUnitForTimeIncrement = 255 ( 0xFF ) [Missing (grib2/tables/4/4.4.table) ]
+55-58     unsigned timeIncrement = 0 ( 0x00 0x00 0x00 0x00 ) [timeIncrementBetweenSuccessiveFields]
+======================   SECTION_5 ( length=23, padding=0 )    ======================
+1-4       section_length section5Length = 23 ( 0x00 0x00 0x00 0x17 )
+5         unsigned numberOfSection = 5 ( 0x05 )
+6-9       unsigned numberOfValues = 1036800 ( 0x00 0x0F 0xD2 0x00 ) [numberOfCodedValues, numberOfEffectiveValues]
+10-11     codetable dataRepresentationTemplateNumber = 40 ( 0x00 0x28 ) [JPEG2000 Packing (grib2/tables/4/5.0.table) ]
+12-15     ieeefloat referenceValue = 0 ( 0x00 0x00 0x00 0x00 )
+16-17     signed binaryScaleFactor = 0 ( 0x00 0x00 )
+18-19     signed decimalScaleFactor = 6 ( 0x00 0x06 )
+20        unsigned bitsPerValue = 24 ( 0x18 ) [numberOfBits, numberOfBitsContainingEachPackedValue]
+21        codetable typeOfOriginalFieldValues = 0 ( 0x00 ) [Floating point (grib2/tables/4/5.1.table) ]
+22        codetable typeOfCompressionUsed = 0 ( 0x00 ) [Lossless (grib2/tables/4/5.40.table) ]
+23        unsigned targetCompressionRatio = 255 ( 0xFF )
+======================   SECTION_6 ( length=6, padding=0 )     ======================
+1-4       section_length section6Length = 6 ( 0x00 0x00 0x00 0x06 )
+5         unsigned numberOfSection = 6 ( 0x06 )
+6         codetable bitMapIndicator = 255 ( 0xFF ) [A bit map does not apply to this product (grib2/tables/4/6.0.table) ]
+======================   SECTION_7 ( length=156, padding=0 )   ======================
+1-4       section_length section7Length = 156 ( 0x00 0x00 0x00 0x9C )
+5         unsigned numberOfSection = 7 ( 0x07 )
+6-156     data_jpeg2000_packing codedValues = (1036800,151) [data.packedValues] {
+0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 
+0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 0.0000000000e+00, 
+... 1036700 more values
+} # data_jpeg2000_packing codedValues 
+======================   SECTION_8 ( length=4, padding=0 )     ======================
+1-4       ascii 7777 = 7777 ( 0x37 0x37 0x37 0x37 )
+</code></pre>
+
+<p>Debug 模式会显示 computed key。其中 <code>ls.&lt;key&gt;</code>, <code>mars.&lt;key&gt;</code>, <code>time.&lt;key&gt;</code> 表示 namespace 中的 key。</p>
+
+<pre><code>$ grib_dump -D gmf.gra.2018010300000.grb2 
+***** FILE: gmf.gra.2018010300000.grb2 
+#==============   MESSAGE 1 ( length=356 )                 ==============
+...
+======&gt; section GRIB (356,356,0)
+   0-0 constant tablesVersionLatest = 20
+   0-0 constant one = 1 [defaultStepUnits]
+   0-0 constant million = 1000000
+   0-0 constant grib2divider = 1000000
+   ...
+   0-4 ascii identifier = GRIB
+   4-6 unsigned reserved = MISSING
+   6-7 codetable discipline = 0 [Meteorological products (grib2/tables/4/0.0.table) ]
+   7-8 unsigned editionNumber = 2 [ls.edition]
+   8-16 section_length totalLength = 356
+   16-16 position startOfHeaders = 16
+   16-16 section_pointer section0Pointer = 0 {}
+   ======&gt; section core (336,336,0)
+      16-16 lookup sectionNumber = 1 [? 255 20-1]
+      16-16 position sectionPosition = 16
+      ======&gt; section section_1 (21,21,0)
+         16-16 position offsetSection1 = 16
+         16-20 section_length section1Length = 21
+         20-20 section_pointer section1Pointer = 0 {}
+         20-21 unsigned numberOfSection = 1
+         21-23 codetable centre = 38 [Beijing  (RSMC)  (common/c-11.table) ] [identificationOfOriginatingGeneratingCentre, ls.centre, originatingCentre, centreForLocal]
+         23-23 codetable_title centreDescription = Beijing 
+         23-25 unsigned subCentre = 0
+         25-26 codetable tablesVersion = 4 [Version implemented on 7 November 2007 (grib2/tables/1.0.table) ] [gribMasterTablesVersionNumber]
+         26-26 transient masterDir = grib2/tables/[tablesVersion]
+         26-27 codetable localTablesVersion = 1 [Unknown code table entry (grib2/tables/4/1.1.table) ] [versionNumberOfGribLocalTables]
+         ...
+         35-36 codetable productionStatusOfProcessedData = 0 [Operational products (grib2/tables/4/1.3.table) ]
+         36-37 codetable typeOfProcessedData = 0 [Analysis products (grib2/tables/4/1.4.table) ] [ls.dataType]
+         37-37 md5 md5Section1 = d7dda6eb5f368b9d23d941cc58c0124e
+         37-37 select_step_template selectStepTemplateInterval = 1
+         37-37 select_step_template selectStepTemplateInstant = 1
+         37-37 transient stepTypeInternal = instant
+         37-37 concept stepType = accum
+         37-37 transient setCalendarId = 0
+         37-37 transient deleteCalendarId = 0
+         37-37 concept is_uerra = 0
+      &lt;===== section section_1
+      37-37 lookup sectionNumber = 3 [? 255 41-1]
+      37-37 transient grib2LocalSectionPresent = 0 [setLocalDefinition]
+      37-37 transient deleteLocalDefinition = 0
+      37-37 lookup sectionNumber = 3 [? 255 41-1]
+      37-37 position sectionPosition = 37
+      ======&gt; section section_3 (72,72,0)
+         37-37 constant gridDescriptionSectionPresent = 1
+         37-37 position offsetSection3 = 37
+</code></pre>
+
+<h3 id="eccodes-命名空间">ecCodes 命名空间</h3>
+
+<p>ecCodes 命名空间（ecCodes namespace）在 grib_ls 工具中非常有用。</p>
+
+<table>
+<thead>
+<tr>
+<th>namespace</th>
+<th>keys</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ls</td>
+<td>centre, shortName, level etc. 被 grib_ls 工具使用</td>
+</tr>
+
+<tr>
+<td>parameter</td>
+<td>paramId, shortName, units etc. 与气象要素相关</td>
+</tr>
+
+<tr>
+<td>statistics</td>
+<td>maximum, minimum, average, standard deviation etc. 与数据值的统计有关</td>
+</tr>
+
+<tr>
+<td>time</td>
+<td>forecast date, validity date, steps etc. 描述预报运行情况</td>
+</tr>
+
+<tr>
+<td>geography</td>
+<td>bounding box of the grid, number of points along a parallel etc. 描述网格形状</td>
+</tr>
+
+<tr>
+<td>vertical</td>
+<td>type of the level, list of coefficients of the vertical coordinate etc. 描述层次（levels and layers）</td>
+</tr>
+
+<tr>
+<td>mars</td>
+<td>class, stream, type etc. 用于描述 MARS 的内容，MARS 是 ECMWF&rsquo;s Meteorological Archival and Retrieval System</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="练习">练习</h3>
+
+<h3 id="练习使用-grib-dump">练习使用 grib_dump</h3>
+
+<h2 id="grib-ls">grib_ls</h2>
+
+<p>列出 GRIB 文件的内容。</p>
+
+<p>不带参数的 grib_ls 会按照默认列表输出 key 值。GRIB 1 和 GRIB 2 使用不同的列表。</p>
+
+<p>通过选项可以指定要打印的 key 集合，或者附加到默认列表中的 key。</p>
+
+<p>支持对输出进行排序，例如按照 step 的升序或降序排列。</p>
+
+<p>如果没有找到某个 key，grib_ls 也不会运行失败。</p>
+
+<p>grib_ls 还可以用来寻找最接近给定经纬度点的网格点，并打印（这些）点的数据值。支持获取最近的一个点或四个点。</p>
+
+<h3 id="用法">用法</h3>
+
+<pre><code>grib_ls [options] grib_file grib_file ...
+</code></pre>
+
+<p>选项</p>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-p key[:{s</td>
+<td>i</td>
+</tr>
+
+<tr>
+<td>-P key[:{s</td>
+<td>i</td>
+</tr>
+
+<tr>
+<td>-w key[:{s</td>
+<td>i</td>
+</tr>
+
+<tr>
+<td>-B “key asc, key desc&hellip;”</td>
+<td>排序: “step asc, centre desc”</td>
+</tr>
+
+<tr>
+<td>-n namespace</td>
+<td>打印命名空间中的所有key（ls, parameter, statistics, geography, time, mars, vertical)</td>
+</tr>
+
+<tr>
+<td>-m</td>
+<td>打印 MARS keys （-n mars的缩写）</td>
+</tr>
+
+<tr>
+<td>-W width</td>
+<td>最小列宽，默认为10</td>
+</tr>
+</tbody>
+</table>
+
+<p>&hellip;</p>
+
+<h3 id="示例-1">示例</h3>
+
+<p>默认输出</p>
+
+<pre><code>$ grib_ls gmf.gra.2018010300000.grb2 
+gmf.gra.2018010300000.grb2
+edition      centre       date         dataType     gridType     typeOfLevel  level        stepRange    shortName    packingType  
+2            babj         20180103     an           regular_ll   surface      0            0            acpcp        grid_jpeg   
+2            babj         20180103     an           regular_ll   surface      0            0            ncpcp        grid_jpeg 
+...
+2            babj         20180103     an           regular_ll   surface      0            0            unknown      grid_jpeg   
+2            babj         20180103     an           regular_ll   surface      0            0            unknown      grid_jpeg   
+761 of 761 messages in gmf.gra.2018010300000.grb2
+
+761 of 761 total messages in 1 files
+</code></pre>
+
+<p>使用<code>-p</code>参数指定需要打印的 key。</p>
+
+<pre><code>$ grib_ls -p centre:l,dataDate,shortName,paramId,typeofLevel,level gmf.gra.2018010300000.grb2 
+gmf.gra.2018010300000.grb2
+centre       dataDate     shortName    paramId      typeofLevel  level        
+38           20180103     acpcp        3063         not_found    0           
+38           20180103     ncpcp        260009       not_found    0  
+...
+38           20180103     unknown      0            not_found    0           
+38           20180103     unknown      0            not_found    0           
+761 of 761 messages in gmf.gra.2018010300000.grb2
+
+761 of 761 total messages in 1 files
+</code></pre>
+
+<p>如果 GRIB 文件中不存在某个 key，则该 key 的值由 not found 代替</p>
+
+<pre><code>$ grib_ls -p my_key gmf.gra.2018010300000.grb2 
+gmf.gra.2018010300000.grb2
+my_key      
+not_found  
+not_found  
+...
+</code></pre>
+
+<p>grib_ls 与 grib_get 的行为类似（后面会详细介绍）</p>
+
+<ul>
+<li>grib_ls 更适合交互使用</li>
+<li>grib_get 更适合在脚本中使用</li>
+</ul>
+
+<h3 id="使用-where-选项">使用 where 选项</h3>
+
+<p>所有的 GRIB 工具都支持 where 选项。</p>
+
+<p>约束条件表示为 <code>key=value</code> 或 <code>key!=value</code>。</p>
+
+<pre><code>-w key[:{s|i|d}]=value, key[:{s|i|d}]!=value
+</code></pre>
+
+<p>只有满足所有键值对约束条件的消息才会被处理。</p>
+
+<p>使用<code>/</code>分隔的数值代表<code>OR</code>条件。</p>
+
+<pre><code>&gt; grib_ls –w levelType=pl file.grib1
+...
+&gt; grib_ls –w step!=6,level=700/850 file.grib1
+...
+&gt; grib_ls –w count=3 file.grib1
+</code></pre>
+
+<h3 id="练习-使用-grib-ls">练习：使用 grib_ls</h3>
+
+<h3 id="使用-grib-ls-寻找最近邻网格点">使用 grib_ls 寻找最近邻网格点</h3>
+
+<p>GRIB 场中某个经纬度坐标的最近邻点可以使用 grib_ls 找到。</p>
+
+<pre><code>grib_ls –l Latitude,Longitude[,MODE,file] grib_file
+</code></pre>
+
+<p><code>MODE</code>可以使用如下数值：</p>
+
+<ul>
+<li>4：打印4个最近邻点（默认）</li>
+<li>1：打印1个最近邻点</li>
+</ul>
+
+<p><code>file</code> 指定一个 GRIB 文件作为掩码，打印最近邻的 land 点（掩码值大于等于 0.5）。</p>
+
+<p>给定的 GRIB 文件必须包含格点数据。</p>
+
+<p>示例：北京(纬度39.92，精度116.46)的最近邻点。</p>
+
+<pre><code>$ grib_ls -w count=25 -l 39.92,116.46 gmf.gra.2018010300000.grb2 
+gmf.gra.2018010300000.grb2
+edition      centre       date         dataType     gridType     typeOfLevel  level        stepRange    shortName    packingType         value1  value2  value3  value4 
+2            babj         20180103     an           regular_ll   heightAboveGround  2            0            2t           grid_jpeg    267.665 267.695 266.975 266.435 
+1 of 25 messages in gmf.gra.2018010300000.grb2
+
+1 of 25 total messages in 1 files
+Input Point: latitude=39.92  longitude=116.46
+Grid Point chosen #1 index=288466 latitude=39.88 longitude=116.50 distance=6.06 (Km)
+Other grid Points
+- 1 - index=288466 latitude=39.88 longitude=116.50 distance=6.06 (Km)
+- 2 - index=288465 latitude=39.88 longitude=116.25 distance=18.60 (Km)
+- 3 - index=287026 latitude=40.12 longitude=116.50 distance=23.05 (Km)
+- 4 - index=287025 latitude=40.12 longitude=116.25 distance=28.97 (Km)
+</code></pre>
+
+<h3 id="练习-使用-grib-ls-l">练习：使用 grib_ls -l</h3>
+
+<h2 id="grib-examiner-metview-4">GRIB Examiner(Metview 4)</h2>
+
+<p>交互查看 GRIB 文件的软件，4.8.0以上版本使用 ecCodes 解码。</p>
+
+<p>目前由 Metview 团队维护并更新。</p>
+
+<p>可以在命令行地洞，例如在 ecgate 中使用</p>
+
+<pre><code>metview -e grib your_grib_file
+</code></pre>
+
+<p>用户界面</p>
+
+<p>图</p>
+
+<p>编辑 GRIB keys</p>
+
+<p>图</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/" title="信息工具"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/" title="GRIB Keys" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/clipboard.min.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.min.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.jquery.min.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery.sticky.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/featherlight.min.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/html5shiv-printshiv.min.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/highlight.pack.js?1554017234"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/modernizr.custom.71422.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/learn.js?1554017234"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/hugo-learn.js?1554017234"></script>
+
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.css?1554017234" type="text/css" rel="stylesheet" />
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.js?1554017234"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>4. Python编程接口 on ecCodes教程中文版</title>
+    <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/</link>
+    <description>Recent content in 4. Python编程接口 on ecCodes教程中文版</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python 和 GRIB API</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/</guid>
+      <description>本章节仅是一个开胃菜，向用户展示 Python 接口提供的很小的一部分功能，用户可以自行探索各种功能。
+Python 是什么 hello world #!/usr/bin/env python import sys # This is a comment def say_hello(name): print(“Hello &amp;quot;+ name + &amp;quot;!&amp;quot; ) if len(sys.argv) &amp;gt; 1 : name = sys.argv[1] else: name = “World&amp;quot; say_hello(name)  加载需要的模块。
+使用缩进定义不同的程序块。而不是 ; 或 {} 或 END。
+使用 def 定义函数。
+动态变量类型。
+处理字符串十分方便。
+使用 python 运行，或定义 shebang 并配置权限后直接运行。
+$&amp;gt; python example.py hello World! $&amp;gt; ./example.py Xavi hello Xavi!  列表和字典（List and dict) 列表类似于 c 语言中的数组，但同一个列表中可以保存不同类型的数据。</description>
+    </item>
+    
+    <item>
+      <title>Python API</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api/</guid>
+      <description> ecCodes 和 GRIB API 中的 Python 从 GRIB API 1.9.5 版本开始提供 Python 接口。
+支持 Python 2.5 及以上版本，不支持 Python 3。
+底层，过程式接口。
+提供几乎与 C 接口一一对应的函数。
+使用 NumPy 模块处理数据值。
+在 ECMWF 中可以使用 module 系统加载。
+使用前准备 编译 ecCodes 时需要开启 Python 选项。
+cmake -DENABLE_PYTHON ...  在 make install 后，Python API 相关文件会安装在如下的目录：
+{prefix}/lib/pythonX.X/site-packages/eccodes {prefix}/lib/pythonX.X/site-packages/gribapi  可以设置 PYTHONPATH 环境变量或在 Python 中链接这些文件。
+注意：需要在 LD_LIBRARY_PATH 目录中添加 {prefix}/lib，否则载入模块会失败。
+加载模块：
+import eccodes # or import gribapi  </description>
+    </item>
+    
+    <item>
+      <title>加载/释放 GRIB 消息</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/load_release/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/load_release/</guid>
+      <description>需要使用如下函数：
+ codes_grib_new_from_file codes_any_new_from_file codes_new_from_file codes_new_from_samples codes_new_from_message codes_release  gid = codes_grib_new_from_file (file, headers_only=False) codes_any_new_from_file (file, headers_only=False) codes_new_from_file (file, product_kind, headers_only)  product_kind 接受如下值：
+ CODES_PRODUCT_GRIB CODES_PRODUCT_BUFR CODES_PRODUCT_ANY  上述的 codes_grib_new_from_file 函数返回 GRIB 消息的句柄。 输入文件必须是 Python 的文件对象。现在不推荐使用 headers_only 参数。
+codes_new_from_samples gid = codes_new_from_samples (samplename)  返回样例目录的文件中消息的句柄。
+codes_new_from_message gid = codes_new_from_message (message)  返回内存中消息的句柄。
+codes_release codes_release (gid)  释放句柄。
+示例：读取 GRIB 文件 from __future__ import print_function import sys import click import eccodes @click.</description>
+    </item>
+    
+    <item>
+      <title>解码</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/</guid>
+      <description>codes_get value = codes_get (gid, key, ktype=None)  按原生格式返回 gid 指向的消息中 key 的值。可以使用参数 ktype 指定返回类型（int，str 或 float）
+codes_get_array values = codes_get_array (gid, key, ktype=None)  以 NumPy ndarry 或 Python 数组的格式返回数组 key 的内容，ktype 只能是 int 或 float。
+codes_get_values values = codes_get_values (gid)  返回以 1 维数组形式返回数据值。
+异常 出错时，会抛出 CodesInternalError 异常，包含 C API 接口的错误信息。
+示例： from __future__ import print_function import click import eccodes @click.command() @click.argument(&#39;file_path&#39;) def cli(file_path): with open(file_path, &#39;rb&#39;) as f: handle = eccodes.</description>
+    </item>
+    
+    <item>
+      <title>工具</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/utilities/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/utilities/</guid>
+      <description>最近邻点 points = codes_grib_find_nearest (gid, inlat, inlon, is_lsm=False, npoints=1) point = points[0] # point : { # lat: lat, lon: lon, index: index, value: value, distance: distance # }  寻找给定经纬度点的最近邻点的 tuple。当 npoints=4 时将返回 4 个最近邻点的tuple。
+示例 下面的示例寻找北京（39.92,116.46）的 1 个最近邻点。
+from __future__ import print_function import click import eccodes @click.command() @click.argument(&#39;file_path&#39;) def cli(file_path): with open(file_path, &#39;rb&#39;) as f: handle = eccodes.codes_grib_new_from_file(f, headers_only=False) while handle is not None: date = eccodes.codes_get(handle, &amp;quot;dataDate&amp;quot;) type_of_level = eccodes.</description>
+    </item>
+    
+    <item>
+      <title>索引</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/grib_index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/grib_index/</guid>
+      <description>codes_index_new_from_file iid = codes_index_new_from_file (file, keys)  返回创建的索引句柄。
+codes_index_add_file codes_index_add_file (iid, file)  添加一个文件到索引。
+codes_index_write codes_index_write (iid, file)  将索引写入文件，以便后续使用。
+codes_index_read iid = codes_index_read (file)  从 codes_index_write 输出的文件中加载索引。
+codes_index_release codes_index_release (iid)  释放索引。
+codes_index_get_size size = codes_index_get_size (iid, key)  索引 key 不重复的键值总数
+codes_index_get values = codes_index_get (iid, key, ktype=str)  获取索引 key 的不重复键值列表。
+codes_index_select codes_index_select (iid, key, value)  选择满足 key==value 的 GRIB 消息子集。
+codes_new_from_index 与 codes_grib_new_from_file 相同，并使用 codes_release 释放消息。</description>
+    </item>
+    
+    <item>
+      <title>编码</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/encode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/encode/</guid>
+      <description>codes_set codes_set (gid, key, value)  设置 GRIB 消息中的 key 值。
+code_set_array codes_set_array (gid, key, value)  设置 GRIB 消息中的数组 key 值。
+输入数组可以是 numpy.ndarray 或 Python 序列类型，例如 tuple, list, array, &amp;hellip;
+codes_set_value codes_set_array (gid, key, value)  设置消息中‘数据’值的工具函数。
+codes_clone clone_id = codes_clone (gid_src)  克隆一个消息。
+可以使用 codes_write 直接写入到文件中。
+别忘了调用 codes_release。
+示例 from __future__ import print_function import click import eccodes @click.command() @click.argument(&#39;output_file_path&#39;) def cli(output_file_path): handle = eccodes.codes_grib_new_from_samples(&#39;regular_ll_pl_grib2&#39;) value_size = eccodes.codes_get_size(handle, &#39;values&#39;) values = [] for i in range(0, value_size): values.</description>
+    </item>
+    
+    <item>
+      <title>更多内容</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api_more/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api_more/</guid>
+      <description>异常处理 所有 ecCodes 函数在出错时都会抛出下面的异常：
+CodesInternalError  所有 GRIB API 函数在出错时都会抛出下面的异常：
+GribInternalError  上面的异常都包含 C API 的错误信息。
+高层接口（正在开发） 更高层面，更加 pythonic 的接口。
+with GribFile(filename) as grib: # Iterate through each message in the file for msgin grib: # Access a key from each message print(msg[key_name]) # Report message size in bytes msg.size() # Report keys in message msg.keys() # Set scalar value msg[scalar_key] = 5 # Array values are set transparently msg[array_key] = [1, 2, 3] # Messages can be written to file with open(testfile, &amp;quot;w&amp;quot;) as test: msg.</description>
+    </item>
+    
+  </channel>
+</rss>
