@@ -70,16 +70,6 @@ int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_
     </item>
     
     <item>
-      <title>ecCodes索引访问</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/</guid>
-      <description>先介绍与索引访问有关的几个函数。
- 创建文件内容的索引  codes_index* codes_index_new_from_file(codes_context* c, char* filename,const char* keys,int *err);   从索引中获取某个 key 的维度  int codes_index_get_size(codes_index* index,const char* key,size_t* size);   从索引中获取 key 的不同“值”  int codes_index_get_long(codes_index* index,const char* key,long* values,size_t *size); int codes_index_get_double(codes_index* index,const char* key, double* values,size_t *size); int codes_index_get_string(codes_index* index,const char* key,char** values,size_t *size);   从索引中为某个 key 选择一个“值”  int codes_index_select_long(codes_index* index,const char* key,long value); int codes_index_select_double(codes_index* index,const char* key,double value); int codes_index_select_string(codes_index* index,const char* key,char* value);   加载与选择模型对应的 GRIB 消息  codes_handle* codes_handle_new_from_index(codes_index* index,int *err);   释放索引  void codes_index_delete(codes_index* index);   释放 GRIB 消息  int codes_handle_delete(codes_handle* h);  对于“随机访问”来说，使用索引访问通常比顺序访问更快。</description>
-    </item>
-    
-    <item>
       <title>编码GRIB文件</title>
       <link>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/encode/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

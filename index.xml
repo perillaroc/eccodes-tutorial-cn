@@ -11,40 +11,6 @@
     
     
     <item>
-      <title>Python 和 GRIB API</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/</guid>
-      <description>本章节仅是一个开胃菜，向用户展示 Python 接口提供的很小的一部分功能，用户可以自行探索各种功能。
-Python 是什么 hello world #!/usr/bin/env python import sys # This is a comment def say_hello(name): print(“Hello &amp;quot;+ name + &amp;quot;!&amp;quot; ) if len(sys.argv) &amp;gt; 1 : name = sys.argv[1] else: name = “World&amp;quot; say_hello(name)  加载需要的模块。
-使用缩进定义不同的程序块。而不是 ; 或 {} 或 END。
-使用 def 定义函数。
-动态变量类型。
-处理字符串十分方便。
-使用 python 运行，或定义 shebang 并配置权限后直接运行。
-$&amp;gt; python example.py hello World! $&amp;gt; ./example.py Xavi hello Xavi!  列表和字典（List and dict) 列表类似于 c 语言中的数组，但同一个列表中可以保存不同类型的数据。</description>
-    </item>
-    
-    <item>
-      <title>Simple Packing</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/simple_packing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/simple_packing/</guid>
-      <description>Simple Pakcking 会丢失信息。
-keys 基本 key：
- values decimalPrecision changeDecimalPrecision packingError (read only)  仅在明白打包原理的情况下使用下面的 key：
- referenceValue (read only) bitsPerValue decimalScaleFactor binaryScaleFactor (read only)  注意：设置 decimalPrecision 不会重新打包数据，但设置 changeDecimalPrecision 会导致数据重新打包。
-simple packing = 离散化 下面的图示说明 simple packing 的原理。
-simple packing 的数据值满足下面的公式：
-packing error 依赖 packing 参数：
- bitsPerValue decimalScaleFactor binaryScaleFactor referenceValue  Decimal precision 小数精度 = 要保留的小数位数，例如：
-decimalPrecision = 0 -&amp;gt; packingError = 0.5
-decimalPrecision = 1 -&amp;gt; packingError = 0.</description>
-    </item>
-    
-    <item>
       <title>ecCodes GRIB C 接口</title>
       <link>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -151,35 +117,6 @@ $ grib_set -d 1 t.grib2 c.</description>
     </item>
     
     <item>
-      <title>GRIB Keys</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/</guid>
-      <description>GRIB 格式 见第一章的介绍。
-GRIB 1 消息 #============== MESSAGE 1 ( length=130404 ) ============== 1-4 identifier = GRIB 5-7 totalLength = 130404 8 editionNumber = 1 ====================== SECTION_1 ( length=28, padding=0 ) ====================== 1-3 section1Length = 28 4 table2Version = 2 5 centre = 38 [Beijing (RSMC) (common/c-1.table) ] 6 generatingProcessIdentifier = 15 7 gridDefinition = 255 8 section1Flags = 128 [10000000] 9 indicatorOfParameter = 11 [T Temperature K (grib1/2.0.2.table) ] 10 indicatorOfTypeOfLevel = 100 [Isobaric level pressure in hectoPascals (hPa) (grib1/3.</description>
-    </item>
-    
-    <item>
-      <title>位图</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/bitmap/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/bitmap/</guid>
-      <description>Bitmap
- 位图是二进制值的数组，用于表示每个网格点存在或缺失数据。0 值表示着数据缺失（missing），1 值表示数据存在。
-为了节省存储，位图用于有效地表示数据段中真实存在的值。
-bitmap 尺寸等于网格点的个数（numberOfPoints）。其中：
- 0 -&amp;gt; 数据值缺失 1 -&amp;gt; 数据值存在  当编码时，可以使用 misssingValue 告诉库那些数据是缺失的。
-默认的缺失值是 9999，但可以被用户修改。例如，使用一个超过正常范围的数值。
-库在数据值数组中遇到与缺失值相等的值时，会将该网格点对应的 bitmap 点设为 0.
-在解码时，可以直接查询 bitmap 发现缺失的数据。
-练习  构造包含 4 个消息的 start.grib2 文件。
-构造 4 个 filter 规则
-# step0.filter print &amp;quot;message 1&amp;quot;; set bitsPerValue=8; set bitmapPresent=0; set values={0.2, 0.4, 0.6, 0.7, 9999}; write; # step1.filter print &amp;quot;message 2&amp;quot;; set bitsPerValue=16; set bitmapPresent=0; set values={0.2, 0.4, 0.</description>
-    </item>
-    
-    <item>
       <title>加载/释放 GRIB 消息</title>
       <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/load_release/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -204,19 +141,6 @@ codes_release codes_release (gid)  释放句柄。
 用于解码的主要函数：
 int codes_get_long (codes_handle *h, const char *key, long *value); int codes_get_double (codes_handle *h, const char *key, double *value) int codes_get_string (codes_handle *h, const char *key, char *mesg, size_t *length) int codes_get_long_array (codes_handle *h, const char *key, long *vals, size_t *length) int codes_get_double_array (codes_handle *h, const char *key, double *vals, size_t *length)  帮助函数 获取一个（数组）数据的大小：
 int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_size(grib_handle* h, const char* key,size_t *size);  详细输出 grib 消息的内容：</description>
-    </item>
-    
-    <item>
-      <title>多要素场消息</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/multi_field_messages/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/multi_field_messages/</guid>
-      <description>GRIB 2 的消息中第2段到第7段都可以重复，见下图。
- 译者注：NWPC 的 GRIB 2 数据尚未使用该功能，下面示例只是教程中的文字，尚未实际验证。
- 一个示例文件如下图所示：
-示例 考虑 数值预报模式预报的 12 小时和 24小时的 500 hPa 高度场。
-Section 0: Indicator Section Section 1: Identification Section Section 2: Local Use Section (optional) Section 3: Grid Definition Section Section 4: Product Definition Section (hour = 12) | repetition 1 Section 5: Data Representation Section | Section 6: Bit-Map Section | Section 7: Data Section | Section 4: Product Definition Section (hour = 24) | repetition 2 Section 5: Data Representation Section | Section 6: Bit-Map Section | Section 7: Data Section | Section 8: End Section  注意：网格定义段（Grid Definition Section）未重复，对所有的预报时效都有效。</description>
     </item>
     
     <item>
@@ -245,48 +169,6 @@ Section 0: Indicator Section Section 1: Identification Section Section 2: Local 
 浮点类型数据的输出支持 C 风格的格式化描述。
 可以用于寻找某个经纬度坐标点的最近邻点，与grib_ls工作方式相同。
 用法 grib_get [options] grib_file grib_file ...  选项    选项 含义     -p key1,key2,&amp;hellip; Keys to get   -P key1,key2,&amp;hellip; Additional keys to get with –m, -n   -w key1=val1,key2!=val2,&amp;hellip; Where option   -s key1=val1,key2=val2,&amp;hellip; Keys to set (temporary for printing)   -m Get all MARS keys   -n namespace Get all keys for namespace   -l lat,lon[,MODE,FILE] Value(s) nearest to lat-lon point   -F format Format for floating point values   -f Do not fail on error   &amp;hellip; &amp;hellip;    使用 where 选项 where 选项 -w 可以用于所有的 GRIB 工具，具有相同的格式。</description>
-    </item>
-    
-    <item>
-      <title>解码</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/</guid>
-      <description>codes_get value = codes_get (gid, key, ktype=None)  按原生格式返回 gid 指向的消息中 key 的值。可以使用参数 ktype 指定返回类型（int，str 或 float）
-codes_get_array values = codes_get_array (gid, key, ktype=None)  以 NumPy ndarry 或 Python 数组的格式返回数组 key 的内容，ktype 只能是 int 或 float。
-codes_get_values values = codes_get_values (gid)  返回以 1 维数组形式返回数据值。
-异常 出错时，会抛出 CodesInternalError 异常，包含 C API 接口的错误信息。
-示例： from __future__ import print_function import click import eccodes @click.command() @click.argument(&#39;file_path&#39;) def cli(file_path): with open(file_path, &#39;rb&#39;) as f: handle = eccodes.</description>
-    </item>
-    
-    <item>
-      <title>ecCodes索引访问</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/</guid>
-      <description>先介绍与索引访问有关的几个函数。
- 创建文件内容的索引  codes_index* codes_index_new_from_file(codes_context* c, char* filename,const char* keys,int *err);   从索引中获取某个 key 的维度  int codes_index_get_size(codes_index* index,const char* key,size_t* size);   从索引中获取 key 的不同“值”  int codes_index_get_long(codes_index* index,const char* key,long* values,size_t *size); int codes_index_get_double(codes_index* index,const char* key, double* values,size_t *size); int codes_index_get_string(codes_index* index,const char* key,char** values,size_t *size);   从索引中为某个 key 选择一个“值”  int codes_index_select_long(codes_index* index,const char* key,long value); int codes_index_select_double(codes_index* index,const char* key,double value); int codes_index_select_string(codes_index* index,const char* key,char* value);   加载与选择模型对应的 GRIB 消息  codes_handle* codes_handle_new_from_index(codes_index* index,int *err);   释放索引  void codes_index_delete(codes_index* index);   释放 GRIB 消息  int codes_handle_delete(codes_handle* h);  对于“随机访问”来说，使用索引访问通常比顺序访问更快。</description>
-    </item>
-    
-    <item>
-      <title>参数数据库</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/parameter_database/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/parameter_database/</guid>
-      <description>GRIB 1 参数（WMO 编码） 10 metre U wind component
-indicatorOfParameter = 33 [u-compoment of wind (m/s)]
-table2Version = 3
-indicatorOfTypeOfLevel = 105 [Specified height level above ground (m)]
-level = 10
-GRIB 2 参数（WMO 编码） 10 metre U wind component
-discipline = 0 [Meteorological products]
-parameterCategory = 2 [Monmentum]
-parameterNumber = 2 [u-component of wind (m s-1)]
-typeOfFirstFixedSurface = 103 [Specified height level above ground (m)]
-scaleFactorOfFirstFixedSurface = 0</description>
     </item>
     
     <item>

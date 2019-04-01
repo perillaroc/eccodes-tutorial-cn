@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ecCodes索引访问 on ecCodes教程中文版</title>
+    <link>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/</link>
+    <description>Recent content in ecCodes索引访问 on ecCodes教程中文版</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

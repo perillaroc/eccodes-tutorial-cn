@@ -11,22 +11,6 @@
     
     
     <item>
-      <title>Python 和 GRIB API</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/</guid>
-      <description>本章节仅是一个开胃菜，向用户展示 Python 接口提供的很小的一部分功能，用户可以自行探索各种功能。
-Python 是什么 hello world #!/usr/bin/env python import sys # This is a comment def say_hello(name): print(“Hello &amp;quot;+ name + &amp;quot;!&amp;quot; ) if len(sys.argv) &amp;gt; 1 : name = sys.argv[1] else: name = “World&amp;quot; say_hello(name)  加载需要的模块。
-使用缩进定义不同的程序块。而不是 ; 或 {} 或 END。
-使用 def 定义函数。
-动态变量类型。
-处理字符串十分方便。
-使用 python 运行，或定义 shebang 并配置权限后直接运行。
-$&amp;gt; python example.py hello World! $&amp;gt; ./example.py Xavi hello Xavi!  列表和字典（List and dict) 列表类似于 c 语言中的数组，但同一个列表中可以保存不同类型的数据。</description>
-    </item>
-    
-    <item>
       <title>Python API</title>
       <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -59,19 +43,6 @@ codes_new_from_samples gid = codes_new_from_samples (samplename)  返回样例�
 codes_new_from_message gid = codes_new_from_message (message)  返回内存中消息的句柄。
 codes_release codes_release (gid)  释放句柄。
 示例：读取 GRIB 文件 from __future__ import print_function import sys import click import eccodes @click.</description>
-    </item>
-    
-    <item>
-      <title>解码</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/</guid>
-      <description>codes_get value = codes_get (gid, key, ktype=None)  按原生格式返回 gid 指向的消息中 key 的值。可以使用参数 ktype 指定返回类型（int，str 或 float）
-codes_get_array values = codes_get_array (gid, key, ktype=None)  以 NumPy ndarry 或 Python 数组的格式返回数组 key 的内容，ktype 只能是 int 或 float。
-codes_get_values values = codes_get_values (gid)  返回以 1 维数组形式返回数据值。
-异常 出错时，会抛出 CodesInternalError 异常，包含 C API 接口的错误信息。
-示例： from __future__ import print_function import click import eccodes @click.command() @click.argument(&#39;file_path&#39;) def cli(file_path): with open(file_path, &#39;rb&#39;) as f: handle = eccodes.</description>
     </item>
     
     <item>
