@@ -7,11 +7,11 @@ GRIB 2 的消息中第2段到第7段都可以重复，见下图。
 
 > 译者注：NWPC 的 GRIB 2 数据尚未使用该功能，下面示例只是教程中的文字，尚未实际验证。
 
-![](asserts/multi_field.png)
+![](asset/multi_field.png)
 
 一个示例文件如下图所示：
 
-![](asserts/multi_field_file.png)
+![](asset/multi_field_file.png)
 
 ## 示例
 

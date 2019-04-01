@@ -1,9 +1,10 @@
 baseURL: "http://127.0.0.1:1313"
+# canonifyURLs: true
 languageCode: "zh-cn"
 title: "ecCodes教程中文版"
 theme: "hugo-theme-learn"
 params:
   ordersectionsby: weight
 
-outputs:
-  home: [ "HTML", "RSS", "JSON"]
+# outputs:
+#   home: [ "HTML", "RSS", "JSON"]

@@ -172,7 +172,7 @@ plt.show()
 
 绘制结果如图所示
 
-![](asserts/matplotlib-01.png)
+![](asset/matplotlib-01.png)
 
 ```py
 import numpy as np
@@ -198,7 +198,7 @@ map.drawparallels(np.arange(-90, 90, 30))
 plt.show()
 ```
 
-![](asserts/matplotlib-02.png)
+![](asset/matplotlib-02.png)
 
 
 ## SciPy 库

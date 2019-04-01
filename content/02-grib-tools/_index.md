@@ -135,7 +135,7 @@ GRIB keys
 
 请优先使用版本无关的key。
 
-![](asserts/ecmwf_grib_api_info.png)
+![](asset/ecmwf_grib_api_info.png)
 
 #### 参数数据库
 
@@ -145,4 +145,4 @@ GRIB keys
 
 [http://apps.ecmwf.int/codes/grib/param-db](http://apps.ecmwf.int/codes/grib/param-db)
 
-![](asserts/ecmwf_parameter_database.png)
+![](asset/ecmwf_parameter_database.png)

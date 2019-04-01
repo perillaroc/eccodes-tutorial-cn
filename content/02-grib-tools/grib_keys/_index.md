@@ -7,7 +7,7 @@ weight: 3
 
 见第一章的介绍。
 
-![](../01-Introduction/asserts/grib_structure.png)
+![](asset/grib_structure.png)
 
 ### GRIB 1 消息
 

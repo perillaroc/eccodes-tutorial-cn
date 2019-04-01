@@ -9,7 +9,7 @@ GRIB是由世界气象组织 (World Meteorological Organization，WMO)维护的�
 用于编码由数值天气预报模式(Numerical Weather Prediction models)生成的数据。
 
 {{<figure 
-    src="asserts/earth_to_grid.png" 
+    src="asset/earth_to_grid.png" 
     title="地球二维网格"
     width="800px"
   >}}
@@ -22,7 +22,7 @@ GRIB 格式是面向二进制的数据交换格式，与文本文件等人类可
 
 下图是使用16进制编辑器打开 GRIB 文件的示例，除了最开始4个字节外，其余部分都无法解析成文本，后面将会看到前4个字节对应的 ASCII 编码内容 GRIB 正是 GRIB 文件的标志。
 
-![](asserts/grib_file_hex_view.png)
+![](asset/grib_file_hex_view.png)
 
 ## WMO 二进制编码
 
@@ -44,7 +44,7 @@ WMO 提供对 GRIB 编码标准的完整描述文件 Manual on Codes。
 
 目前可以使用两个不同版本的 GRIB 编码标准（版本1和版本2）。两个版本的编码规则相似，但他们的实现方式完全不同。
 
-![](asserts/grib_v1_v2.png)
+![](asset/grib_v1_v2.png)
 
 ## GRIB结构
 
@@ -58,7 +58,7 @@ GRIB是一种基于表格的存储格式，下面简单介绍 GRIB 的文件结�
 
 单个文件可以混合保存版本1和版本2。
 
-![](asserts/grib_structure.png)
+![](asset/grib_structure.png)
 
 ### GRIB 1与GRIB 2的主要区别
 
@@ -121,7 +121,7 @@ ecCodes 最终将完全替代 GRIB-API。
 
 ecCodes 使用 Apache 2.0 许可证。
 
-![](asserts/grib_api_to_eccodes.png)
+![](asset/grib_api_to_eccodes.png)
 
 ### ecCodes 与更早期的软件对比
 
@@ -137,7 +137,7 @@ ecCodes 提供基于键值对的访问方式。例如：
 
 ### ecCodes 架构
 
-![](asserts/eccodes_architecture.png)
+![](asset/eccodes_architecture.png)
 
 ### ecCodes 与 GRIB 版本1和版本2
 

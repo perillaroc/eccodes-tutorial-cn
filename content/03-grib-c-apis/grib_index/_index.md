@@ -176,7 +176,7 @@ $ grib_index_build -o cli.index levels.grib2
 
 创建的索引文件是二进制文件。
 
-![](./asserts/grib_index_sample.png)
+![](./asset/grib_index_sample.png)
 
 使用 `grib_dump -D <index_file>` 查看索引文件的内容。
 

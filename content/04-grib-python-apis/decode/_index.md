@@ -65,4 +65,4 @@ if __name__ == "__main__":
 
 从上面代码看，我使用的版本 2.6.0 中，`codes_get_array` 和 `codes_get_values` 返回数据值都是 `ndarry` 类型。
 
-![](asserts/get_array_type.png)
+![](asset/get_array_type.png)

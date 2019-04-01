@@ -9,7 +9,7 @@ weight: 3
 
 为了节省存储，位图用于有效地表示数据段中真实存在的值。
 
-![](asserts/bitmap.png)
+![](asset/bitmap.png)
 
 bitmap 尺寸等于网格点的个数（`numberOfPoints`）。其中：
 

@@ -85,7 +85,7 @@ GRIB 2 使用如下 key：
 
 之前的章节中介绍过 ecCodes 的架构：
 
-![](../01-Introduction/asserts/eccodes_architecture.png)
+![](asset/eccodes_architecture.png)
 
 下面介绍几个与变量有关的重要概念。
 

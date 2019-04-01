@@ -5,7 +5,7 @@ weight: 1
 
 `Simple Pakcking` 会丢失信息。
 
-![](asserts/simple_packing.png)
+![](asset/simple_packing.png)
 
 ## keys
 
@@ -29,11 +29,11 @@ weight: 1
 
 下面的图示说明 simple packing 的原理。
 
-![](asserts/simple_packing_discretization.png)
+![](asset/simple_packing_discretization.png)
 
 simple packing 的数据值满足下面的公式：
 
-![](asserts/simple_packing_value.png)
+![](asset/simple_packing_value.png)
 
 packing error 依赖 packing 参数：
 
