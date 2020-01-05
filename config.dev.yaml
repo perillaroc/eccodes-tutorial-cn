@@ -1,4 +1,4 @@
-baseURL: "http://127.0.0.1:1313"
+baseURL: "http://127.0.0.1:2323"
 # canonifyURLs: true
 languageCode: "zh-cn"
 title: "ecCodes教程中文版"
