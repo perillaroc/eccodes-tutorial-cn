@@ -1,6 +1,6 @@
 ---
 title: "Windows 下编译 ecCodes"
-weight: 4
+weight: 20
 ---
 
 请参阅 ecCodes 官网对 windows 下编译的说明《[Microsoft Windows (experimental)](https://software.ecmwf.int/wiki/pages/viewpage.action?pageId=70949236)》。

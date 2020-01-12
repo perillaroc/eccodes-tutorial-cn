@@ -41,3 +41,21 @@ parameterNumber | 0
 typeOfFirstFixedSurface | 1
 
 译者注：其实 GRIB 2 与 GRIB 1 的关键区别在于 GRIB 2 可以更方便地描述更多的参数类型。
+
+## ecCodes keys - paramter
+
+GRIB 1 和 GRIB 2 中气象参数的定义有很大的区别。
+例如
+
+GRIB 1 keys | GRIB 2 keys
+------------|------------
+centre | discipline
+table2Version | parameterCategory
+indicatorOfParameter | parameterNumber
+levelType | typeOfFirstFixedSurface
+level | scaleFactorOfFirstFixedSurface
+...  | scaledValuesOfFirstFixedSurface
+|    | typeOfSecondFirstFixedSurface
+|    | scaleFactorOfSecondFixedSurface
+|    | scaledValuesOfSecondFixedSurface
+|    | ...
