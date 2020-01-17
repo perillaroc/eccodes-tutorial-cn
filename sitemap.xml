@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/</loc>
+  </url>
+  
+  <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/</loc>
+  </url>
+  
+  <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/</loc>
   </url>
   
   <url>
@@ -15,15 +23,15 @@
   </url>
   
   <url>
-    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/</loc>
-  </url>
-  
-  <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/</loc>
   </url>
   
   <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/</loc>
+  </url>
+  
+  <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_grib/</loc>
   </url>
   
   <url>
@@ -59,6 +67,10 @@
   </url>
   
   <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/parameter_database/</loc>
+  </url>
+  
+  <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/decode/</loc>
   </url>
   
@@ -75,6 +87,10 @@
   </url>
   
   <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/</loc>
+  </url>
+  
+  <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_key_value_pairs/</loc>
   </url>
   
@@ -88,6 +104,10 @@
   
   <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/</loc>
+  </url>
+  
+  <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/</loc>
   </url>
   
   <url>
@@ -151,29 +171,29 @@
   </url>
   
   <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/build_in_windows/</loc>
+  </url>
+  
+  <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/practical/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/summary/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/</loc>
   </url>
   
   <url>
     <loc>https://perillaroc.github.io/eccodes-tutorial-cn/</loc>
+  </url>
+  
+  <url>
+    <loc>https://perillaroc.github.io/eccodes-tutorial-cn/tags/</loc>
   </url>
   
 </urlset>

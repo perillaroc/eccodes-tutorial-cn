@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ecCodes GRIB教程中文版 on ecCodes教程中文版</title>
@@ -17,10 +17,10 @@
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/</guid>
       <description>处理 GRIB 数据的 ecCodes 函数名 ecCodes 的所有函数都以 codes_ 开头，例如
-codes_handle_new_from_file(0, in, PRODUCT_GRIB, &amp;amp;err);  一些函数可以用于 GRIB 和 BUFR 两种数据，例如
-// GRIB codes_get_long(h, &amp;quot;Ni&amp;quot;, &amp;amp;numberOfPointsAlongAParallel) // BUFR codes_get_long(h, &amp;quot;blockNumber&amp;quot;, &amp;amp;longVal)  另一些函数则有所不同，例如
-grib_handle * codes_grib_handle_new_from_file(grib_context *c, FILE *f, int *error); grib_handle * codes_bufr_handle_new_from_file(grib_context *c, FILE *f, int *error); grib_handle * codes_handle_new_from_file(grib_context *c, FILE *f, ProductKind product, int *error);  GRIB API 中以 grib_ 开头的函数在 ecCodes 依然存在。例如
-grib_handle* grib_handle_new_from_file(grib_context* c, FILE* f, int* error);  通用框架 一个使用 ecCodes 接口（Fortran/C/Python）的代码包括以下步骤</description>
+codes_handle_new_from_file(0, in, PRODUCT_GRIB, &amp;amp;err);一些函数可以用于 GRIB 和 BUFR 两种数据，例如
+// GRIBcodes_get_long(h, &amp;#34;Ni&amp;#34;, &amp;amp;numberOfPointsAlongAParallel)// BUFRcodes_get_long(h, &amp;#34;blockNumber&amp;#34;, &amp;amp;longVal)另一些函数则有所不同，例如
+grib_handle * codes_grib_handle_new_from_file(grib_context *c, FILE *f, int *error);grib_handle * codes_bufr_handle_new_from_file(grib_context *c, FILE *f, int *error);grib_handle * codes_handle_new_from_file(grib_context *c, FILE *f, ProductKind product, int *error);GRIB API 中以 grib_ 开头的函数在 ecCodes 依然存在。例如
+grib_handle* grib_handle_new_from_file(grib_context* c, FILE* f, int* error);通用框架 一个使用 ecCodes 接口（Fortran/C/Python）的代码包括以下步骤</description>
     </item>
     
     <item>
@@ -29,13 +29,13 @@ grib_handle* grib_handle_new_from_file(grib_context* c, FILE* f, int* error);  �
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/</guid>
-      <description> codes_info 关于 ecCodes 的安装信息。
+      <description>codes_info 关于 ecCodes 的安装信息。
 通用的 codes_info 工具提供 ecCodes 软件包使用的基本信息，包括：
  ecCodes 版本 定义文件的路径，ECCODES_DEFINITION_PATH 样例文件的路径，ECCODES_SAMPLE_PATH  命令输出如下：
-$ ./codes_info ecCodes Version 2.6.0 Default definition files path is used: /Users/wangdp/lib/nwpc/ecmwf/eccodes/install/share/eccodes/definitions Definition files path can be changed setting ECCODES_DEFINITION_PATH environment variable Default SAMPLES path is used: /Users/wangdp/lib/nwpc/ecmwf/eccodes/install/share/eccodes/samples SAMPLES path can be changed setting ECCODES_SAMPLES_PATH environment variable  grib_count 统计 GRIB 消息个数
+$ ./codes_infoecCodes Version 2.6.0Default definition files path is used: /Users/wangdp/lib/nwpc/ecmwf/eccodes/install/share/eccodes/definitionsDefinition files path can be changed setting ECCODES_DEFINITION_PATH environment variableDefault SAMPLES path is used: /Users/wangdp/lib/nwpc/ecmwf/eccodes/install/share/eccodes/samplesSAMPLES path can be changed setting ECCODES_SAMPLES_PATH environment variablegrib_count 统计 GRIB 消息个数
 快速统计文件列表中的 GRIB 消息个数。
 语法如下（接受通配符）：
-grib_count grib_file1 [gri_file2 ...]  </description>
+grib_count grib_file1 [gri_file2 ...]</description>
     </item>
     
     <item>
@@ -44,18 +44,18 @@ grib_count grib_file1 [gri_file2 ...]  </description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api/</guid>
-      <description> ecCodes 和 GRIB API 中的 Python 从 GRIB API 1.9.5 版本开始提供 Python 接口。
+      <description>ecCodes 和 GRIB API 中的 Python 从 GRIB API 1.9.5 版本开始提供 Python 接口。
 支持 Python 2.5 及以上版本，不支持 Python 3。
 底层，过程式接口。
 提供几乎与 C 接口一一对应的函数。
 使用 NumPy 模块处理数据值。
 在 ECMWF 中可以使用 module 系统加载。
 使用前准备 编译 ecCodes 时需要开启 Python 选项。
-cmake -DENABLE_PYTHON ...  在 make install 后，Python API 相关文件会安装在如下的目录：
-{prefix}/lib/pythonX.X/site-packages/eccodes {prefix}/lib/pythonX.X/site-packages/gribapi  可以设置 PYTHONPATH 环境变量或在 Python 中链接这些文件。
+cmake -DENABLE_PYTHON ...在 make install 后，Python API 相关文件会安装在如下的目录：
+{prefix}/lib/pythonX.X/site-packages/eccodes{prefix}/lib/pythonX.X/site-packages/gribapi可以设置 PYTHONPATH 环境变量或在 Python 中链接这些文件。
 注意：需要在 LD_LIBRARY_PATH 目录中添加 {prefix}/lib，否则载入模块会失败。
 加载模块：
-import eccodes # or import gribapi  </description>
+import eccodes# or import gribapi</description>
     </item>
     
     <item>
@@ -66,17 +66,17 @@ import eccodes # or import gribapi  </description>
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/load_release/</guid>
       <description>因为 ecCodes 仅能解码/编码加载过的 GRIB 消息，所以首先要加载消息。
 有三个主要的函数用于加载一个 GRIB 消息。
- codes_handle_new_from_file (NULL, f, PRODUCT_GRIB, &amp;amp;error) 或 grib_handle_new_from_file
+  codes_handle_new_from_file (NULL, f, PRODUCT_GRIB, &amp;amp;error) 或 grib_handle_new_from_file
 从已经存在并使用 fopen 已打开的文件中加载 GRIB 消息。
- codes_grib_handle_new_from_samples(NULL, &#39;regular_ll_sfc_grib2&#39;) 或 grib_handler_new_from_samples
+  codes_grib_handle_new_from_samples(NULL, &#39;regular_ll_sfc_grib2&#39;) 或 grib_handler_new_from_samples
 从一个样例中加载 GRIB 消息，用于编码。后面会详细介绍。
- codes_handle_new_from_index(index, &amp;amp;error) 或 grib_handle_new_from_index
+  codes_handle_new_from_index(index, &amp;amp;error) 或 grib_handle_new_from_index
 从一个 index 中加载 GRIB 消息，index 需要事先创建好。后面会详细介绍。
   上面三种加载函数将返回一个唯一的 grib handle，使用该 handle 可以操控已加载的 GRIB 消息。
 无法直接访问包含已加载 GRIB 消息的缓存。缓存由 ecCodes 库内部处理。
 任何 GRIB 消息占用的缓存都保存在内存中。
 因此，当某个已加载的 GRIB 消息不再需要时，总应该调用 codes_handle_delete(handle) 函数释放其占用的空间。
-示例：从文件中加载 GRIB 消息 #include &amp;lt;iostream&amp;gt; #include &amp;lt;eccodes.h&amp;gt; using namespace std; int main(int argc, char** argv) { if(argc &amp;lt; 2) { cout&amp;lt;&amp;lt;&amp;quot;Usage: &amp;quot;&amp;lt;&amp;lt;argv[0]&amp;lt;&amp;lt;&amp;quot; grib_file_path&amp;quot;; return 1; } const char* file_path = argv[1]; FILE* in = fopen(file_path, &amp;quot;rb&amp;quot;); if(!</description>
+示例：从文件中加载 GRIB 消息 #include &amp;lt;iostream&amp;gt;#include &amp;lt;eccodes.</description>
     </item>
     
     <item>
@@ -89,16 +89,16 @@ import eccodes # or import gribapi  </description>
  如果要素场的所有数值都相等，那么使用常规的 GRIB 消息会将同一个数值重复存储 N 次，效率非常低。
 ecCodes 使用常数场保存这种类型的数据，该常数应该是唯一保存的数值，数据段应该为空，因此常数场非常小，并且被精确地编码。
 使用如下命令可以创建一个常数场：
-grib_set -d 1 in.grib out.grib  常数场中未定义打包参数（packing parameters），即 bitsPerValue=0。
+grib_set -d 1 in.grib out.grib常数场中未定义打包参数（packing parameters），即 bitsPerValue=0。
 常数场的问题 加载一个常数场：
-codes_grib_new_from_file(infile, igrib)  设置一些非常数的数据值：
-codes_set(igrib, &#39;values&#39;, values)  注意：此时还不知道打包参数
+codes_grib_new_from_file(infile, igrib)设置一些非常数的数据值：
+codes_set(igrib, &amp;#39;values&amp;#39;, values)注意：此时还不知道打包参数
 将消息写入到文件中：
-codes_write(igrib, outfile)  我们会得到什么样的 packingError？
+codes_write(igrib, outfile)我们会得到什么样的 packingError？
 因为常数场未设置打包参数，因此 ecCodes 不知道我们需要什么样的小数精度。 一个安全的选择是设置 bitsPerValue = 24。
 更好的实践是在设置数值前设置 decimalPrecision 或 bitsPerValue。
-codes_grib_new_from_file(infile,igrib) codes_set(igrib,’decimalPrecision’,4) codes_set(igrib,’values’,values) codes_write(igrib,outfile)  codes_grib_new_from_file(infile,igrib) codes_set(igrib,’bitsPerValue’,16) codes_set(igrib,’values’,values) codes_write(igrib,outfile)  练习  创建一个常数 GRIB 文件。
-$ grib_set -d 1 t.grib2 c.</description>
+codes_grib_new_from_file(infile,igrib)codes_set(igrib,’decimalPrecision’,4)codes_set(igrib,’values’,values)codes_write(igrib,outfile)codes_grib_new_from_file(infile,igrib)codes_set(igrib,’bitsPerValue’,16)codes_set(igrib,’values’,values)codes_write(igrib,outfile)练习   创建一个常数 GRIB 文件。
+$ grib_set -d 1 t.grib2 c.grib2$ grib_set -s packingType=grid_simple c.grib2 c1.</description>
     </item>
     
     <item>
@@ -112,7 +112,7 @@ $ grib_set -d 1 t.grib2 c.</description>
 支持不同的输出格式：
  Octet mode: 提供 WMO 风格的输出 Debug mode: 打印 GRIB 文件中所有的 key Octet 和 Debug 两种模式不能同时使用 Octet 内容可以使用十六进制格式输出。  通过设置选项，还可以输出 key aliases 和 key 的类型信息（key type information)。
 支持 JSON 格式输出，便于处理。
-使用方法 grib_dump [options] grib_file grib_file ...  基本参数：
+使用方法 grib_dump [options] grib_file grib_file ...基本参数：
    参数 含义     -O Octet 模式（WMO 文档风格）   -D Debug 模式   -a 打印 key alias 信息   -t 打印 key 类型信息   -H 十六进制显示的 Octet 模式   -w key[:{s i   -j JSON 输出   -V 打印 ecCodes 版本    示例 以中国气象局数值预报中心的 GRAPES GFS 输出的 GRIB 2 产品为例</description>
     </item>
     
@@ -123,12 +123,12 @@ $ grib_set -d 1 t.grib2 c.</description>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/load_release/</guid>
       <description>需要使用如下函数：
- codes_grib_new_from_file codes_any_new_from_file codes_new_from_file codes_new_from_samples codes_new_from_message codes_release  gid = codes_grib_new_from_file (file, headers_only=False) codes_any_new_from_file (file, headers_only=False) codes_new_from_file (file, product_kind, headers_only)  product_kind 接受如下值：
+ codes_grib_new_from_file codes_any_new_from_file codes_new_from_file codes_new_from_samples codes_new_from_message codes_release  gid = codes_grib_new_from_file (file, headers_only=False) codes_any_new_from_file (file, headers_only=False) codes_new_from_file (file, product_kind, headers_only)product_kind 接受如下值：
  CODES_PRODUCT_GRIB CODES_PRODUCT_BUFR CODES_PRODUCT_ANY  上述的 codes_grib_new_from_file 函数返回 GRIB 消息的句柄。 输入文件必须是 Python 的文件对象。现在不推荐使用 headers_only 参数。
-codes_new_from_samples gid = codes_new_from_samples (samplename)  返回样例目录的文件中消息的句柄。
-codes_new_from_message gid = codes_new_from_message (message)  返回内存中消息的句柄。
-codes_release codes_release (gid)  释放句柄。
-示例：读取 GRIB 文件 from __future__ import print_function import sys import click import eccodes @click.</description>
+codes_new_from_samples gid = codes_new_from_samples (samplename)返回样例目录的文件中消息的句柄。
+codes_new_from_message gid = codes_new_from_message (message)返回内存中消息的句柄。
+codes_release codes_release (gid)释放句柄。
+示例：读取 GRIB 文件 from __future__ import print_functionimport sysimport clickimport eccodes@click.command()@click.argument(&amp;#39;file_path&amp;#39;)def cli(file_path):with open(file_path, &amp;#39;rb&amp;#39;) as f:handle = eccodes.</description>
     </item>
     
     <item>
@@ -139,8 +139,8 @@ codes_release codes_release (gid)  释放句柄。
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/decode/</guid>
       <description>目标尽可能地少解码。永远不要解码整个已加载的 GRIB 消息。可以使用 grib_dump -D &amp;lt;grib_file&amp;gt; 查看到底有多少个 ecCodes key。
 用于解码的主要函数：
-int codes_get_long (codes_handle *h, const char *key, long *value); int codes_get_double (codes_handle *h, const char *key, double *value) int codes_get_string (codes_handle *h, const char *key, char *mesg, size_t *length) int codes_get_long_array (codes_handle *h, const char *key, long *vals, size_t *length) int codes_get_double_array (codes_handle *h, const char *key, double *vals, size_t *length)  帮助函数 获取一个（数组）数据的大小：
-int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_size(grib_handle* h, const char* key,size_t *size);  详细输出 grib 消息的内容：</description>
+int codes_get_long (codes_handle *h, const char *key, long *value);int	codes_get_double (codes_handle *h, const char *key, double *value)int	codes_get_string (codes_handle *h, const char *key, char *mesg, size_t *length)int codes_get_long_array (codes_handle *h, const char *key, long *vals, size_t *length)int	codes_get_double_array (codes_handle *h, const char *key, double *vals, size_t *length)帮助函数 获取一个（数组）数据的大小：
+int codes_get_size(codes_handle* h, const char* key,size_t *size);int grib_get_size(grib_handle* h, const char* key,size_t *size);详细输出 grib 消息的内容：</description>
     </item>
     
     <item>
@@ -157,6 +157,19 @@ int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_
     </item>
     
     <item>
+      <title>编码和计算key</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/</guid>
+      <description>GRIB 消息中 key 的值并不总是直接编码到文件中。
+某些 key 是其他一些 key 的组合，并通过给定的算法提供，或者只是临时的（transient）。
+Coded keys Coded key 直接对应于 GRIB 消息中的八位字节。 它们的值仅通过解码八位字节获取。
+GRIB 消息中的所有 codes keys 可以通过 octet 模式的 grib_dump 获取。
+***** FILE: gfs.t00z.pgrb2.1p00.f138 #============== MESSAGE 1 ( length=3801 ) ============== 1-4 identifier = GRIB 5-6 reserved = 0 7 discipline = 0 [Meteorological products (grib2/tables/2/0.0.table) ] 8 editionNumber = 2 9-16 totalLength = 3801 ====================== SECTION_1 ( length=21, padding=0 ) ====================== 1-4 section1Length = 21 5 numberOfSection = 1 6-7 centre = 7 [US National Weather Service - NCEP (WMC) (common/c-11.</description>
+    </item>
+    
+    <item>
       <title>获取键值对</title>
       <link>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_key_value_pairs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -168,7 +181,21 @@ int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_
  适合在脚本中获取 GRIB 消息的键值。 可以强制grib_get在出错时不会运行失败。  支持获取所有的 MARS key 和特定名称空间中的所有 key。可以添加其他 key 到默认集合。
 浮点类型数据的输出支持 C 风格的格式化描述。
 可以用于寻找某个经纬度坐标点的最近邻点，与grib_ls工作方式相同。
-用法 grib_get [options] grib_file grib_file ...  选项    选项 含义     -p key1,key2,&amp;hellip; Keys to get   -P key1,key2,&amp;hellip; Additional keys to get with –m, -n   -w key1=val1,key2!=val2,&amp;hellip; Where option   -s key1=val1,key2=val2,&amp;hellip; Keys to set (temporary for printing)   -m Get all MARS keys   -n namespace Get all keys for namespace   -l lat,lon[,MODE,FILE] Value(s) nearest to lat-lon point   -F format Format for floating point values   -f Do not fail on error   &amp;hellip; &amp;hellip;    使用 where 选项 where 选项 -w 可以用于所有的 GRIB 工具，具有相同的格式。</description>
+用法 grib_get [options] grib_file grib_file ...选项    选项 含义     -p key1,key2,&amp;hellip; Keys to get   -P key1,key2,&amp;hellip; Additional keys to get with –m, -n   -w key1=val1,key2!=val2,&amp;hellip; Where option   -s key1=val1,key2=val2,&amp;hellip; Keys to set (temporary for printing)   -m Get all MARS keys   -n namespace Get all keys for namespace   -l lat,lon[,MODE,FILE] Value(s) nearest to lat-lon point   -F format Format for floating point values   -f Do not fail on error   &amp;hellip; &amp;hellip;    使用 where 选项 where 选项 -w 可以用于所有的 GRIB 工具，具有相同的格式。</description>
+    </item>
+    
+    <item>
+      <title>Namespaces</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/</guid>
+      <description>ecCodes 通过版本无关 key 提供 GRIB 消息的高级访问方式。
+强烈建议尽可能使用这些版本无关 key，可以透明地处理 GRIB 1 和 GRIB 2 数据。
+为了方便使用，某些版本无关 key 被放到 namespace 中。
+下面介绍几个最重要的 namespace。 更多信息请访问Edition independent ecCodes keys
+parameter    Key name Example value     paramId 151   shortName msl   centre ecmf (or 98)   name Mean sea level pressure   unit Pa    time 起报时间
+   Key name Example value     dataDate 20160224(YYYYMMDD)   dataTime 0, 600, 1200, 1800    预报时间点</description>
     </item>
     
     <item>
@@ -177,9 +204,9 @@ int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/utilities/</guid>
-      <description>最近邻点 points = codes_grib_find_nearest (gid, inlat, inlon, is_lsm=False, npoints=1) point = points[0] # point : { # lat: lat, lon: lon, index: index, value: value, distance: distance # }  寻找给定经纬度点的最近邻点的 tuple。当 npoints=4 时将返回 4 个最近邻点的tuple。
+      <description>最近邻点 points = codes_grib_find_nearest (gid, inlat, inlon, is_lsm=False, npoints=1)point = points[0]# point : { # lat: lat, lon: lon, index: index, value: value, distance: distance # } 寻找给定经纬度点的最近邻点的 tuple。当 npoints=4 时将返回 4 个最近邻点的tuple。
 示例 下面的示例寻找北京（39.92,116.46）的 1 个最近邻点。
-from __future__ import print_function import click import eccodes @click.command() @click.argument(&#39;file_path&#39;) def cli(file_path): with open(file_path, &#39;rb&#39;) as f: handle = eccodes.codes_grib_new_from_file(f, headers_only=False) while handle is not None: date = eccodes.codes_get(handle, &amp;quot;dataDate&amp;quot;) type_of_level = eccodes.</description>
+from __future__ import print_functionimport clickimport eccodes@click.command()@click.argument(&amp;#39;file_path&amp;#39;)def cli(file_path):with open(file_path, &amp;#39;rb&amp;#39;) as f:handle = eccodes.codes_grib_new_from_file(f, headers_only=False)while handle is not None:date = eccodes.</description>
     </item>
     
     <item>
@@ -193,7 +220,7 @@ from __future__ import print_function import click import eccodes @click.command
 输出格式可以通过 -f 选项使用 C 风格的描述符控制。
  -F &amp;quot;%.4f&amp;quot; - 小数格式，带4位小数（1.2345） -F &amp;quot;%.4e&amp;quot; - 指数格式，带4位小数（1.2345E-03） 默认格式是-F &amp;quot;%.4e&amp;quot;  默认情况下，不输出缺失值（misssing values）。 用户可以提供在缺失值处输出的字符串。
 默认情况下，grib_get_data在出错时会异常结束。 使用-f选项强制grib_get_data在出错时不异常结束。
-用法 grib_get_data [options] grib_file grib_file     选项 含义     -p key1,key2,&amp;hellip; 需要打印的 key 列表   -w key1=val1,key2!=val2,&amp;hellip; where 选项   -m missingValue 指定缺失值打印的字符串   -F format 指定输出的 C 风格格式   -f 出错时不退出   &amp;hellip; &amp;hellip;    示例 $ grib_get_data -w count=72 -F &amp;quot;%.</description>
+用法 grib_get_data [options] grib_file grib_file   选项 含义     -p key1,key2,&amp;hellip; 需要打印的 key 列表   -w key1=val1,key2!=val2,&amp;hellip; where 选项   -m missingValue 指定缺失值打印的字符串   -F format 指定输出的 C 风格格式   -f 出错时不退出   &amp;hellip; &amp;hellip;    示例 $ grib_get_data -w count=72 -F &amp;quot;%.</description>
     </item>
     
     <item>
@@ -202,12 +229,12 @@ from __future__ import print_function import click import eccodes @click.command
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/grib_1_to_2/</guid>
-      <description>grib_set -s edition=2 in.grib1 out.grib2  上述命令会转换如下内容：
+      <description>grib_set -s edition=2 in.grib1 out.grib2上述命令会转换如下内容：
  time geography vertical parameter local data  因为两种编码标准各有不同，再加上一些气象中心会使用本地码表，所以参数转换比较复杂。
 转换会基于变量参数的唯一标识符 paramId。
 基于 paramId 的转换 如何生成 2 米温度的 GRIB 文件：
-grib_set -s paramId=165 in.grib1 out.grib1 grib_set -s paramId=165 in.grib2 out.grib2  如何将 GRIB 1 文件转码为 GRIB 2 文件：
-grib_set -s edition=2 in.grib1 out.grib2  在转换到版本 2 的过程中，ecCodes 从 GRIB 1 拷贝 paramId 到 GRIB 2：
+grib_set -s paramId=165 in.grib1 out.grib1grib_set -s paramId=165 in.grib2 out.grib2如何将 GRIB 1 文件转码为 GRIB 2 文件：
+grib_set -s edition=2 in.grib1 out.grib2在转换到版本 2 的过程中，ecCodes 从 GRIB 1 拷贝 paramId 到 GRIB 2：
  从 GRIB 1 中获取 paramId（=165） 修改版本号为 2，生成 GRIB 2 文件 设置 GRIB 2 的 paramId（=165）  转换仅在 paramId 定义了两个版本的情况下可行。</description>
     </item>
     
@@ -222,7 +249,7 @@ grib_set -s edition=2 in.grib1 out.grib2  在转换到版本 2 的过程中，ec
 默认情况下，两个文件中的消息会按相同顺序，逐位比较，精确比较浮点数值。
  可以指定数据值的误差，基于绝对值（absolute）、相对值（relative）或 packing error。 默认的数据值误差是绝对误差为0。  如果grib_compare找到不同：
  切换到 key 模式寻找那些编码的 key 是不同的。 异常退出，并返回一个非零退出值。  提供选项用于设置仅比较特定的 key 或一组 key。
-基本用法 grib_compare [options] grib_file grib_file     选项 参数     -b key1,key2,&amp;hellip; 比较时忽略的 key 列表   -c key1,namespace2:n&amp;hellip; 指定比较的 key 列表   -H 仅比较消息头   -e 版本无关比较   -w key1=val1,key2!=val2,&amp;hellip; where 选项   -f 出错时不退出   -r 消息排序不一致   -v 显示详细信息   &amp;hellip; &amp;hellip;    示例 简单示例 f1.</description>
+基本用法 grib_compare [options] grib_file grib_file   选项 参数     -b key1,key2,&amp;hellip; 比较时忽略的 key 列表   -c key1,namespace2:n&amp;hellip; 指定比较的 key 列表   -H 仅比较消息头   -e 版本无关比较   -w key1=val1,key2!=val2,&amp;hellip; where 选项   -f 出错时不退出   -r 消息排序不一致   -v 显示详细信息   &amp;hellip; &amp;hellip;    示例 简单示例 f1.</description>
     </item>
     
     <item>
@@ -231,15 +258,16 @@ grib_set -s edition=2 in.grib1 out.grib2  在转换到版本 2 的过程中，ec
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/grib_index/</guid>
-      <description>codes_index_new_from_file iid = codes_index_new_from_file (file, keys)  返回创建的索引句柄。
-codes_index_add_file codes_index_add_file (iid, file)  添加一个文件到索引。
-codes_index_write codes_index_write (iid, file)  将索引写入文件，以便后续使用。
-codes_index_read iid = codes_index_read (file)  从 codes_index_write 输出的文件中加载索引。
-codes_index_release codes_index_release (iid)  释放索引。
-codes_index_get_size size = codes_index_get_size (iid, key)  索引 key 不重复的键值总数
-codes_index_get values = codes_index_get (iid, key, ktype=str)  获取索引 key 的不重复键值列表。
-codes_index_select codes_index_select (iid, key, value)  选择满足 key==value 的 GRIB 消息子集。
-codes_new_from_index 与 codes_grib_new_from_file 相同，并使用 codes_release 释放消息。</description>
+      <description>codes_index_new_from_file iid = codes_index_new_from_file (file, keys)返回创建的索引句柄。
+codes_index_add_file codes_index_add_file (iid, file)添加一个文件到索引。
+codes_index_write codes_index_write (iid, file)将索引写入文件，以便后续使用。
+codes_index_read iid = codes_index_read (file)从 codes_index_write 输出的文件中加载索引。
+codes_index_release codes_index_release (iid)释放索引。
+codes_index_get_size size = codes_index_get_size (iid, key)索引 key 不重复的键值总数
+codes_index_get values = codes_index_get (iid, key, ktype=str)获取索引 key 的不重复键值列表。
+codes_index_select codes_index_select (iid, key, value)选择满足 key==value 的 GRIB 消息子集。
+codes_new_from_index 与 codes_grib_new_from_file 相同，并使用 codes_release 释放消息。
+示例： from __future__ import print_functionimport clickimport eccodes@click.</description>
     </item>
     
     <item>
@@ -250,9 +278,10 @@ codes_new_from_index 与 codes_grib_new_from_file 相同，并使用 codes_relea
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/encode/</guid>
       <description>编码已加载的 GRIB 消息 尽可能少进行“编码”。永远不要“编码”整个 GRIB 消息。
 进行“编码”的主要函数：
-int codes_set_long(codes_handle* h, const char* key, long val); int codes_set_double(codes_handle* h, const char* key, double val); int codes_set_string(codes_handle* h, const char* key , const char* mesg, size_t *length); int codes_set_double_array(codes_handle* h, const char* key, const double* vals, size_t length);  将 GRIB 消息写入文件：
-int codes_write_message(codes_handle* h,const char* file,const char* mode);  注意，使用 codes_write_message 写入的 GRIB 消息会保证消息格式正确，但无法保证语义正确。
-创建 GRIB 消息 可以根据样例文件创建新的 GRIB 消息。</description>
+int codes_set_long(codes_handle* h, const char* key, long val);int codes_set_double(codes_handle* h, const char* key, double val);int codes_set_string(codes_handle* h, const char* key , const char* mesg, size_t *length);int codes_set_double_array(codes_handle* h, const char* key, const double* vals, size_t length);将 GRIB 消息写入文件：
+int codes_write_message(codes_handle* h,const char* file,const char* mode);注意，使用 codes_write_message 写入的 GRIB 消息会保证消息格式正确，但无法保证语义正确。
+创建 GRIB 消息 可以根据样例文件创建新的 GRIB 消息。
+样例文件是保存在 sample 文件夹中的示例 GRIB 消息文件。默认的 sample 目录可以使用 codes_info 查看。 样例文件以 .</description>
     </item>
     
     <item>
@@ -285,7 +314,7 @@ GRIBEX: https://software.ecmwf.int/wiki/display/GRIB/GRIBEX+keys</description>
 输出支持排序。例如升序或降序排列 step。
 key 值可用于设定输出文件名。
 如果某个 key 未找到，grib_copy 会出错退出。可以使用 -f 选项强制 grib_copy 在遇到错误是不出错。
-用法 grib_copy[options] grib_file grib_file … out_grib_file  选项
+用法 grib_copy[options] grib_file grib_file … out_grib_file选项
    选项 含义     -p key1,key2,… 需要打印的 key 列表 (与 -v 一同使用)   -w key=val1,key2!=val2,… where 选项   -B &amp;quot;key1 asc, key2 desc&amp;quot; 排序，例如: step asc, centre desc   -v 显示详情   -f 出错时不异常退出   &amp;hellip; &amp;hellip;    示例 只拷贝文件中的地面层要素场</description>
     </item>
     
@@ -300,18 +329,18 @@ key 值可用于设定输出文件名。
 安装 ecCodes 会有一个默认的码表文件集合。
 设置环境变量 ECCODES_DEFINITION_PATH，使用本地定义文件替代 ecCodes 提供的定义文件。
 为给定中心 centre 定义的变量描述包含在 shortName.def，paramId.def，units.def，name.def 等文件中。 这些文件保存在如下目录：
-BASE_DIR/definitions/grib1/localConcepts/[centre:s] BASE_DIR/definitions/grib2/localConcepts/[centre:s]  注意：centre:s 是指用字符串表示的 centre，例如 ecmf, kwbc, cnmc 等等。
+BASE_DIR/definitions/grib1/localConcepts/[centre:s]BASE_DIR/definitions/grib2/localConcepts/[centre:s]注意：centre:s 是指用字符串表示的 centre，例如 ecmf, kwbc, cnmc 等等。
 通用变量描述包含在 shrotName.def，paramId.def，units.def，name.def 文件中，这些定义文件保存在如下目录：
-BASE_DIR/definitions/grib1 BASE_DIR/definitions/grib2  环境变量 ECCODES_DEFINITION_PATH ECCODES_DEFINITION_PATH=/my/definitions:/eccodes/definitions  ecCodes 库会首先搜索目录 /my/definitions 中的每个需要的定义文件，然后搜索 /eccodes/definitions 目录下的文件。
+BASE_DIR/definitions/grib1BASE_DIR/definitions/grib2环境变量 ECCODES_DEFINITION_PATH ECCODES_DEFINITION_PATH=/my/definitions:/eccodes/definitionsecCodes 库会首先搜索目录 /my/definitions 中的每个需要的定义文件，然后搜索 /eccodes/definitions 目录下的文件。
 如果在 /my/definitions 中找到定义文件，编码引擎就会使用该文件。
 用户可以使用自己的定义文件覆盖所有的定义文件。
 我们只建议覆盖包含变量信息的定义文件。
 定义一个本地变量 使用 codes_info 获取定义文件的目录。
 设置环境变量，将 local_dir 添加到目录列表中。
-ECCODES_DEFINITION_PATH=local_dir:default_definition_dir  创建下面的目录，用于保存本地定义文件：
-local_dir/grib1/localConcepts/[centre:s] local_dir/grib2/localConcepts/[centre:s]  添加文件 shortName.def，paramId.def，name.def 和 units.def。
+ECCODES_DEFINITION_PATH=local_dir:default_definition_dir创建下面的目录，用于保存本地定义文件：
+local_dir/grib1/localConcepts/[centre:s]local_dir/grib2/localConcepts/[centre:s]添加文件 shortName.def，paramId.def，name.def 和 units.def。
 paramId.def 的示例（GRIB 1）
-# Direction of wind waves 500072 = { table2Version = 112; indicatorOfParameter = 101; }  shortName.</description>
+# Direction of wind waves 500072 = {table2Version = 112; indicatorOfParameter = 101;}shortName.</description>
     </item>
     
     <item>
@@ -320,14 +349,14 @@ paramId.def 的示例（GRIB 1）
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/encode/</guid>
-      <description>codes_set codes_set (gid, key, value)  设置 GRIB 消息中的 key 值。
-code_set_array codes_set_array (gid, key, value)  设置 GRIB 消息中的数组 key 值。
+      <description>codes_set codes_set (gid, key, value)设置 GRIB 消息中的 key 值。
+code_set_array codes_set_array (gid, key, value)设置 GRIB 消息中的数组 key 值。
 输入数组可以是 numpy.ndarray 或 Python 序列类型，例如 tuple, list, array, &amp;hellip;
-codes_set_value codes_set_array (gid, key, value)  设置消息中‘数据’值的工具函数。
-codes_clone clone_id = codes_clone (gid_src)  克隆一个消息。
+codes_set_value codes_set_array (gid, key, value)设置消息中‘数据’值的工具函数。
+codes_clone clone_id = codes_clone (gid_src)克隆一个消息。
 可以使用 codes_write 直接写入到文件中。
 别忘了调用 codes_release。
-示例 from __future__ import print_function import click import eccodes @click.command() @click.argument(&#39;output_file_path&#39;) def cli(output_file_path): handle = eccodes.codes_grib_new_from_samples(&#39;regular_ll_pl_grib2&#39;) value_size = eccodes.codes_get_size(handle, &#39;values&#39;) values = [] for i in range(0, value_size): values.</description>
+示例 from __future__ import print_functionimport clickimport eccodes@click.command()@click.argument(&amp;#39;output_file_path&amp;#39;)def cli(output_file_path):handle = eccodes.codes_grib_new_from_samples(&amp;#39;regular_ll_pl_grib2&amp;#39;)value_size = eccodes.codes_get_size(handle, &amp;#39;values&amp;#39;)values = []for i in range(0, value_size):values.</description>
     </item>
     
     <item>
@@ -337,10 +366,10 @@ codes_clone clone_id = codes_clone (gid_src)  克隆一个消息。
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api_more/</guid>
       <description>异常处理 所有 ecCodes 函数在出错时都会抛出下面的异常：
-CodesInternalError  所有 GRIB API 函数在出错时都会抛出下面的异常：
-GribInternalError  上面的异常都包含 C API 的错误信息。
+CodesInternalError所有 GRIB API 函数在出错时都会抛出下面的异常：
+GribInternalError上面的异常都包含 C API 的错误信息。
 高层接口（正在开发） 更高层面，更加 pythonic 的接口。
-with GribFile(filename) as grib: # Iterate through each message in the file for msgin grib: # Access a key from each message print(msg[key_name]) # Report message size in bytes msg.size() # Report keys in message msg.keys() # Set scalar value msg[scalar_key] = 5 # Array values are set transparently msg[array_key] = [1, 2, 3] # Messages can be written to file with open(testfile, &amp;quot;w&amp;quot;) as test: msg.</description>
+with GribFile(filename) as grib:# Iterate through each message in the file for msgin grib:# Access a key from each message print(msg[key_name])# Report message size in bytes msg.size()# Report keys in message msg.keys()# Set scalar value msg[scalar_key] = 5# Array values are set transparently msg[array_key] = [1, 2, 3]# Messages can be written to file with open(testfile, &amp;#34;w&amp;#34;) as test:msg.</description>
     </item>
     
     <item>
@@ -354,7 +383,7 @@ with GribFile(filename) as grib: # Iterate through each message in the file for 
  设置输入 GRIB 文件中的键值对； 对输入 GRIB 文件中的键值对做简单修改。  每个 GRIB 消息都会写入到输出文件中。
  默认包括那些没有修改键值对的消息。 使用 -s 选项（strict）仅拷贝哪些满足 where 选项中所有约束条件的消息。  可以设置选项重新打包数据。有时在修改与打包算法相关的属性键值后，需要重新打包数据。
 grib_set 在遇到错误时会异常退出。例如找不到某个 key 时。
-用法 grib_set[options] grib_filegrib_file… out_grib_file  选项
+用法 grib_set[options] grib_filegrib_file… out_grib_file选项
    选项 含义     -s key1=val1,key2=val2,… 需要修改的键值对列表   -p key1,key2,,… 打印的 key 列表，与 -v 选项一同使用   -w key1=val1,key2!=val2,… Where 选项   -d value 设置所有的数据值为 value   -f 出错后不退出   -v 显示详细信息   -S 严格模式   -r 重新打包数据   &amp;hellip; &amp;hellip;    示例 将所有变量的名称修改为 10 米风速，简称 10si。</description>
     </item>
     
@@ -368,12 +397,31 @@ grib_set 在遇到错误时会异常退出。例如找不到某个 key 时。
  使用 grib_to_netcdf 将 GRIB 要素场转码为 NetCDF 格式。
 输入的 GRIB 要素场必须为标准网格。即 typeOfGrid 是 regular_ll 或 regular_gg。
 可以通过选项进行如下设置：
- NetCDF 数据类型
- NC_BYTE, NC_SHORT, NC_INT, NC_FLOAT 或 NC_DOUBLE 默认类型是 NC_SHORT  经典（NetCDF 3）格式或 NetCDF 4 格式
- 参考日期
- 默认是 19000101   该命令用于 MARS 的 web 接口和公共数据服务，用于提供 NetCDF 格式的文件。
-用法 grib_to_netcdf [options] grib_file grib_file ...  选项
+  NetCDF 数据类型
+ NC_BYTE, NC_SHORT, NC_INT, NC_FLOAT 或 NC_DOUBLE 默认类型是 NC_SHORT    经典（NetCDF 3）格式或 NetCDF 4 格式
+  参考日期
+ 默认是 19000101    该命令用于 MARS 的 web 接口和公共数据服务，用于提供 NetCDF 格式的文件。
+用法 grib_to_netcdf [options] grib_file grib_file ...选项
    选项 含义     -o output_file 输出的 NetCDF 文件名   -R YYYYMMDD 使用 YYYYMMDD 作为参考日期   -D NC_DATATYPE NetCDF 日期类型   -k kind 文件格式: 1 → netCDF 经典文件格式2 → netCDF 64位经典文件格式（默认）3 → netCDF-4 文件格式4 → netCDF-4 经典模型文件格式   -T 不使用有效时间   -u dimension 设置 dimension 为不受限制的维度   -f 出错时不异常退出   &amp;hellip; &amp;hellip;    示例 将文件转为 NetCDF</description>
+    </item>
+    
+    <item>
+      <title>Windows 下编译 ecCodes</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/build_in_windows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/build_in_windows/</guid>
+      <description>请参阅 ecCodes 官网对 windows 下编译的说明《Microsoft Windows (experimental)》。
+ecCodes 在 windows/msvc 目录中提供 Visual Studio 的解决方案文件，用于编译静态库和一些命令行工具，但不支持 Fortran 和 Python。
+为了使用命令行工具，必须设置全局环境变量，定位定义文件和样例文件。环境变量包括：
+ ECCODES_DEFINITION_PATH ECCODES_SAMPLES_PATH  例如
+ECCODES_DEFINITION_PATH=c:/eccodes/definitions注意如果需要设置多个目录，则需要使用分号(;)分隔各个目录，而不是冒号(:)。
+使用 JASPER 编译 ecCodes 2.X 版本的 JASPER 支持 CMake 编译，直接使用 CMake 编译 JASPER。
+需要在 grib_api_lib 中设置如下的预定义变量：
+HAVE_JPEGUSE_JPEG2000JAS_WIN_MSVC_BUILDHAVE_LIBJASPER使用 openJPEG 编译 ecCodes openJPEG 提供 windows 的预编译包，直接下载就可以使用。
+需要在 grib_api_lib 中设置如下的预定义变量：
+HAVE_JPEGUSE_JPEG2000HAVE_LIBOPENJPEG使用 ecCodes  要使用 rb 模式打开 GRIB 文件，否则解析 GRIB 消息会发生错误。
+ </description>
     </item>
     
     <item>
@@ -382,7 +430,7 @@ grib_set 在遇到错误时会异常退出。例如找不到某个 key 时。
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/practical/</guid>
-      <description> 练习 修改 GRIB 消息 额外练习 </description>
+      <description>练习 修改 GRIB 消息 额外练习 </description>
     </item>
     
     <item>
@@ -391,25 +439,7 @@ grib_set 在遇到错误时会异常退出。例如找不到某个 key 时。
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/summary/</guid>
-      <description> SUMMARY  介绍  Windows编译  GRIB工具  信息工具 查看工具 GRIB keys 获取键值对 获取数据值 比较消息 复制消息 设置键值对 GRIB 转 NetCDF  C 接口  C 接口介绍 加载/释放 解码 移植 索引访问 编码 参考资料  Python 接口  Python 和 GRIB API Python API 介绍 加载/释放 解码 工具 索引 编码 更多内容  Filter 高级话题  Simple packing 常数场 位图 多要素场消息 GRIB 参数数据库 GRIB 1 到 2 的转换 本地配置   </description>
-    </item>
-    
-    <item>
-      <title>Windows 下编译 ecCodes</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/</guid>
-      <description>请参阅 ecCodes 官网对 windows 下编译的说明《Microsoft Windows (experimental)》。
-ecCodes 在 windows/msvc 目录中提供 Visual Studio 的解决方案文件，用于编译静态库和一些命令行工具，但不支持 Fortran 和 Python。
-为了使用命令行工具，必须设置全局环境变量，定位定义文件和样例文件。环境变量包括：
- ECCODES_DEFINITION_PATH ECCODES_SAMPLES_PATH  例如
-ECCODES_DEFINITION_PATH=c:/eccodes/definitions  注意如果需要设置多个目录，则需要使用分号(;)分隔各个目录，而不是冒号(:)。
-使用 JASPER 编译 ecCodes 2.X 版本的 JASPER 支持 CMake 编译，直接使用 CMake 编译 JASPER。
-需要在 grib_api_lib 中设置如下的预定义变量：
-HAVE_JPEG USE_JPEG2000 JAS_WIN_MSVC_BUILD HAVE_LIBJASPER  使用 openJPEG 编译 ecCodes openJPEG 提供 windows 的预编译包，直接下载就可以使用。
-需要在 grib_api_lib 中设置如下的预定义变量：
-HAVE_JPEG USE_JPEG2000 HAVE_LIBOPENJPEG  使用 ecCodes  要使用 rb 模式打开 GRIB 文件，否则解析 GRIB 消息会发生错误。</description>
+      <description>SUMMARY  介绍  Windows编译   GRIB工具  信息工具 查看工具 GRIB keys 获取键值对 获取数据值 比较消息 复制消息 设置键值对 GRIB 转 NetCDF   C 接口  C 接口介绍 加载/释放 解码 移植 索引访问 编码 参考资料   Python 接口  Python 和 GRIB API Python API 介绍 加载/释放 解码 工具 索引 编码 更多内容   Filter 高级话题  Simple packing 常数场 位图 多要素场消息 GRIB 参数数据库 GRIB 1 到 2 的转换 本地配置    </description>
     </item>
     
   </channel>

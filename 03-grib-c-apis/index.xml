@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>3. C编程接口 on ecCodes教程中文版</title>
@@ -17,10 +17,10 @@
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/</guid>
       <description>处理 GRIB 数据的 ecCodes 函数名 ecCodes 的所有函数都以 codes_ 开头，例如
-codes_handle_new_from_file(0, in, PRODUCT_GRIB, &amp;amp;err);  一些函数可以用于 GRIB 和 BUFR 两种数据，例如
-// GRIB codes_get_long(h, &amp;quot;Ni&amp;quot;, &amp;amp;numberOfPointsAlongAParallel) // BUFR codes_get_long(h, &amp;quot;blockNumber&amp;quot;, &amp;amp;longVal)  另一些函数则有所不同，例如
-grib_handle * codes_grib_handle_new_from_file(grib_context *c, FILE *f, int *error); grib_handle * codes_bufr_handle_new_from_file(grib_context *c, FILE *f, int *error); grib_handle * codes_handle_new_from_file(grib_context *c, FILE *f, ProductKind product, int *error);  GRIB API 中以 grib_ 开头的函数在 ecCodes 依然存在。例如
-grib_handle* grib_handle_new_from_file(grib_context* c, FILE* f, int* error);  通用框架 一个使用 ecCodes 接口（Fortran/C/Python）的代码包括以下步骤</description>
+codes_handle_new_from_file(0, in, PRODUCT_GRIB, &amp;amp;err);一些函数可以用于 GRIB 和 BUFR 两种数据，例如
+// GRIBcodes_get_long(h, &amp;#34;Ni&amp;#34;, &amp;amp;numberOfPointsAlongAParallel)// BUFRcodes_get_long(h, &amp;#34;blockNumber&amp;#34;, &amp;amp;longVal)另一些函数则有所不同，例如
+grib_handle * codes_grib_handle_new_from_file(grib_context *c, FILE *f, int *error);grib_handle * codes_bufr_handle_new_from_file(grib_context *c, FILE *f, int *error);grib_handle * codes_handle_new_from_file(grib_context *c, FILE *f, ProductKind product, int *error);GRIB API 中以 grib_ 开头的函数在 ecCodes 依然存在。例如
+grib_handle* grib_handle_new_from_file(grib_context* c, FILE* f, int* error);通用框架 一个使用 ecCodes 接口（Fortran/C/Python）的代码包括以下步骤</description>
     </item>
     
     <item>
@@ -31,17 +31,17 @@ grib_handle* grib_handle_new_from_file(grib_context* c, FILE* f, int* error);  �
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/load_release/</guid>
       <description>因为 ecCodes 仅能解码/编码加载过的 GRIB 消息，所以首先要加载消息。
 有三个主要的函数用于加载一个 GRIB 消息。
- codes_handle_new_from_file (NULL, f, PRODUCT_GRIB, &amp;amp;error) 或 grib_handle_new_from_file
+  codes_handle_new_from_file (NULL, f, PRODUCT_GRIB, &amp;amp;error) 或 grib_handle_new_from_file
 从已经存在并使用 fopen 已打开的文件中加载 GRIB 消息。
- codes_grib_handle_new_from_samples(NULL, &#39;regular_ll_sfc_grib2&#39;) 或 grib_handler_new_from_samples
+  codes_grib_handle_new_from_samples(NULL, &#39;regular_ll_sfc_grib2&#39;) 或 grib_handler_new_from_samples
 从一个样例中加载 GRIB 消息，用于编码。后面会详细介绍。
- codes_handle_new_from_index(index, &amp;amp;error) 或 grib_handle_new_from_index
+  codes_handle_new_from_index(index, &amp;amp;error) 或 grib_handle_new_from_index
 从一个 index 中加载 GRIB 消息，index 需要事先创建好。后面会详细介绍。
   上面三种加载函数将返回一个唯一的 grib handle，使用该 handle 可以操控已加载的 GRIB 消息。
 无法直接访问包含已加载 GRIB 消息的缓存。缓存由 ecCodes 库内部处理。
 任何 GRIB 消息占用的缓存都保存在内存中。
 因此，当某个已加载的 GRIB 消息不再需要时，总应该调用 codes_handle_delete(handle) 函数释放其占用的空间。
-示例：从文件中加载 GRIB 消息 #include &amp;lt;iostream&amp;gt; #include &amp;lt;eccodes.h&amp;gt; using namespace std; int main(int argc, char** argv) { if(argc &amp;lt; 2) { cout&amp;lt;&amp;lt;&amp;quot;Usage: &amp;quot;&amp;lt;&amp;lt;argv[0]&amp;lt;&amp;lt;&amp;quot; grib_file_path&amp;quot;; return 1; } const char* file_path = argv[1]; FILE* in = fopen(file_path, &amp;quot;rb&amp;quot;); if(!</description>
+示例：从文件中加载 GRIB 消息 #include &amp;lt;iostream&amp;gt;#include &amp;lt;eccodes.</description>
     </item>
     
     <item>
@@ -52,8 +52,8 @@ grib_handle* grib_handle_new_from_file(grib_context* c, FILE* f, int* error);  �
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/decode/</guid>
       <description>目标尽可能地少解码。永远不要解码整个已加载的 GRIB 消息。可以使用 grib_dump -D &amp;lt;grib_file&amp;gt; 查看到底有多少个 ecCodes key。
 用于解码的主要函数：
-int codes_get_long (codes_handle *h, const char *key, long *value); int codes_get_double (codes_handle *h, const char *key, double *value) int codes_get_string (codes_handle *h, const char *key, char *mesg, size_t *length) int codes_get_long_array (codes_handle *h, const char *key, long *vals, size_t *length) int codes_get_double_array (codes_handle *h, const char *key, double *vals, size_t *length)  帮助函数 获取一个（数组）数据的大小：
-int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_size(grib_handle* h, const char* key,size_t *size);  详细输出 grib 消息的内容：</description>
+int codes_get_long (codes_handle *h, const char *key, long *value);int	codes_get_double (codes_handle *h, const char *key, double *value)int	codes_get_string (codes_handle *h, const char *key, char *mesg, size_t *length)int codes_get_long_array (codes_handle *h, const char *key, long *vals, size_t *length)int	codes_get_double_array (codes_handle *h, const char *key, double *vals, size_t *length)帮助函数 获取一个（数组）数据的大小：
+int codes_get_size(codes_handle* h, const char* key,size_t *size);int grib_get_size(grib_handle* h, const char* key,size_t *size);详细输出 grib 消息的内容：</description>
     </item>
     
     <item>
@@ -77,9 +77,10 @@ int codes_get_size(codes_handle* h, const char* key,size_t *size); int grib_get_
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/encode/</guid>
       <description>编码已加载的 GRIB 消息 尽可能少进行“编码”。永远不要“编码”整个 GRIB 消息。
 进行“编码”的主要函数：
-int codes_set_long(codes_handle* h, const char* key, long val); int codes_set_double(codes_handle* h, const char* key, double val); int codes_set_string(codes_handle* h, const char* key , const char* mesg, size_t *length); int codes_set_double_array(codes_handle* h, const char* key, const double* vals, size_t length);  将 GRIB 消息写入文件：
-int codes_write_message(codes_handle* h,const char* file,const char* mode);  注意，使用 codes_write_message 写入的 GRIB 消息会保证消息格式正确，但无法保证语义正确。
-创建 GRIB 消息 可以根据样例文件创建新的 GRIB 消息。</description>
+int codes_set_long(codes_handle* h, const char* key, long val);int codes_set_double(codes_handle* h, const char* key, double val);int codes_set_string(codes_handle* h, const char* key , const char* mesg, size_t *length);int codes_set_double_array(codes_handle* h, const char* key, const double* vals, size_t length);将 GRIB 消息写入文件：
+int codes_write_message(codes_handle* h,const char* file,const char* mode);注意，使用 codes_write_message 写入的 GRIB 消息会保证消息格式正确，但无法保证语义正确。
+创建 GRIB 消息 可以根据样例文件创建新的 GRIB 消息。
+样例文件是保存在 sample 文件夹中的示例 GRIB 消息文件。默认的 sample 目录可以使用 codes_info 查看。 样例文件以 .</description>
     </item>
     
     <item>

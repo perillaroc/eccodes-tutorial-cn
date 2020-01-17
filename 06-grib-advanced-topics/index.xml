@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>6. 高级话题 on ecCodes教程中文版</title>
@@ -20,16 +20,16 @@
  如果要素场的所有数值都相等，那么使用常规的 GRIB 消息会将同一个数值重复存储 N 次，效率非常低。
 ecCodes 使用常数场保存这种类型的数据，该常数应该是唯一保存的数值，数据段应该为空，因此常数场非常小，并且被精确地编码。
 使用如下命令可以创建一个常数场：
-grib_set -d 1 in.grib out.grib  常数场中未定义打包参数（packing parameters），即 bitsPerValue=0。
+grib_set -d 1 in.grib out.grib常数场中未定义打包参数（packing parameters），即 bitsPerValue=0。
 常数场的问题 加载一个常数场：
-codes_grib_new_from_file(infile, igrib)  设置一些非常数的数据值：
-codes_set(igrib, &#39;values&#39;, values)  注意：此时还不知道打包参数
+codes_grib_new_from_file(infile, igrib)设置一些非常数的数据值：
+codes_set(igrib, &amp;#39;values&amp;#39;, values)注意：此时还不知道打包参数
 将消息写入到文件中：
-codes_write(igrib, outfile)  我们会得到什么样的 packingError？
+codes_write(igrib, outfile)我们会得到什么样的 packingError？
 因为常数场未设置打包参数，因此 ecCodes 不知道我们需要什么样的小数精度。 一个安全的选择是设置 bitsPerValue = 24。
 更好的实践是在设置数值前设置 decimalPrecision 或 bitsPerValue。
-codes_grib_new_from_file(infile,igrib) codes_set(igrib,’decimalPrecision’,4) codes_set(igrib,’values’,values) codes_write(igrib,outfile)  codes_grib_new_from_file(infile,igrib) codes_set(igrib,’bitsPerValue’,16) codes_set(igrib,’values’,values) codes_write(igrib,outfile)  练习  创建一个常数 GRIB 文件。
-$ grib_set -d 1 t.grib2 c.</description>
+codes_grib_new_from_file(infile,igrib)codes_set(igrib,’decimalPrecision’,4)codes_set(igrib,’values’,values)codes_write(igrib,outfile)codes_grib_new_from_file(infile,igrib)codes_set(igrib,’bitsPerValue’,16)codes_set(igrib,’values’,values)codes_write(igrib,outfile)练习   创建一个常数 GRIB 文件。
+$ grib_set -d 1 t.grib2 c.grib2$ grib_set -s packingType=grid_simple c.grib2 c1.</description>
     </item>
     
     <item>
@@ -38,12 +38,12 @@ $ grib_set -d 1 t.grib2 c.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/grib_1_to_2/</guid>
-      <description>grib_set -s edition=2 in.grib1 out.grib2  上述命令会转换如下内容：
+      <description>grib_set -s edition=2 in.grib1 out.grib2上述命令会转换如下内容：
  time geography vertical parameter local data  因为两种编码标准各有不同，再加上一些气象中心会使用本地码表，所以参数转换比较复杂。
 转换会基于变量参数的唯一标识符 paramId。
 基于 paramId 的转换 如何生成 2 米温度的 GRIB 文件：
-grib_set -s paramId=165 in.grib1 out.grib1 grib_set -s paramId=165 in.grib2 out.grib2  如何将 GRIB 1 文件转码为 GRIB 2 文件：
-grib_set -s edition=2 in.grib1 out.grib2  在转换到版本 2 的过程中，ecCodes 从 GRIB 1 拷贝 paramId 到 GRIB 2：
+grib_set -s paramId=165 in.grib1 out.grib1grib_set -s paramId=165 in.grib2 out.grib2如何将 GRIB 1 文件转码为 GRIB 2 文件：
+grib_set -s edition=2 in.grib1 out.grib2在转换到版本 2 的过程中，ecCodes 从 GRIB 1 拷贝 paramId 到 GRIB 2：
  从 GRIB 1 中获取 paramId（=165） 修改版本号为 2，生成 GRIB 2 文件 设置 GRIB 2 的 paramId（=165）  转换仅在 paramId 定义了两个版本的情况下可行。</description>
     </item>
     
@@ -58,18 +58,18 @@ grib_set -s edition=2 in.grib1 out.grib2  在转换到版本 2 的过程中，ec
 安装 ecCodes 会有一个默认的码表文件集合。
 设置环境变量 ECCODES_DEFINITION_PATH，使用本地定义文件替代 ecCodes 提供的定义文件。
 为给定中心 centre 定义的变量描述包含在 shortName.def，paramId.def，units.def，name.def 等文件中。 这些文件保存在如下目录：
-BASE_DIR/definitions/grib1/localConcepts/[centre:s] BASE_DIR/definitions/grib2/localConcepts/[centre:s]  注意：centre:s 是指用字符串表示的 centre，例如 ecmf, kwbc, cnmc 等等。
+BASE_DIR/definitions/grib1/localConcepts/[centre:s]BASE_DIR/definitions/grib2/localConcepts/[centre:s]注意：centre:s 是指用字符串表示的 centre，例如 ecmf, kwbc, cnmc 等等。
 通用变量描述包含在 shrotName.def，paramId.def，units.def，name.def 文件中，这些定义文件保存在如下目录：
-BASE_DIR/definitions/grib1 BASE_DIR/definitions/grib2  环境变量 ECCODES_DEFINITION_PATH ECCODES_DEFINITION_PATH=/my/definitions:/eccodes/definitions  ecCodes 库会首先搜索目录 /my/definitions 中的每个需要的定义文件，然后搜索 /eccodes/definitions 目录下的文件。
+BASE_DIR/definitions/grib1BASE_DIR/definitions/grib2环境变量 ECCODES_DEFINITION_PATH ECCODES_DEFINITION_PATH=/my/definitions:/eccodes/definitionsecCodes 库会首先搜索目录 /my/definitions 中的每个需要的定义文件，然后搜索 /eccodes/definitions 目录下的文件。
 如果在 /my/definitions 中找到定义文件，编码引擎就会使用该文件。
 用户可以使用自己的定义文件覆盖所有的定义文件。
 我们只建议覆盖包含变量信息的定义文件。
 定义一个本地变量 使用 codes_info 获取定义文件的目录。
 设置环境变量，将 local_dir 添加到目录列表中。
-ECCODES_DEFINITION_PATH=local_dir:default_definition_dir  创建下面的目录，用于保存本地定义文件：
-local_dir/grib1/localConcepts/[centre:s] local_dir/grib2/localConcepts/[centre:s]  添加文件 shortName.def，paramId.def，name.def 和 units.def。
+ECCODES_DEFINITION_PATH=local_dir:default_definition_dir创建下面的目录，用于保存本地定义文件：
+local_dir/grib1/localConcepts/[centre:s]local_dir/grib2/localConcepts/[centre:s]添加文件 shortName.def，paramId.def，name.def 和 units.def。
 paramId.def 的示例（GRIB 1）
-# Direction of wind waves 500072 = { table2Version = 112; indicatorOfParameter = 101; }  shortName.</description>
+# Direction of wind waves 500072 = {table2Version = 112; indicatorOfParameter = 101;}shortName.</description>
     </item>
     
   </channel>

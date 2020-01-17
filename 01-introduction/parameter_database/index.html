@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.60.1" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="https://perillaroc.github.io/eccodes-tutorial-cn/images/favicon.png" type="image/png">
+
+    <title>参数数据库 :: ecCodes教程中文版</title>
+
+    
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/nucleus.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/fontawesome-all.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hybrid.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/featherlight.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/perfect-scrollbar.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/auto-complete.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/atom-one-dark-reasonable.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/theme.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hugo-theme.css?1579265141" rel="stylesheet">
+    
+
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery-3.3.1.min.js?1579265141"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/01-introduction/parameter_database/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://perillaroc.github.io/eccodes-tutorial-cn/">
+<svg id="grav-logo" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;" viewBox="0 0 121.58 26">
+  <defs>
+    <style>
+      .a {
+        fill: none;
+        stroke: white;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .b {
+        font-size: 18px;
+        font-family: BerlinSansFB-Reg, Berlin Sans FB;
+        fill: white;
+      }
+    </style>
+  </defs>
+  <circle class="a" cx="13" cy="13" r="12" /><text class="b" transform="translate(29.75 18.75)">NWP-OPER</text>
+  <line class="a" x1="4" y1="20.11" x2="7" y2="14.11" />
+  <line class="a" x1="12" y1="18.11" x2="7" y2="14.11" />
+  <line class="a" x1="17" y1="13.11" x2="12" y2="18.11" />
+  <line class="a" x1="23" y1="19.11" x2="17" y2="13.11" />
+</svg>
+</a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/lunr.min.js?1579265141"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/auto-complete.js?1579265141"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/perillaroc.github.io\/eccodes-tutorial-cn\/";
+    
+</script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/search.js?1579265141"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/" title="1. GRIB格式介绍" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/">
+          1. GRIB格式介绍
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/what_is_eccodes/" title="ecCodes简介" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/">
+          ecCodes简介
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/what_is_eccodes/build_in_windows/" title="Windows 下编译 ecCodes" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/build_in_windows/">
+        Windows 下编译 ecCodes
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/what_is_grib/" title="GRIB介绍" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_grib/">
+          GRIB介绍
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/parameter_database/" title="参数数据库" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/parameter_database/">
+          参数数据库
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/coded_and_computed_keys/" title="编码和计算key" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/">
+        编码和计算key
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/namespaces/" title="Namespaces" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/">
+        Namespaces
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/02-grib-tools/" title="2. GRIB 工具" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/">
+          2. GRIB 工具
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/information_tools/" title="信息工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/information_tools/">
+        信息工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/inspetion_tools/" title="查看工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/inspetion_tools/">
+        查看工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/02-grib-tools/grib_keys/" title="GRIB Keys" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/grib_keys/">
+          GRIB Keys
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/get_key_value_pairs/" title="获取键值对" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_key_value_pairs/">
+        获取键值对
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/get_data_values/" title="获取数据值" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/get_data_values/">
+        获取数据值
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/compare_messages/" title="比较消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/compare_messages/">
+        比较消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/copy_messages/" title="复制消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/copy_messages/">
+        复制消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/set_key_value_pairs/" title="设置键值对" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/set_key_value_pairs/">
+        设置键值对
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/convert_to_netcdf/" title="GRIB 转 NetCDF" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/convert_to_netcdf/">
+        GRIB 转 NetCDF
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/02-grib-tools/practical/" title="" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/02-grib-tools/practical/">
+        
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/03-grib-c-apis/" title="3. C编程接口" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/">
+          3. C编程接口
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/overall/" title="ecCodes GRIB C 接口" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/overall/">
+        ecCodes GRIB C 接口
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/load_release/" title="加载/释放 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/load_release/">
+        加载/释放 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/decode/" title="解码已加载的 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/decode/">
+        解码已加载的 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/migration/" title="移植" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/migration/">
+        移植
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/03-grib-c-apis/grib_index/" title="ecCodes索引访问" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/grib_index/">
+          ecCodes索引访问
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/encode/" title="编码GRIB文件" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/encode/">
+        编码GRIB文件
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/03-grib-c-apis/reference/" title="参考" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/03-grib-c-apis/reference/">
+        参考
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/04-grib-python-apis/" title="4. Python编程接口" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/">
+          4. Python编程接口
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/04-grib-python-apis/python_basic/" title="Python 和 GRIB API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_basic/">
+          Python 和 GRIB API
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_api/" title="Python API" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api/">
+        Python API
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/load_release/" title="加载/释放 GRIB 消息" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/load_release/">
+        加载/释放 GRIB 消息
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/04-grib-python-apis/decode/" title="解码" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/decode/">
+          解码
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/utilities/" title="工具" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/utilities/">
+        工具
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/grib_index/" title="索引" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/grib_index/">
+        索引
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/encode/" title="编码" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/encode/">
+        编码
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/04-grib-python-apis/python_api_more/" title="更多内容" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/04-grib-python-apis/python_api_more/">
+        更多内容
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/05-grib-filter/" title="5. Filter" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/05-grib-filter/">
+          5. Filter
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/06-grib-advanced-topics/" title="6. 高级话题" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/">
+          6. 高级话题
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/06-grib-advanced-topics/simple_packing/" title="Simple Packing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/simple_packing/">
+          Simple Packing
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/constant_fields/" title="常数场（Constant fields）" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/constant_fields/">
+        常数场（Constant fields）
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/06-grib-advanced-topics/bitmap/" title="位图" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/bitmap/">
+          位图
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/06-grib-advanced-topics/multi_field_messages/" title="多要素场消息" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/multi_field_messages/">
+          多要素场消息
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/06-grib-advanced-topics/parameter_database/" title="参数数据库" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/parameter_database/">
+          参数数据库
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/grib_1_to_2/" title="GRIB 1 到 2 的转换" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/grib_1_to_2/">
+        GRIB 1 到 2 的转换
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/06-grib-advanced-topics/local_configure/" title="本地配置" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/06-grib-advanced-topics/local_configure/">
+        本地配置
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='https://perillaroc.github.io/eccodes-tutorial-cn/'>ecCodes GRIB教程中文版</a> > <a href='https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/'>1. GRIB格式介绍</a> > 参数数据库
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">参数示例</a></li>
+    <li><a href="#eccodes-keys--paramter">ecCodes keys - paramter</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              参数数据库
+            </h1>
+          
+
+        
+
+
+
+
+	<p>无论何时想要寻找 GRIB 1 和 GRIB 2 的编码参数，参数数据库都是非常棒的工具。</p>
+<p>ECMWF 的 GRIB 参数数据库请访问：</p>
+<p><a href="https://apps.ecmwf.int/codes/grib/param-db">The parameter database</a></p>
+<p>网页如下图所示：</p>
+<figure>
+    <img src="./asset/parameter-database.png"/> <figcaption>
+            <h4>The parameter database</h4>
+        </figcaption>
+</figure>
+
+<h2 id="heading">参数示例</h2>
+<p>以海平面气温为例说明如何使用参数数据库。</p>
+<p><a href="https://apps.ecmwf.int/codes/grib/param-db?id=34">Sea surface temperature</a></p>
+<p>该页面包含参数的序号、名称、简称、单位、描述等等。</p>
+<p>最后列出怎样在GRIB中使用该参数。</p>
+<p>GRIB 1</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table2Version</td>
+<td>128</td>
+</tr>
+<tr>
+<td>indicatorOfParameter</td>
+<td>34</td>
+</tr>
+</tbody>
+</table>
+<p>GRIB 2</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>discipline</td>
+<td>10</td>
+</tr>
+<tr>
+<td>parameterCategory</td>
+<td>3</td>
+</tr>
+<tr>
+<td>parameterNumber</td>
+<td>0</td>
+</tr>
+<tr>
+<td>typeOfFirstFixedSurface</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>译者注：其实 GRIB 2 与 GRIB 1 的关键区别在于 GRIB 2 可以更方便地描述更多的参数类型。</p>
+<h2 id="eccodes-keys--paramter">ecCodes keys - paramter</h2>
+<p>GRIB 1 和 GRIB 2 中气象参数的定义有很大的区别。
+例如</p>
+<table>
+<thead>
+<tr>
+<th>GRIB 1 keys</th>
+<th>GRIB 2 keys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>centre</td>
+<td>discipline</td>
+</tr>
+<tr>
+<td>table2Version</td>
+<td>parameterCategory</td>
+</tr>
+<tr>
+<td>indicatorOfParameter</td>
+<td>parameterNumber</td>
+</tr>
+<tr>
+<td>levelType</td>
+<td>typeOfFirstFixedSurface</td>
+</tr>
+<tr>
+<td>level</td>
+<td>scaleFactorOfFirstFixedSurface</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>scaledValuesOfFirstFixedSurface</td>
+</tr>
+<tr>
+<td></td>
+<td>typeOfSecondFirstFixedSurface</td>
+</tr>
+<tr>
+<td></td>
+<td>scaleFactorOfSecondFixedSurface</td>
+</tr>
+<tr>
+<td></td>
+<td>scaledValuesOfSecondFixedSurface</td>
+</tr>
+<tr>
+<td></td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_grib/" title="GRIB介绍"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/" title="编码和计算key" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/clipboard.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.jquery.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery.sticky.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/featherlight.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/highlight.pack.js?1579265141"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/modernizr.custom-3.6.0.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/learn.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/hugo-learn.js?1579265141"></script>
+
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.css?1579265141" rel="stylesheet" />
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.js?1579265141"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-137359293-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  </body>
+</html>

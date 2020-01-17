@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>1. GRIB 和 ecCodes 介绍 on ecCodes教程中文版</title>
+    <title>1. GRIB格式介绍 on ecCodes教程中文版</title>
     <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/</link>
-    <description>Recent content in 1. GRIB 和 ecCodes 介绍 on ecCodes教程中文版</description>
+    <description>Recent content in 1. GRIB格式介绍 on ecCodes教程中文版</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     
@@ -11,21 +11,30 @@
     
     
     <item>
-      <title>Windows 下编译 ecCodes</title>
-      <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/</link>
+      <title>编码和计算key</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/</guid>
-      <description>请参阅 ecCodes 官网对 windows 下编译的说明《Microsoft Windows (experimental)》。
-ecCodes 在 windows/msvc 目录中提供 Visual Studio 的解决方案文件，用于编译静态库和一些命令行工具，但不支持 Fortran 和 Python。
-为了使用命令行工具，必须设置全局环境变量，定位定义文件和样例文件。环境变量包括：
- ECCODES_DEFINITION_PATH ECCODES_SAMPLES_PATH  例如
-ECCODES_DEFINITION_PATH=c:/eccodes/definitions  注意如果需要设置多个目录，则需要使用分号(;)分隔各个目录，而不是冒号(:)。
-使用 JASPER 编译 ecCodes 2.X 版本的 JASPER 支持 CMake 编译，直接使用 CMake 编译 JASPER。
-需要在 grib_api_lib 中设置如下的预定义变量：
-HAVE_JPEG USE_JPEG2000 JAS_WIN_MSVC_BUILD HAVE_LIBJASPER  使用 openJPEG 编译 ecCodes openJPEG 提供 windows 的预编译包，直接下载就可以使用。
-需要在 grib_api_lib 中设置如下的预定义变量：
-HAVE_JPEG USE_JPEG2000 HAVE_LIBOPENJPEG  使用 ecCodes  要使用 rb 模式打开 GRIB 文件，否则解析 GRIB 消息会发生错误。</description>
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/</guid>
+      <description>GRIB 消息中 key 的值并不总是直接编码到文件中。
+某些 key 是其他一些 key 的组合，并通过给定的算法提供，或者只是临时的（transient）。
+Coded keys Coded key 直接对应于 GRIB 消息中的八位字节。 它们的值仅通过解码八位字节获取。
+GRIB 消息中的所有 codes keys 可以通过 octet 模式的 grib_dump 获取。
+***** FILE: gfs.t00z.pgrb2.1p00.f138 #============== MESSAGE 1 ( length=3801 ) ============== 1-4 identifier = GRIB 5-6 reserved = 0 7 discipline = 0 [Meteorological products (grib2/tables/2/0.0.table) ] 8 editionNumber = 2 9-16 totalLength = 3801 ====================== SECTION_1 ( length=21, padding=0 ) ====================== 1-4 section1Length = 21 5 numberOfSection = 1 6-7 centre = 7 [US National Weather Service - NCEP (WMC) (common/c-11.</description>
+    </item>
+    
+    <item>
+      <title>Namespaces</title>
+      <link>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/</guid>
+      <description>ecCodes 通过版本无关 key 提供 GRIB 消息的高级访问方式。
+强烈建议尽可能使用这些版本无关 key，可以透明地处理 GRIB 1 和 GRIB 2 数据。
+为了方便使用，某些版本无关 key 被放到 namespace 中。
+下面介绍几个最重要的 namespace。 更多信息请访问Edition independent ecCodes keys
+parameter    Key name Example value     paramId 151   shortName msl   centre ecmf (or 98)   name Mean sea level pressure   unit Pa    time 起报时间
+   Key name Example value     dataDate 20160224(YYYYMMDD)   dataTime 0, 600, 1200, 1800    预报时间点</description>
     </item>
     
   </channel>

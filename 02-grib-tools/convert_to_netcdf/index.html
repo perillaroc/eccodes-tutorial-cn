@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.60.1" />
     <meta name="description" content="">
 
 
@@ -12,19 +12,20 @@
     <title>GRIB 转 NetCDF :: ecCodes教程中文版</title>
 
     
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/nucleus.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/fontawesome-all.min.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hybrid.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/featherlight.min.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/perfect-scrollbar.min.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/auto-complete.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/theme.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hugo-theme.css?1554117278" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/nucleus.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/fontawesome-all.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hybrid.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/featherlight.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/perfect-scrollbar.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/auto-complete.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/atom-one-dark-reasonable.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/theme.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hugo-theme.css?1579265141" rel="stylesheet">
     
 
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery-2.x.min.js?1554117278"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery-3.3.1.min.js?1579265141"></script>
 
-    <style type="text/css">
+    <style>
       :root #header + #content > #left > #rlblock_left{
           display:none !important;
       }
@@ -73,14 +74,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/lunr.min.js?1554117278"></script>
-<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/auto-complete.js?1554117278"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/lunr.min.js?1579265141"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/auto-complete.js?1579265141"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/perillaroc.github.io\/eccodes-tutorial-cn\/";
     
 </script>
-<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/search.js?1554117278"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/search.js?1579265141"></script>
 
     
   </div>
@@ -96,13 +97,40 @@
  
   
     
-    <li data-nav-id="/01-introduction/" title="1. GRIB 和 ecCodes 介绍" class="dd-item 
+    <li data-nav-id="/01-introduction/" title="1. GRIB格式介绍" class="dd-item 
         
         
         
         ">
       <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/">
-          1. GRIB 和 ecCodes 介绍
+          1. GRIB格式介绍
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/what_is_eccodes/" title="ecCodes简介" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/">
+          ecCodes简介
           
       </a>
       
@@ -121,9 +149,104 @@
  
   
     
-      <li data-nav-id="/01-introduction/build_in_windows/" title="Windows 下编译 ecCodes" class="dd-item ">
-        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/">
+      <li data-nav-id="/01-introduction/what_is_eccodes/build_in_windows/" title="Windows 下编译 ecCodes" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/build_in_windows/">
         Windows 下编译 ecCodes
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/what_is_grib/" title="GRIB介绍" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_grib/">
+          GRIB介绍
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/parameter_database/" title="参数数据库" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/parameter_database/">
+          参数数据库
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/coded_and_computed_keys/" title="编码和计算key" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/">
+        编码和计算key
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/namespaces/" title="Namespaces" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/">
+        Namespaces
         
         </a>
     </li>
@@ -955,7 +1078,7 @@
 
     
     <section id="footer">
-      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
 
     </section>
   </div>
@@ -1010,16 +1133,14 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#grib-to-netcdf">grib_to_netcdf</a>
-<ul>
-<li><a href="#用法">用法</a></li>
-<li><a href="#示例">示例</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#gribtonetcdf">grib_to_netcdf</a>
+      <ul>
+        <li><a href="#heading">用法</a></li>
+        <li><a href="#heading1">示例</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -1044,46 +1165,35 @@
 
 
 
-
-
-<h2 id="grib-to-netcdf">grib_to_netcdf</h2>
-
+<h2 id="gribtonetcdf">grib_to_netcdf</h2>
 <blockquote>
 <p>转换为 NetCDF 格式</p>
 </blockquote>
-
 <p>使用 <code>grib_to_netcdf</code> 将 GRIB 要素场转码为 NetCDF 格式。</p>
-
 <p>输入的 GRIB 要素场必须为标准网格。即 <code>typeOfGrid</code> 是 <code>regular_ll</code> 或 <code>regular_gg</code>。</p>
-
 <p>可以通过选项进行如下设置：</p>
-
 <ul>
-<li><p>NetCDF 数据类型</p>
-
+<li>
+<p>NetCDF 数据类型</p>
 <ul>
 <li><code>NC_BYTE</code>, <code>NC_SHORT</code>, <code>NC_INT</code>, <code>NC_FLOAT</code> 或 <code>NC_DOUBLE</code></li>
 <li>默认类型是 <code>NC_SHORT</code></li>
-</ul></li>
-
-<li><p>经典（NetCDF 3）格式或 NetCDF 4 格式</p></li>
-
-<li><p>参考日期</p>
-
+</ul>
+</li>
+<li>
+<p>经典（NetCDF 3）格式或 NetCDF 4 格式</p>
+</li>
+<li>
+<p>参考日期</p>
 <ul>
 <li>默认是 <code>19000101</code></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>该命令用于 MARS 的 web 接口和公共数据服务，用于提供 NetCDF 格式的文件。</p>
-
-<h3 id="用法">用法</h3>
-
+<h3 id="heading">用法</h3>
 <pre><code>grib_to_netcdf [options] grib_file grib_file ...
-</code></pre>
-
-<p>选项</p>
-
+</code></pre><p>选项</p>
 <table>
 <thead>
 <tr>
@@ -1091,54 +1201,43 @@
 <th>含义</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>-o output_file</td>
 <td>输出的 NetCDF 文件名</td>
 </tr>
-
 <tr>
 <td>-R YYYYMMDD</td>
 <td>使用 YYYYMMDD 作为参考日期</td>
 </tr>
-
 <tr>
 <td>-D NC_DATATYPE</td>
 <td>NetCDF 日期类型</td>
 </tr>
-
 <tr>
 <td>-k kind</td>
-<td>文件格式: <br/>1 → netCDF 经典文件格式<br/>2 → netCDF 64位经典文件格式（默认）<br/>3 → netCDF-4 文件格式</br>4 → netCDF-4 经典模型文件格式</td>
+<td>文件格式: <!-- raw HTML omitted -->1 → netCDF 经典文件格式<!-- raw HTML omitted -->2 → netCDF 64位经典文件格式（默认）<!-- raw HTML omitted -->3 → netCDF-4 文件格式<!-- raw HTML omitted -->4 → netCDF-4 经典模型文件格式</td>
 </tr>
-
 <tr>
 <td>-T</td>
 <td>不使用有效时间</td>
 </tr>
-
 <tr>
 <td>-u dimension</td>
 <td>设置 <code>dimension</code> 为不受限制的维度</td>
 </tr>
-
 <tr>
 <td>-f</td>
 <td>出错时不异常退出</td>
 </tr>
-
 <tr>
 <td>&hellip;</td>
 <td>&hellip;</td>
 </tr>
 </tbody>
 </table>
-
-<h3 id="示例">示例</h3>
-
+<h3 id="heading1">示例</h3>
 <p>将文件转为 NetCDF</p>
-
 <pre><code>$ grib_to_netcdf -o out.nc t.grib2
 grib_to_netcdf: Version 2.6.0
 grib_to_netcdf: Processing input file 't.grib2'.
@@ -1152,10 +1251,7 @@ grib_to_netcdf: Done.
 
 $ ls -s out.nc
 2036 out.nc
-</code></pre>
-
-<p>将输出文件的数据类型设为 <code>NC_FLOAT</code>。</p>
-
+</code></pre><p>将输出文件的数据类型设为 <code>NC_FLOAT</code>。</p>
 <pre><code>$ grib_to_netcdf -D NC_FLOAT -o out.nc t.grib2
 grib_to_netcdf: Version 2.6.0
 grib_to_netcdf: Processing input file 't.grib2'.
@@ -1169,9 +1265,7 @@ grib_to_netcdf: Done.
 
 $ ls -s out.nc
 4060 out.nc
-</code></pre>
-
-<p>输出的 NetCDF 文件大小大约是之前的文件两倍。</p>
+</code></pre><p>输出的 NetCDF 文件大小大约是之前的文件两倍。</p>
 
 
 <footer class=" footline" >
@@ -1218,8 +1312,90 @@ $ ls -s out.nc
 
                     
                     
+                        
+                    
                     
 
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
                         
             
@@ -1870,20 +2046,19 @@ $ ls -s out.nc
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/clipboard.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.jquery.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery.sticky.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/featherlight.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/html5shiv-printshiv.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/highlight.pack.js?1554117278"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/clipboard.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.jquery.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery.sticky.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/featherlight.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/highlight.pack.js?1579265141"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/modernizr.custom.71422.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/learn.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/hugo-learn.js?1554117278"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/modernizr.custom-3.6.0.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/learn.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/hugo-learn.js?1579265141"></script>
 
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.css?1554117278" type="text/css" rel="stylesheet" />
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.js?1554117278"></script>
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.css?1579265141" rel="stylesheet" />
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.js?1579265141"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

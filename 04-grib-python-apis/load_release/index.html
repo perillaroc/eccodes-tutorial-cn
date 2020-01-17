@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.60.1" />
     <meta name="description" content="">
 
 
@@ -12,19 +12,20 @@
     <title>加载/释放 GRIB 消息 :: ecCodes教程中文版</title>
 
     
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/nucleus.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/fontawesome-all.min.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hybrid.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/featherlight.min.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/perfect-scrollbar.min.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/auto-complete.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/theme.css?1554117278" rel="stylesheet">
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hugo-theme.css?1554117278" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/nucleus.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/fontawesome-all.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hybrid.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/featherlight.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/perfect-scrollbar.min.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/auto-complete.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/atom-one-dark-reasonable.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/theme.css?1579265141" rel="stylesheet">
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/css/hugo-theme.css?1579265141" rel="stylesheet">
     
 
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery-2.x.min.js?1554117278"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery-3.3.1.min.js?1579265141"></script>
 
-    <style type="text/css">
+    <style>
       :root #header + #content > #left > #rlblock_left{
           display:none !important;
       }
@@ -73,14 +74,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/lunr.min.js?1554117278"></script>
-<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/auto-complete.js?1554117278"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/lunr.min.js?1579265141"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/auto-complete.js?1579265141"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/perillaroc.github.io\/eccodes-tutorial-cn\/";
     
 </script>
-<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/search.js?1554117278"></script>
+<script type="text/javascript" src="https://perillaroc.github.io/eccodes-tutorial-cn/js/search.js?1579265141"></script>
 
     
   </div>
@@ -96,13 +97,40 @@
  
   
     
-    <li data-nav-id="/01-introduction/" title="1. GRIB 和 ecCodes 介绍" class="dd-item 
+    <li data-nav-id="/01-introduction/" title="1. GRIB格式介绍" class="dd-item 
         
         
         
         ">
       <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/">
-          1. GRIB 和 ecCodes 介绍
+          1. GRIB格式介绍
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/what_is_eccodes/" title="ecCodes简介" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/">
+          ecCodes简介
           
       </a>
       
@@ -121,9 +149,104 @@
  
   
     
-      <li data-nav-id="/01-introduction/build_in_windows/" title="Windows 下编译 ecCodes" class="dd-item ">
-        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/build_in_windows/">
+      <li data-nav-id="/01-introduction/what_is_eccodes/build_in_windows/" title="Windows 下编译 ecCodes" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_eccodes/build_in_windows/">
         Windows 下编译 ecCodes
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/what_is_grib/" title="GRIB介绍" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/what_is_grib/">
+          GRIB介绍
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/01-introduction/parameter_database/" title="参数数据库" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/parameter_database/">
+          参数数据库
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/coded_and_computed_keys/" title="编码和计算key" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/coded_and_computed_keys/">
+        编码和计算key
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/01-introduction/namespaces/" title="Namespaces" class="dd-item ">
+        <a href="https://perillaroc.github.io/eccodes-tutorial-cn/01-introduction/namespaces/">
+        Namespaces
         
         </a>
     </li>
@@ -955,7 +1078,7 @@
 
     
     <section id="footer">
-      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
 
     </section>
   </div>
@@ -1010,15 +1133,12 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#codes-new-from-samples">codes_new_from_samples</a></li>
-<li><a href="#codes-new-from-message">codes_new_from_message</a></li>
-<li><a href="#codes-release">codes_release</a></li>
-<li><a href="#示例-读取-grib-文件">示例：读取 GRIB 文件</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#codesnewfromsamples">codes_new_from_samples</a></li>
+    <li><a href="#codesnewfrommessage">codes_new_from_message</a></li>
+    <li><a href="#codesrelease">codes_release</a></li>
+    <li><a href="#-grib-">示例：读取 GRIB 文件</a></li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -1043,10 +1163,7 @@
 
 
 
-
-
 <p>需要使用如下函数：</p>
-
 <ul>
 <li><code>codes_grib_new_from_file</code></li>
 <li><code>codes_any_new_from_file</code></li>
@@ -1055,69 +1172,49 @@
 <li><code>codes_new_from_message</code></li>
 <li><code>codes_release</code></li>
 </ul>
-
-<pre><code class="language-py">gid = codes_grib_new_from_file (file, headers_only=False) 
-codes_any_new_from_file (file, headers_only=False) 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">gid <span style="color:#f92672">=</span> codes_grib_new_from_file (file, headers_only<span style="color:#f92672">=</span>False) 
+codes_any_new_from_file (file, headers_only<span style="color:#f92672">=</span>False) 
 codes_new_from_file (file, product_kind, headers_only)
-</code></pre>
-
-<p><code>product_kind</code> 接受如下值：</p>
-
+</code></pre></div><p><code>product_kind</code> 接受如下值：</p>
 <ul>
 <li><code>CODES_PRODUCT_GRIB</code></li>
 <li><code>CODES_PRODUCT_BUFR</code></li>
 <li><code>CODES_PRODUCT_ANY</code></li>
 </ul>
-
 <p>上述的 <code>codes_grib_new_from_file</code> 函数返回 GRIB 消息的句柄。
 输入文件必须是 Python 的文件对象。现在不推荐使用 <code>headers_only</code> 参数。</p>
+<h2 id="codesnewfromsamples">codes_new_from_samples</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">gid <span style="color:#f92672">=</span> codes_new_from_samples (samplename)
+</code></pre></div><p>返回样例目录的文件中消息的句柄。</p>
+<h2 id="codesnewfrommessage">codes_new_from_message</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">gid <span style="color:#f92672">=</span> codes_new_from_message (message)
+</code></pre></div><p>返回内存中消息的句柄。</p>
+<h2 id="codesrelease">codes_release</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">codes_release (gid)
+</code></pre></div><p>释放句柄。</p>
+<h2 id="-grib-">示例：读取 GRIB 文件</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> __future__ <span style="color:#f92672">import</span> print_function
+<span style="color:#f92672">import</span> sys
 
-<h2 id="codes-new-from-samples">codes_new_from_samples</h2>
-
-<pre><code class="language-py">gid = codes_new_from_samples (samplename)
-</code></pre>
-
-<p>返回样例目录的文件中消息的句柄。</p>
-
-<h2 id="codes-new-from-message">codes_new_from_message</h2>
-
-<pre><code class="language-py">gid = codes_new_from_message (message)
-</code></pre>
-
-<p>返回内存中消息的句柄。</p>
-
-<h2 id="codes-release">codes_release</h2>
-
-<pre><code class="language-py">codes_release (gid)
-</code></pre>
-
-<p>释放句柄。</p>
-
-<h2 id="示例-读取-grib-文件">示例：读取 GRIB 文件</h2>
-
-<pre><code class="language-py">from __future__ import print_function
-import sys
-
-import click
-import eccodes
+<span style="color:#f92672">import</span> click
+<span style="color:#f92672">import</span> eccodes
 
 
-@click.command()
-@click.argument('file_path')
-def cli(file_path):
-    with open(file_path, 'rb') as f:
-        handle = eccodes.codes_grib_new_from_file(f, headers_only=False)
-        if handle is None:
-            print(&quot;ERROR: unable to create handle from file &quot; + file_path)
-            sys.exit(-1)
+<span style="color:#a6e22e">@click.command</span>()
+<span style="color:#a6e22e">@click.argument</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">file_path</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cli</span>(file_path):
+    <span style="color:#66d9ef">with</span> open(file_path, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">rb</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">as</span> f:
+        handle <span style="color:#f92672">=</span> eccodes<span style="color:#f92672">.</span>codes_grib_new_from_file(f, headers_only<span style="color:#f92672">=</span>False)
+        <span style="color:#66d9ef">if</span> handle <span style="color:#f92672">is</span> None:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">ERROR: unable to create handle from file </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> file_path)
+            sys<span style="color:#f92672">.</span>exit(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 
-        eccodes.codes_release(handle)
+        eccodes<span style="color:#f92672">.</span>codes_release(handle)
 
 
-if __name__ == &quot;__main__&quot;:
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">__main__</span><span style="color:#e6db74">&#34;</span>:
     cli()
-</code></pre>
-
+</code></pre></div>
 
 <footer class=" footline" >
 	
@@ -1163,8 +1260,90 @@ if __name__ == &quot;__main__&quot;:
 
                     
                     
+                        
+                    
                     
 
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
                         
             
@@ -1815,20 +1994,19 @@ if __name__ == &quot;__main__&quot;:
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/clipboard.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.jquery.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery.sticky.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/featherlight.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/html5shiv-printshiv.min.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/highlight.pack.js?1554117278"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/clipboard.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/perfect-scrollbar.jquery.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/jquery.sticky.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/featherlight.min.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/highlight.pack.js?1579265141"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/modernizr.custom.71422.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/learn.js?1554117278"></script>
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/hugo-learn.js?1554117278"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/modernizr.custom-3.6.0.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/learn.js?1579265141"></script>
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/js/hugo-learn.js?1579265141"></script>
 
-    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.css?1554117278" type="text/css" rel="stylesheet" />
-    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.js?1554117278"></script>
+    <link href="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.css?1579265141" rel="stylesheet" />
+    <script src="https://perillaroc.github.io/eccodes-tutorial-cn/mermaid/mermaid.js?1579265141"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
