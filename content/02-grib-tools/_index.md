@@ -8,7 +8,7 @@ weight: 2
 ### 简介
 
 ecCodes 工具是一系列命令行程序的集合，用于 GRIB 数据的交互处理和批处理。
-为大部分通用的 GRIB 数据操作提供方便且经过测试的解决方案。
+为大部分通用的 GRIB 数据操作提供方便且经过测试的解决方案，同时支持 GRIB 1 和 GRIB 2 两种格式。
 
 使用这些工具可以节省编写新代码的时间，从而提高效率。
 
@@ -22,17 +22,17 @@ ecCodes 工具是一系列命令行程序的集合，用于 GRIB 数据的交互
 
 获取 ecCodes 安装信息：
 
-```
+{{< highlight bash >}}
 codes_info
-```
+{{< /highlight >}}
 
 命令输出如下
 
 统计 GRIB 和 BUFR 消息：
 
-```
+{{< highlight bash >}}
 codes_count
-```
+{{< /highlight >}}
 
 命令输出结果：
 
@@ -43,29 +43,32 @@ $ codes_count gmf.gra.2018010300000.grb2
 
 ## GRIB 工具简介
 
+
+提供如下的工具：
+
+- 统计 GRIB 文件中的消息数
+    - `grib_count`
+- 查看 GRIB 文件内容和比较 GRIB 文件内容
+    - `grib_ls`
+    - `grib_dump`
+    - `grib_get`
+    - `grib_get_data`
+    - `grib_compare`
+- 拷贝消息
+    - `grib_copy`
+- 修改 GRIB 消息内容
+    - `grib_set`
+    - `grib_filter`
+- 将 GRIB 文件转码为 netCDF 格式
+    - `grib_to_netcdf`
+
+## GRIB 工具语法
+
 所有的工具使用通用的语法
 
 ```
 grib_<tool> [options] grib_file [grib_file] ... [output_grib]
 ```
-
-提供如下的工具：
-
-- 统计 GRIB 文件中的消息数
-    - grib_count
-- 查看 GRIB 文件内容和比较 GRIB 文件内容
-    - grib_ls
-    - grib_dump
-    - grib_get
-    - grib_get_data
-    - grib_compare
-- 拷贝消息
-    - grib_copy
-- 修改 GRIB 消息内容
-    - grib_set
-    - grib_filter
-- 将 GRIB 文件转码为 netCDF 格式
-    - grib_to_netcdf
 
 ## 获取帮助信息
 
@@ -107,42 +110,3 @@ GRIB 工具文档：
 ecCodes 软件下载地址：
 
 [https://software.ecmwf.int/wiki/display/ECC/Releases](https://software.ecmwf.int/wiki/display/ECC/Releases)
-
-
-### ecCodes keys 和 GRIB 参数
-
-GRIB 中的参数
-
-- GRIB 参数数据库：[http://apps.ecmwf.int/codes/grib/param-db](http://apps.ecmwf.int/codes/grib/param-db)
-
-GRIB keys
-
-- GRIB 版本1：[http://apps.ecmwf.int/codes/grib/format/grib1/](http://apps.ecmwf.int/codes/grib/format/grib1/)
-- GRIB 版本2：[http://apps.ecmwf.int/codes/grib/format/grib2/](http://apps.ecmwf.int/codes/grib/format/grib2/)
-- GRIB 版本无关：[http://apps.ecmwf.int/codes/grib/format/edition-independent/](http://apps.ecmwf.int/codes/grib/format/edition-independent/)
-
-免责声明：
-
-包含上述相关信息的官方 FM-92 GRIB 文档可以从 WMO 的官方网站获取：
-
-[http://www.wmo.int/pages/prog/www/WMOCodes.html](http://www.wmo.int/pages/prog/www/WMOCodes.html)
-
-#### GRIB keys
-
-查看版本无关、GRIB 1 和 GRIB 2 的 keys，请访问：
-
-[http://apps.ecmwf.int/codes/grib/](http://apps.ecmwf.int/codes/grib/)
-
-请优先使用版本无关的key。
-
-![](asset/ecmwf_grib_api_info.png)
-
-#### 参数数据库
-
-参数数据库保存 ecCodes 可以识别的所有参数的 GRIB 版本1和版本2的信息，以及部分参数的 NetCDF 编码信息。
-
-数据库可以通过以下网址访问：
-
-[http://apps.ecmwf.int/codes/grib/param-db](http://apps.ecmwf.int/codes/grib/param-db)
-
-![](asset/ecmwf_parameter_database.png)
